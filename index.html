@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr" data-md-theme="dark">
   <head>
     <meta charset="utf-8" />
@@ -20,7 +20,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&icon_names=accessible_forward,add,archive,arrow_back,arrow_forward,arrow_upward,bookmark,close,code_blocks,dark_mode,delete,done,edit,favorite,format_bold,format_italic,format_textdirection_l_to_r,format_textdirection_r_to_l,format_underlined,light_mode,mail,more_vert,navigation,open_in_new,palette,reply,search,send,settings,snooze,tab,videocam,width&display=block"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&icon_names=accessible_forward,add,archive,arrow_back,arrow_forward,arrow_upward,bookmark,close,code_blocks,dark_mode,delete,done,edit,favorite,format_bold,format_italic,format_textdirection_l_to_r,format_textdirection_r_to_l,format_underlined,light_mode,mail,more_vert,navigation,open_in_new,palette,pause,play_arrow,replay,reply,search,send,settings,snooze,stop,tab,videocam,width&display=block"
     />
   </head>
   <body>
@@ -36,7 +36,7 @@
         <p class="subtitle">Standard Extensible Elements</p>
       </header>
 
-      <p>Presenting contents from <code>@vollowx/see@0.3.0</code></p>
+      <p>Presenting contents from <code>@vollowx/see@0.4.2</code></p>
 
       <h2>Button</h2>
 
@@ -136,7 +136,8 @@
 
       <p>
         Note: <code>color</code> is not part of the official Material You. Color
-        of tonal buttons is always secondary container.
+        of tonal buttons is always secondary container. Color of outlined
+        buttons is always on outline variant.
       </p>
 
       <h3>Types</h3>
@@ -181,6 +182,329 @@
           Open
           <md-icon slot="trailingicon">open_in_new</md-icon>
         </md-button>
+      </sw-demo>
+
+      <h3>Toggle Button</h3>
+
+      <p>Button toggles allow users to switch between two states.</p>
+
+      <h4>Interactive Demo</h4>
+
+      <sw-demo hascontrols>
+        <md-button-toggle id="button-toggle-controlled">
+          <md-icon slot="icon">bookmark</md-icon>
+          <md-icon slot="icon-checked" style="font-variation-settings: 'FILL' 1"
+            >bookmark</md-icon
+          >
+          <span>Bookmark</span>
+          <span slot="checked">Bookmarked</span>
+        </md-button-toggle>
+
+        <label slot="controls" for="button-toggle-opt-variant">
+          Variant
+          <md-select
+            name="variant"
+            id="button-toggle-opt-variant"
+            value="filled"
+          >
+            <md-option value="filled">filled</md-option>
+            <md-option value="tonal">tonal</md-option>
+            <md-option value="elevated">elevated</md-option>
+            <md-option value="outlined">outlined</md-option>
+            <md-option value="text">text</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="button-toggle-opt-shape">
+          Shape
+          <md-select name="shape" id="button-toggle-opt-shape" value="rounded">
+            <md-option value="rounded">rounded</md-option>
+            <md-option value="square">square</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="button-toggle-opt-size">
+          Size
+          <md-select name="size" id="button-toggle-opt-size" value="small">
+            <md-option value="xsmall">xsmall</md-option>
+            <md-option value="small">small</md-option>
+            <md-option value="medium">medium</md-option>
+            <md-option value="large">large</md-option>
+            <md-option value="xlarge">xlarge</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="button-toggle-opt-disabled">
+          Disabled
+          <md-switch id="button-toggle-opt-disabled"></md-switch>
+        </label>
+
+        <script>
+          const cButtonToggle = document.querySelector(
+            '#button-toggle-controlled'
+          );
+          document
+            .querySelector('#button-toggle-opt-disabled')
+            .addEventListener(
+              'change',
+              (e) => (cButtonToggle.disabled = e.detail)
+            );
+          document
+            .querySelector('#button-toggle-opt-variant')
+            .addEventListener(
+              'change',
+              (e) => (cButtonToggle.variant = e.target.value)
+            );
+          document
+            .querySelector('#button-toggle-opt-shape')
+            .addEventListener(
+              'change',
+              (e) => (cButtonToggle.shape = e.target.value)
+            );
+          document
+            .querySelector('#button-toggle-opt-size')
+            .addEventListener(
+              'change',
+              (e) => (cButtonToggle.size = e.target.value)
+            );
+        </script>
+      </sw-demo>
+
+      <h4>Usage</h4>
+
+      <sw-demo>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          "
+        >
+          <md-icon-button variant="tonal" width="narrow" aria-label="Pause">
+            <md-icon>pause</md-icon>
+          </md-icon-button>
+          <md-button-toggle size="medium" checked>
+            <span>Stop</span>
+            <span slot="checked">Start</span>
+          </md-button-toggle>
+          <md-icon-button
+            variant="outlined"
+            width="narrow"
+            aria-label="Restart"
+          >
+            <md-icon>replay</md-icon>
+          </md-icon-button>
+        </div>
+      </sw-demo>
+
+      <h2>Icon button</h2>
+
+      <p>Icon buttons help people take minor actions with one tap.</p>
+
+      <h3>Interactive Demo</h3>
+
+      <sw-demo hascontrols>
+        <md-icon-button id="icon-button-controlled">
+          <md-icon>settings</md-icon>
+        </md-icon-button>
+
+        <label slot="controls" for="icon-button-opt-size">
+          Size
+          <md-select name="size" id="icon-button-opt-size" value="small">
+            <md-option value="xsmall">xsmall</md-option>
+            <md-option value="small">small</md-option>
+            <md-option value="medium">medium</md-option>
+            <md-option value="large">large</md-option>
+            <md-option value="xlarge">xlarge</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="icon-button-opt-variant">
+          Variant
+          <md-select name="variant" id="icon-button-opt-variant" value="text">
+            <md-option value="filled">filled</md-option>
+            <md-option value="tonal">tonal</md-option>
+            <md-option value="outlined">outlined</md-option>
+            <md-option value="text">text</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="icon-button-opt-width">
+          Width
+          <md-select name="width" id="icon-button-opt-width" value="standard">
+            <md-option value="standard">standard</md-option>
+            <md-option value="narrow">narrow</md-option>
+            <md-option value="wide">wide</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="icon-button-opt-disabled">
+          Disabled
+          <md-switch id="icon-button-opt-disabled"></md-switch>
+        </label>
+
+        <script>
+          const cIconButton = document.querySelector('#icon-button-controlled');
+          document
+            .querySelector('#icon-button-opt-disabled')
+            .addEventListener(
+              'change',
+              (e) => (cIconButton.disabled = e.detail)
+            );
+          document
+            .querySelector('#icon-button-opt-size')
+            .addEventListener(
+              'change',
+              (e) => (cIconButton.size = e.target.value)
+            );
+          document
+            .querySelector('#icon-button-opt-variant')
+            .addEventListener(
+              'change',
+              (e) => (cIconButton.variant = e.target.value)
+            );
+          document
+            .querySelector('#icon-button-opt-width')
+            .addEventListener(
+              'change',
+              (e) => (cIconButton.width = e.target.value)
+            );
+        </script>
+      </sw-demo>
+
+      <h3>Types</h3>
+
+      <sw-demo>
+        <md-icon-button variant="filled"
+          ><md-icon>settings</md-icon></md-icon-button
+        >
+        <md-icon-button variant="tonal"
+          ><md-icon>settings</md-icon></md-icon-button
+        >
+        <md-icon-button variant="outlined"
+          ><md-icon>settings</md-icon></md-icon-button
+        >
+        <md-icon-button variant="text"
+          ><md-icon>settings</md-icon></md-icon-button
+        >
+      </sw-demo>
+
+      <h3>Toggle Icon Button</h3>
+
+      <p>Icon buttons can be used to select between two states.</p>
+
+      <h4>Interactive Demo</h4>
+
+      <sw-demo hascontrols>
+        <md-icon-button-toggle id="icon-button-toggle-controlled">
+          <md-icon>favorite</md-icon>
+          <md-icon slot="checked" style="font-variation-settings: 'FILL' 1"
+            >favorite</md-icon
+          >
+        </md-icon-button-toggle>
+
+        <label slot="controls" for="icon-button-toggle-opt-variant">
+          Variant
+          <md-select
+            name="variant"
+            id="icon-button-toggle-opt-variant"
+            value="text"
+          >
+            <md-option value="filled">filled</md-option>
+            <md-option value="tonal">tonal</md-option>
+            <md-option value="outlined">outlined</md-option>
+            <md-option value="text">text</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="icon-button-toggle-opt-size">
+          Size
+          <md-select name="size" id="icon-button-toggle-opt-size" value="small">
+            <md-option value="xsmall">xsmall</md-option>
+            <md-option value="small">small</md-option>
+            <md-option value="medium">medium</md-option>
+            <md-option value="large">large</md-option>
+            <md-option value="xlarge">xlarge</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="icon-button-toggle-opt-width">
+          Width
+          <md-select
+            name="width"
+            id="icon-button-toggle-opt-width"
+            value="standard"
+          >
+            <md-option value="standard">standard</md-option>
+            <md-option value="narrow">narrow</md-option>
+            <md-option value="wide">wide</md-option>
+          </md-select>
+        </label>
+
+        <label slot="controls" for="icon-button-toggle-opt-disabled">
+          Disabled
+          <md-switch id="icon-button-toggle-opt-disabled"></md-switch>
+        </label>
+
+        <script>
+          const cIconButtonToggle = document.querySelector(
+            '#icon-button-toggle-controlled'
+          );
+          document
+            .querySelector('#icon-button-toggle-opt-disabled')
+            .addEventListener(
+              'change',
+              (e) => (cIconButtonToggle.disabled = e.detail)
+            );
+          document
+            .querySelector('#icon-button-toggle-opt-variant')
+            .addEventListener(
+              'change',
+              (e) => (cIconButtonToggle.variant = e.target.value)
+            );
+          document
+            .querySelector('#icon-button-toggle-opt-size')
+            .addEventListener(
+              'change',
+              (e) => (cIconButtonToggle.size = e.target.value)
+            );
+          document
+            .querySelector('#icon-button-toggle-opt-width')
+            .addEventListener(
+              'change',
+              (e) => (cIconButtonToggle.width = e.target.value)
+            );
+        </script>
+      </sw-demo>
+
+      <h4>Types</h4>
+
+      <sw-demo>
+        <md-icon-button-toggle variant="filled">
+          <md-icon>favorite</md-icon>
+          <md-icon slot="checked" style="font-variation-settings: 'FILL' 1"
+            >favorite</md-icon
+          >
+        </md-icon-button-toggle>
+        <md-icon-button-toggle variant="tonal">
+          <md-icon>favorite</md-icon>
+          <md-icon slot="checked" style="font-variation-settings: 'FILL' 1"
+            >favorite</md-icon
+          >
+        </md-icon-button-toggle>
+        <md-icon-button-toggle variant="outlined">
+          <md-icon>favorite</md-icon>
+          <md-icon slot="checked" style="font-variation-settings: 'FILL' 1"
+            >favorite</md-icon
+          >
+        </md-icon-button-toggle>
+        <md-icon-button-toggle variant="text">
+          <md-icon>favorite</md-icon>
+          <md-icon slot="checked" style="font-variation-settings: 'FILL' 1"
+            >favorite</md-icon
+          >
+        </md-icon-button-toggle>
       </sw-demo>
 
       <h2>Floating action button (FAB)</h2>
@@ -288,123 +612,6 @@
         the icon is not announced.
       </p>
 
-      <h2>Icon Button</h2>
-
-      <h3>Types</h3>
-
-      <sw-demo>
-        <md-icon-button aria-label="Add to favorites">
-          <md-icon>favorite</md-icon>
-        </md-icon-button>
-        <md-icon-button-toggle checked>
-          <md-icon aria-label="Add to bookmarks">bookmark</md-icon>
-          <md-icon slot="checked" aria-label="Remove from bookmarks"
-            >bookmark</md-icon
-          >
-        </md-icon-button-toggle>
-        <md-icon-button variant="filled" aria-label="Start video meeting">
-          <md-icon>videocam</md-icon>
-        </md-icon-button>
-        <md-icon-button variant="tonal" aria-label="Settings">
-          <md-icon>settings</md-icon>
-        </md-icon-button>
-        <md-icon-button variant="outlined" aria-label="More options">
-          <md-icon>more_vert</md-icon>
-        </md-icon-button>
-      </sw-demo>
-
-      <h3>Usage</h3>
-
-      <p>
-        Use icon buttons to display actions in a compact layout. Icon buttons
-        can represent opening actions such as opening an overflow menu or
-        search, or represent binary actions that can be toggled on and off, such
-        as favorite or bookmark.
-      </p>
-
-      <p>Icon buttons can be grouped together or they can stand alone.</p>
-
-      <h4>Toggle</h4>
-
-      <sw-demo>
-        <div>
-          <md-icon-button-toggle>
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-          <md-icon-button-toggle variant="filled">
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-          <md-icon-button-toggle variant="tonal">
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-          <md-icon-button-toggle variant="outlined">
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-        </div>
-        <div>
-          <md-icon-button-toggle checked>
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-          <md-icon-button-toggle variant="filled" checked>
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-          <md-icon-button-toggle variant="tonal" checked>
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-          <md-icon-button-toggle variant="outlined" checked>
-            <md-icon aria-label="Unchecked">close</md-icon>
-            <md-icon slot="checked" aria-label="Checked">done</md-icon>
-          </md-icon-button-toggle>
-        </div>
-      </sw-demo>
-
-      <h4>Links</h4>
-
-      <p>Currently have no native solution.</p>
-
-      <sw-demo>
-        <md-icon-button id="link-icon-button">
-          <md-icon>search</md-icon>
-        </md-icon-button>
-        <md-tooltip for="link-icon-button">google.com</md-tooltip>
-
-        <script>
-          document
-            .querySelector('#link-icon-button')
-            .addEventListener('click', () => {
-              location.href = 'https://google.com';
-            });
-        </script>
-      </sw-demo>
-
-      <h3>Accessibility</h3>
-
-      <sw-demo>
-        <md-icon-button aria-label="Search for contact">
-          <md-icon>search</md-icon>
-        </md-icon-button>
-      </sw-demo>
-
-      <h4>Toggle</h4>
-
-      <p>
-        Add <code>aria-label</code> attribute to each icon in toggle buttons.
-      </p>
-
-      <sw-demo>
-        <md-icon-button-toggle>
-          <md-icon aria-label="Unchecked">close</md-icon>
-          <md-icon slot="checked" aria-label="Checked">done</md-icon>
-        </md-icon-button-toggle>
-      </sw-demo>
-
       <h2>Toolbar</h2>
 
       <p>
@@ -422,9 +629,14 @@
           <md-icon-button aria-label="Forward">
             <md-icon>arrow_forward</md-icon>
           </md-icon-button>
-          <md-fab size="small" color="primary" aria-label="New tab">
+          <md-icon-button
+            size="small"
+            variant="filled"
+            shape="square"
+            aria-label="New tab"
+          >
             <md-icon>add</md-icon>
-          </md-fab>
+          </md-icon-button>
           <md-icon-button aria-label="Tabs">
             <md-icon>tab</md-icon>
           </md-icon-button>
@@ -452,6 +664,7 @@
               >format_underlined</md-icon
             >
           </md-icon-button-toggle>
+          <md-button>Share</md-button>
         </md-toolbar>
       </sw-demo>
 
@@ -514,66 +727,123 @@
         users interact with a button, action, or other control.
       </p>
 
-      <sw-demo>
-        <div
-          style="
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            height: 200px;
-            justify-content: center;
-          "
-        >
-          <div style="position: relative">
-            <md-button id="menu-anchor" variant="text">More Options</md-button>
+      <h3>Interactive Demo</h3>
 
-            <md-menu id="demo-menu" for="menu-anchor">
-              <md-menu-item id="menu-item-one">Item One</md-menu-item>
-              <md-menu-item id="menu-item-two">Item Two</md-menu-item>
-              <md-menu-item id="menu-item-three" disabled
-                >Item Three</md-menu-item
-              >
-              <md-menu-item id="menu-item-four">Item Four</md-menu-item>
-            </md-menu>
-          </div>
+      <sw-demo hascontrols>
+        <span style="position: relative; display: inline-block">
+          <md-button id="menu-controlled-btn">Open Controlled Menu</md-button>
+          <md-menu id="menu-controlled" for="menu-controlled-btn">
+            <md-menu-item>Item 1</md-menu-item>
+            <md-menu-item>Item 2</md-menu-item>
+            <md-menu-item>Item 3</md-menu-item>
+          </md-menu>
+        </span>
 
-          <div id="menu-output">Selected: None</div>
-        </div>
+        <label slot="controls" for="menu-opt-keep-open-focus-lost">
+          Keep Open (Focus Lost)
+          <md-switch id="menu-opt-keep-open-focus-lost"></md-switch>
+        </label>
+
+        <label slot="controls" for="menu-opt-keep-open-click-item">
+          Keep Open (Click Item)
+          <md-switch id="menu-opt-keep-open-click-item"></md-switch>
+        </label>
+
+        <label slot="controls" for="menu-opt-keep-open-click-outside">
+          Keep Open (Click Outside)
+          <md-switch id="menu-opt-keep-open-click-outside"></md-switch>
+        </label>
+
+        <label slot="controls" for="menu-opt-quick">
+          Quick
+          <md-switch id="menu-opt-quick"></md-switch>
+        </label>
+
+        <label slot="controls" for="menu-opt-align">
+          Align
+          <md-select name="align" id="menu-opt-align" value="bottom-start">
+            <md-option value="top-start">top-start</md-option>
+            <md-option value="top-end">top-end</md-option>
+            <md-option value="bottom-start">bottom-start</md-option>
+            <md-option value="bottom-end">bottom-end</md-option>
+            <md-option value="right-start">right-start</md-option>
+            <md-option value="right-end">right-end</md-option>
+            <md-option value="left-start">left-start</md-option>
+            <md-option value="left-end">left-end</md-option>
+          </md-select>
+        </label>
 
         <script>
-          (() => {
-            const menu = document.querySelector('#demo-menu');
-            const anchor = document.querySelector('#menu-anchor');
-            const output = document.querySelector('#menu-output');
+          const cMenuBtn = document.getElementById('menu-controlled-btn');
+          const cMenu = document.getElementById('menu-controlled');
 
-            anchor.addEventListener('click', () => {
-              menu.open = !menu.open;
-            });
+          cMenuBtn.addEventListener('click', () => {
+            cMenu.open = !cMenu.open;
+          });
 
-            const updateOutput = (text) => {
-              output.textContent = 'Selected: ' + text;
-            };
+          document
+            .getElementById('menu-opt-keep-open-focus-lost')
+            .addEventListener('change', (e) => (cMenu.keepOpenBlur = e.detail));
 
-            document
-              .querySelector('#menu-item-one')
-              .addEventListener('click', () => {
-                updateOutput('Item One');
-                menu.open = false;
-              });
-            document
-              .querySelector('#menu-item-two')
-              .addEventListener('click', () => {
-                updateOutput('Item Two');
-                menu.open = false;
-              });
-            document
-              .querySelector('#menu-item-four')
-              .addEventListener('click', () => {
-                updateOutput('Item Four');
-                menu.open = false;
-              });
-          })();
+          document
+            .getElementById('menu-opt-keep-open-click-item')
+            .addEventListener(
+              'change',
+              (e) => (cMenu.keepOpenClickItem = e.detail)
+            );
+
+          document
+            .getElementById('menu-opt-keep-open-click-outside')
+            .addEventListener(
+              'change',
+              (e) => (cMenu.keepOpenClickOutside = e.detail)
+            );
+
+          document
+            .getElementById('menu-opt-quick')
+            .addEventListener('change', (e) => (cMenu.quick = e.detail));
+
+          document
+            .getElementById('menu-opt-align')
+            .addEventListener('change', (e) => (cMenu.align = e.target.value));
+        </script>
+      </sw-demo>
+
+      <h3>Usage</h3>
+
+      <sw-demo>
+        <span style="position: relative; display: inline-block">
+          <md-button id="some-menu-btn">Menu with Anchor Set</md-button>
+          <md-menu id="some-menu" for="some-menu-btn">
+            <md-menu-item id="item-new-text-file">New Text File</md-menu-item>
+            <md-menu-item id="item-new-file">New File...</md-menu-item>
+            <md-menu-item id="item-new-window">New Window</md-menu-item>
+            <md-divider></md-divider>
+            <md-menu-item id="item-open-file">Open File...</md-menu-item>
+            <md-menu-item id="item-open-folder">Open Folder...</md-menu-item>
+            <md-divider></md-divider>
+            <md-menu-item id="item-save">Save</md-menu-item>
+            <md-menu-item id="item-save-as">Save As...</md-menu-item>
+          </md-menu>
+        </span>
+
+        <label style="display: block"
+          >event:
+          <input type="text" readonly id="some-menu-fires" />
+        </label>
+
+        <script>
+          const menuButton = document.getElementById('some-menu-btn');
+          const menuOutput = document.getElementById('some-menu-fires');
+          const menu = document.getElementById('some-menu');
+
+          menuButton.addEventListener('click', () => {
+            menu.open = !menu.open;
+          });
+
+          menu.addEventListener('select', (e) => {
+            menuOutput.value = `select: { index: ${e.detail.index}, item: #${e.detail.item.id}\n}`;
+          });
         </script>
       </sw-demo>
 
@@ -637,6 +907,68 @@
         <md-checkbox></md-checkbox>
         <md-checkbox checked></md-checkbox>
         <md-checkbox indeterminate></md-checkbox>
+      </sw-demo>
+
+      <sw-demo>
+        <div>
+          <label>
+            <md-checkbox id="parent-checkbox"></md-checkbox>
+            Parent Checkbox
+          </label>
+          <ul style="margin: 0; list-style: none">
+            <li>
+              <label>
+                <md-checkbox
+                  class="child-checkbox"
+                  data-parent="parent-checkbox"
+                ></md-checkbox>
+                Child Checkbox 1
+              </label>
+            </li>
+            <li>
+              <label>
+                <md-checkbox
+                  class="child-checkbox"
+                  data-parent="parent-checkbox"
+                ></md-checkbox>
+                Child Checkbox 2
+              </label>
+            </li>
+            <li>
+              <label>
+                <md-checkbox
+                  class="child-checkbox"
+                  data-parent="parent-checkbox"
+                ></md-checkbox>
+                Child Checkbox 3
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <script>
+          const parentCheckbox = document.getElementById('parent-checkbox');
+          const childCheckboxes = document.querySelectorAll('.child-checkbox');
+          parentCheckbox.addEventListener('change', () => {
+            const isChecked = parentCheckbox.checked;
+            childCheckboxes.forEach((child) => {
+              child.checked = isChecked;
+            });
+          });
+          childCheckboxes.forEach((child) => {
+            child.addEventListener('change', () => {
+              const allChecked = Array.from(childCheckboxes).every(
+                (cb) => cb.checked
+              );
+              const someChecked = Array.from(childCheckboxes).some(
+                (cb) => cb.checked
+              );
+
+              parentCheckbox.checked = allChecked;
+              parentCheckbox.indeterminate = !allChecked && someChecked;
+            });
+          });
+        </script>
       </sw-demo>
 
       <h4>Label</h4>
