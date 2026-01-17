@@ -24,10 +24,6 @@
     />
   </head>
   <body>
-    <nav class="sidebar" aria-labeledby="sidebar-header">
-      <h2 id="sidebar-header">Page contents</h2>
-      <ul id="toc"></ul>
-    </nav>
     <main>
       <sw-toolbar></sw-toolbar>
 
@@ -36,7 +32,11 @@
         <p class="subtitle">Standard Extensible Elements</p>
       </header>
 
-      <p>Presenting contents from <code>@vollowx/see@0.5.1</code></p>
+      <p>Presenting contents from <code>@vollowx/see@0.5.2</code></p>
+
+      <h2>Contents</h2>
+      
+      <ul id="toc"></ul>
 
       <h2>Button</h2>
 
@@ -58,8 +58,13 @@
       <sw-demo hascontrols>
         <md-button id="button-controlled">
           <md-icon slot="icon">search</md-icon>
-          Controlled
+          <span>Controlled</span>
         </md-button>
+
+        <label slot="controls" for="button-opt-label">
+          Label
+          <md-outlined-text-field id="button-opt-label" value="Controlled"></md-outlined-text-field>
+        </label>
 
         <label slot="controls" for="button-opt-size">
           Size
@@ -107,6 +112,8 @@
 
         <script>
           const cButton = document.querySelector('#button-controlled');
+          const buttonLabel = cButton.querySelector('span');
+          document.querySelector('#button-opt-label').addEventListener('input', (e) => (buttonLabel.textContent = e.target.value))
           document
             .querySelector('#button-opt-disabled')
             .addEventListener('change', (e) => (cButton.disabled = e.detail));
@@ -211,7 +218,6 @@
             <md-option value="tonal">tonal</md-option>
             <md-option value="elevated">elevated</md-option>
             <md-option value="outlined">outlined</md-option>
-            <md-option value="text">text</md-option>
           </md-outlined-select>
         </label>
 
@@ -762,12 +768,16 @@
         <label slot="controls" for="menu-opt-align">
           Align
           <md-outlined-select name="align" id="menu-opt-align" value="bottom-start">
+            <md-option value="top">top</md-option>
             <md-option value="top-start">top-start</md-option>
             <md-option value="top-end">top-end</md-option>
+            <md-option value="bottom">bottom</md-option>
             <md-option value="bottom-start">bottom-start</md-option>
             <md-option value="bottom-end">bottom-end</md-option>
+            <md-option value="right">right</md-option>
             <md-option value="right-start">right-start</md-option>
             <md-option value="right-end">right-end</md-option>
+            <md-option value="left">left</md-option>
             <md-option value="left-start">left-start</md-option>
             <md-option value="left-end">left-end</md-option>
           </md-outlined-select>
@@ -1119,7 +1129,7 @@
           Attached imperatively
           <sw-demo>
             <div style="position: relative">
-              <md-ripple id="ripple" for=""></md-ripple>
+              <md-ripple id="ripple"></md-ripple>
               <br />
               <button id="ripple-control">Button</button>
               <br />
@@ -1256,6 +1266,13 @@
         <code>aria-label</code>.
       </p>
 
+      <h2>Text Field</h2>
+
+      <sw-demo>
+        <md-outlined-text-field label="Labelled" placeholder="Placeholder"></md-outlined-text-field>
+        <md-filled-text-field label="Labelled" placeholder="Placeholder"></md-filled-text-field>
+      </sw-demo>
+
       <h2>Tooltip</h2>
 
       <sw-demo>
@@ -1299,8 +1316,6 @@
           <md-option value="watermelon">Watermelon</md-option>
         </md-outlined-select>
       </sw-demo>
-      
-      <md-outlined-textfield label="Labelled" placeholder="Placeholder"></md-outlined-textfield>
     </main>
   </body>
 </html>

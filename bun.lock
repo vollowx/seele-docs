@@ -5,7 +5,7 @@
     "": {
       "name": "see-website",
       "dependencies": {
-        "@vollowx/see": "^0.5.1",
+        "@vollowx/see": "^0.5.2",
         "lightningcss": "^1.30.2",
         "vite": "^7.3.0",
         "vite-plugin-html": "^3.2.2",
@@ -148,7 +148,7 @@
 
     "@types/trusted-types": ["@types/trusted-types@2.0.7", "", {}, "sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw=="],
 
-    "@vollowx/see": ["@vollowx/see@0.5.1", "", { "dependencies": { "@floating-ui/dom": "^1.7.4", "lit": "^3.3.2", "tslib": "^2.8.1" } }, "sha512-HcGA8e5J5OC1f9GOJHqryu+vCxT5pJG6OGdxOGRTt0Q6etbzX55MPuRVMzZNsPN7NInMIditOb4+Up61R5xTwQ=="],
+    "@vollowx/see": ["@vollowx/see@0.5.2", "", { "dependencies": { "@floating-ui/dom": "^1.7.4", "lit": "^3.3.2", "tslib": "^2.8.1" } }, "sha512-fYV5hn1Yz3IZYS2Os4S4UeSeE5ONcsJpdoxH3ZsmfDNV+dbAhIwdN3p4SwsQfJpcI8/7dRcFk9kf6BaFgnT48Q=="],
 
     "acorn": ["acorn@8.15.0", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg=="],
 

@@ -207,47 +207,9 @@ html {
 }
 
 body {
-  display: flex;
-  flex-direction: row-reverse;
   font: var(--md-sys-typography-body-large);
   margin: 0;
   min-height: 100dvh;
-}
-
-.sidebar {
-  position: sticky;
-  top: 32px;
-  right: 32px;
-  width: 320px;
-  height: 640px;
-  padding: 32px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  flex-shrink: 0;
-  display: none;
-  border-radius: 32px;
-  background-color: var(--md-sys-color-surface-container-lowest);
-}
-
-@media (min-width: 1440px) {
-  .sidebar {
-    display: block;
-  }
-}
-
-.sidebar #sidebar-header {
-  font: var(--md-sys-typography-title-large);
-  margin-top: 0;
-}
-
-.sidebar #toc {
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin-bottom: 0;
-}
-
-.sidebar #toc ol {
-  list-style-type: circle;
 }
 
 main {
@@ -256,7 +218,6 @@ main {
   overflow-y: auto;
   flex-grow: 1;
   max-width: min(100%, 980px);
-  margin-inline: auto;
   padding-inline: 32px;
   padding-top: 32px;
   padding-bottom: 96px;
@@ -319,7 +280,9 @@ label:has(md-checkbox:disabled) {
 }
 label:has(md-switch),
 label:has(md-filled-select),
-label:has(md-outlined-select) {
+label:has(md-outlined-select),
+label:has(md-filled-text-field),
+label:has(md-outlined-text-field) {
   display: inline-flex;
   font: var(--md-sys-typography-label-large);
   gap: 8px;
