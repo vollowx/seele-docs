@@ -1,13 +1,16 @@
 {
   "name": "see-website",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "prebuild": "node build-pages.mjs",
+    "dev": "node build-pages.mjs && vite --host",
     "build": "vite build",
     "preview": "vite preview --host"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "glob": "^13.0.0",
     "markdown-it": "^14.1.0",
     "vite-plugin-markdown": "^2.2.0"
   },
