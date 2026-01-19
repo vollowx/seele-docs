@@ -102,7 +102,7 @@
           const buttonLabel = demoButton.querySelector('span');
           document.querySelector('#button-opt-label').addEventListener('input', (e) => (buttonLabel.textContent = e.target.value))
           const bindProperty = (target, sharedID, prop) => {
-            document.
+            document
               .querySelector(`#${sharedID}-${prop}`)
               .addEventListener('change', e => target[prop] = e.target.value)
           }
