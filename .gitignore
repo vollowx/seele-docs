@@ -1,5 +1,6 @@
 # dependencies (bun install)
 node_modules
+package-lock.json
 
 # output
 out
@@ -32,3 +33,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Generated HTML files (built from markdown)
+index.html
+components/*/index.html
