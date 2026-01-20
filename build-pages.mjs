@@ -54,14 +54,6 @@ const indexMd = fs.readFileSync(path.join(__dirname, 'index.md'), 'utf-8');
 const indexParsed = parseFrontmatter(indexMd);
 let indexContent = md.render(indexParsed.content);
 
-// Add all component content to index
-for (const comp of components) {
-  const mdPath = path.join(__dirname, 'components', `${comp}.md`);
-  const mdContent = fs.readFileSync(mdPath, 'utf-8');
-  const parsed = parseFrontmatter(mdContent);
-  indexContent += md.render(parsed.content);
-}
-
 const indexHtml = template
   .replace('{{TITLE}}', indexParsed.frontmatter.title || 'SEE')
   .replace('{{CONTENT}}', indexContent);
