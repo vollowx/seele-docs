@@ -4,8 +4,9 @@ title: Button - SEE
 
 # Button
 
-Base button component documentation.
+- Mixes: [`InternalsAttached`](/base/mixins/internals-attached/)
+- Mixes: [`FormAssociated`](/base/mixins/form-associated/)
 
-## Overview
+## Properties
 
-This is a placeholder for the base button component documentation.
+Placeholder.
