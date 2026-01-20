@@ -119,5 +119,5 @@ Menus display a list of choices on a temporary surface. They appear when users i
 ## Events
 
 |Name|Type|Description|
-|---|---|
+|---|---|---|
 |`select`|`CustomEvent<{index: number, item: HTMLElement}>`|Dispatched when a menu item is selected. The `detail` property contains the selected item's index and element.|

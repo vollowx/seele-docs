@@ -290,17 +290,9 @@ label:has(md-switch:disabled) {
 
 table {
   border-collapse: collapse;
-  display: block;
+  width: 100%;
   overflow-x: auto;
-  width: 100%;
-}
-
-thead,
-tbody,
-tr {
   display: table;
-  table-layout: fixed;
-  width: 100%;
 }
 
 th,
@@ -308,6 +300,7 @@ td {
   border: 1px solid var(--md-sys-color-outline-variant);
   padding: 8px 12px;
   text-align: left;
+  min-width: 100px;
 }
 
 th {
@@ -323,4 +316,19 @@ td {
 
 td code {
   white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  thead,
+  tbody,
+  tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
 }
