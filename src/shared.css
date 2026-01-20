@@ -192,13 +192,6 @@ body {
   color: var(--md-sys-color-on-tertiary-container);
 }
 
-a {
-  color: var(--md-sys-color-primary);
-}
-a:not(:hover):not(:focus-visible) {
-  text-decoration: none;
-}
-
 html {
   scroll-padding-block-start: 0;
 }
@@ -227,14 +220,6 @@ main {
   }
 }
 
-.title {
-  margin-bottom: 8px;
-}
-.subtitle {
-  margin-top: 0;
-  font: var(--md-sys-typography-title-small);
-}
-
 h1 {
   font: var(--md-sys-typography-headline-medium);
 }
@@ -248,6 +233,10 @@ h4 {
   font: var(--md-sys-typography-title-medium);
 }
 
+pre {
+  overflow: auto;
+}
+
 pre,
 code {
   background-color: var(--md-sys-color-surface-variant);
@@ -258,6 +247,13 @@ code {
   margin-inline: 2px;
   outline: 2px solid var(--md-sys-color-surface-variant);
   padding-inline: 2px;
+}
+
+a {
+  color: var(--md-sys-color-primary);
+}
+a:not(:hover):not(:focus-visible) {
+  text-decoration: none;
 }
 
 a:has(md-button),
