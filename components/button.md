@@ -105,6 +105,18 @@ Note: `color` is not part of the official Material You. Color of tonal buttons i
   </md-button>
 </sw-demo>
 
+```html
+<md-button variant="tonal">
+  Send
+  <md-icon slot="icon">send</md-icon>
+</md-button>
+
+<md-button variant="text" trailingicon>
+  Open
+  <md-icon slot="icon">open_in_new</md-icon>
+</md-button>
+```
+
 ### Toggle Button
 
 #### Interactive Demo
