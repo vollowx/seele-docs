@@ -2,7 +2,9 @@
 title: Select - SEE
 ---
 
-## Select
+# Select
+
+<ul id="toc"></ul>
 
 Selects allow users to choose one or more items from a list of values.
 

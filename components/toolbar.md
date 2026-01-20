@@ -2,11 +2,13 @@
 title: Toolbar - SEE
 ---
 
-## Toolbar
+# Toolbar
+
+<ul id="toc"></ul>
 
 Toolbars display frequently used actions relevant to the current page or context and group controls into a compact surface.
 
-### Types
+## Types
 
 <sw-demo>
   <md-toolbar>

@@ -2,11 +2,13 @@
 title: Menu - SEE
 ---
 
-## Menu
+# Menu
+
+<ul id="toc"></ul>
 
 Menus display a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
 
-### Interactive Demo
+## Interactive Demo
 
 <sw-demo hascontrols>
   <span style="position: relative; display: inline-block">

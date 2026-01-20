@@ -2,9 +2,11 @@
 title: Fab - SEE
 ---
 
-## Floating action button (FAB)
+# Floating action button (FAB)
 
-### Types
+<ul id="toc"></ul>
+
+## Types
 
 <sw-demo>
   <md-fab color="primary" aria-label="Accessibility">

@@ -6,7 +6,7 @@ import "./components/toolbar.js";
 (() => {
   const headings = document
     .querySelector("main")
-    .querySelectorAll("h2, h3, h4, h5, h6");
+    .querySelectorAll("h1, h2, h3, h4, h5, h6");
   const container = document.getElementById("toc");
 
   if (!container) return;
@@ -15,7 +15,7 @@ import "./components/toolbar.js";
   let higherIds = [];
 
   headings.forEach((heading) => {
-    let level = Number(heading.localName.replace("h", "")) - 1;
+    let level = Number(heading.localName.replace("h", ""));
     let title = heading.textContent;
 
     let selfId = (heading.textContent || "").toLowerCase().replace(/ /g, "-");

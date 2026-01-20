@@ -2,9 +2,11 @@
 title: Button - SEE
 ---
 
-## Button
+# Button
 
-### Interactive Demo
+<ul id="toc"></ul>
+
+## Interactive Demo
 
 <sw-demo hascontrols>
   <md-button id="button-interactive">

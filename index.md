@@ -8,10 +8,6 @@ title: SEE
 
 Presenting contents from `@vollowx/see@0.6.0`
 
-## Contents
-
-<ul id="toc"></ul>
-
 ## Components
 
 - [Button](/components/button/)

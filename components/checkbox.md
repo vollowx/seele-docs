@@ -2,11 +2,13 @@
 title: Checkbox - SEE
 ---
 
-## Checkbox
+# Checkbox
+
+<ul id="toc"></ul>
 
 Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
 
-### Interactive Demo
+## Interactive Demo
 
 <sw-demo hascontrols>
   <label for="checkbox-interactive">

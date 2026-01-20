@@ -2,11 +2,13 @@
 title: Switch - SEE
 ---
 
-## Switch
+# Switch
+
+<ul id="toc"></ul>
 
 Switches are the preferred way to adjust settings. They're used to control binary options – think On/Off or True/False.
 
-### Interactive Demo
+## Interactive Demo
 
 <sw-demo hascontrols>
   <label for="switch-interactive">

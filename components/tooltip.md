@@ -2,7 +2,9 @@
 title: Tooltip - SEE
 ---
 
-## Tooltip
+# Tooltip
+
+<ul id="toc"></ul>
 
 <sw-demo>
   <md-icon-button id="tooltip-anchor">

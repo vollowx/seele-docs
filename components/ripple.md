@@ -2,13 +2,15 @@
 title: Ripple - SEE
 ---
 
-## Ripple
+# Ripple
+
+<ul id="toc"></ul>
 
 Ripples are state layers used to communicate the status of a component or interactive element.
 
 A state layer is a semi-transparent covering on an element that indicates its state. A layer can be applied to an entire element or in a circular shape.
 
-### Interactive Demo
+## Interactive Demo
 
 <sw-demo>
   <style>

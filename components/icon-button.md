@@ -2,11 +2,13 @@
 title: Icon Button - SEE
 ---
 
-## Icon button
+# Icon button
+
+<ul id="toc"></ul>
 
 Icon buttons help people take minor actions with one tap.
 
-### Interactive Demo
+## Interactive Demo
 
 <sw-demo hascontrols>
   <md-icon-button id="icon-button-interactive">
