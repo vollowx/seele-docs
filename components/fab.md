@@ -20,7 +20,7 @@ title: Fab - SEE
   </md-fab>
 </sw-demo>
 
-#### Extended FAB
+### Extended FAB
 
 <sw-demo>
   <md-fab>
@@ -30,7 +30,7 @@ title: Fab - SEE
   <md-fab><span slot="label">Reroute</span></md-fab>
 </sw-demo>
 
-### Usage
+## Usage
 
 FABs should have an icon, such as a font `md-icon`, an `svg`, or an `img`.
 
@@ -40,7 +40,7 @@ FABs should have an icon, such as a font `md-icon`, an `svg`, or an `img`.
   </md-fab>
 </sw-demo>
 
-#### Lowered
+### Lowered
 
 FABs can be set to a lower elevation with the `lowered` attribute.
 
@@ -50,7 +50,7 @@ FABs can be set to a lower elevation with the `lowered` attribute.
   </md-fab>
 </sw-demo>
 
-#### Colors
+### Colors
 
 FAB colors may be changed with the `color` attribute. It can be set to "surface" (default), "primary", "secondary", or "tertiary".
 
@@ -66,7 +66,7 @@ FAB colors may be changed with the `color` attribute. It can be set to "surface"
   </md-fab>
 </sw-demo>
 
-#### Sizes
+### Sizes
 
 FABs may be small, medium (default), or large by setting the `size` attribute.
 
@@ -82,7 +82,7 @@ FABs may be small, medium (default), or large by setting the `size` attribute.
   </md-fab>
 </sw-demo>
 
-### Accessibility
+## Accessibility
 
 Icon-only FABs must include an `aria-label` that describes its action. Otherwise if `aria-label` is not provided, the FAB will default to announcing its visible contents.
 
