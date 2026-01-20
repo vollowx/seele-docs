@@ -64,9 +64,7 @@ for (const comp of components) {
 
 const indexHtml = template
   .replace('{{TITLE}}', indexParsed.frontmatter.title || 'SEE')
-  .replace('{{CONTENT}}', indexContent)
-  .replace('{{CSS_PATH}}', './main.css')
-  .replace('{{SCRIPT_PATH}}', './main.ts');
+  .replace('{{CONTENT}}', indexContent);
 
 fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml);
 
@@ -81,9 +79,7 @@ for (const comp of components) {
   
   const html = template
     .replace('{{TITLE}}', parsed.frontmatter.title || comp)
-    .replace('{{CONTENT}}', md.render(parsed.content))
-    .replace('{{CSS_PATH}}', '../../main.css')
-    .replace('{{SCRIPT_PATH}}', '../../main.ts');
+    .replace('{{CONTENT}}', md.render(parsed.content));
   
   fs.writeFileSync(path.join(dir, 'index.html'), html);
 }
