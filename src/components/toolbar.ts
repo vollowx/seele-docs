@@ -25,11 +25,10 @@ export class SwToolbar extends LitElement {
   `;
 
   @property({ type: String }) githubUrl = "https://github.com/vollowx/see";
-  @property({ type: Boolean }) darkMode = true;
   @property({ type: Boolean }) rtl = false;
 
+  @state() private themeMode: "light" | "dark" | "auto" = "dark";
   @state() private tooltipTexts = {
-    dark: ["Turn off the light", "Turn on the light"],
     rtl: ["Set direction to right-to-left", "Set direction to left-to-right"],
   };
 
@@ -39,21 +38,37 @@ export class SwToolbar extends LitElement {
   }
 
   private _initializeTheme() {
-    document.documentElement.dataset["mdTheme"] = this.darkMode
-      ? "dark"
-      : "light";
+    this._applyTheme();
     document.documentElement.dir = this.rtl ? "rtl" : "ltr";
   }
 
-  private _getTooltipText(type: "dark" | "rtl", checked: boolean): string {
+  private _applyTheme() {
+    if (this.themeMode === "auto") {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset["mdTheme"] = prefersDark ? "dark" : "light";
+    } else {
+      document.documentElement.dataset["mdTheme"] = this.themeMode;
+    }
+  }
+
+  private _getTooltipText(type: "rtl", checked: boolean): string {
     return this.tooltipTexts[type][checked ? 1 : 0];
   }
 
-  private _handleTheme(e: CustomEvent) {
-    this.darkMode = e.detail;
-    document.documentElement.dataset["mdTheme"] = this.darkMode
-      ? "dark"
-      : "light";
+  private _handleThemeSelect(e: CustomEvent) {
+    const selectedItem = e.detail.item as HTMLElement;
+    const themeValue = selectedItem.dataset.theme as "light" | "dark" | "auto";
+    if (themeValue) {
+      this.themeMode = themeValue;
+      this._applyTheme();
+    }
+  }
+
+  private _toggleThemeMenu(e: Event) {
+    const menu = this.shadowRoot?.querySelector("#theme-menu") as any;
+    if (menu) {
+      menu.open = !menu.open;
+    }
   }
 
   private _handleDir(e: CustomEvent) {
@@ -72,19 +87,32 @@ export class SwToolbar extends LitElement {
   override render() {
     return html`
       <md-toolbar type="floating">
-        <md-icon-button-toggle
+        <md-icon-button
           id="action-toggle-theme"
           variant="tonal"
-          ?checked=${this.darkMode}
-          @change=${this._handleTheme}
+          @click=${this._toggleThemeMenu}
         >
-          <md-icon aria-label="Turn on the light">dark_mode</md-icon>
-          <md-icon slot="checked" aria-label="Turn off the light">
-            light_mode
-          </md-icon>
-        </md-icon-button-toggle>
+          <md-icon aria-label="Change theme">palette</md-icon>
+        </md-icon-button>
+        <md-menu
+          id="theme-menu"
+          for="action-toggle-theme"
+          align="top-end"
+          alignStrategy="fixed"
+          @select=${this._handleThemeSelect}
+        >
+          <md-menu-item data-theme="light" ?selected=${this.themeMode === "light"}>
+            Light
+          </md-menu-item>
+          <md-menu-item data-theme="dark" ?selected=${this.themeMode === "dark"}>
+            Dark
+          </md-menu-item>
+          <md-menu-item data-theme="auto" ?selected=${this.themeMode === "auto"}>
+            Device Default
+          </md-menu-item>
+        </md-menu>
         <md-tooltip for="action-toggle-theme">
-          ${this._getTooltipText("dark", this.darkMode)}
+          Change theme
         </md-tooltip>
 
         <md-icon-button-toggle
