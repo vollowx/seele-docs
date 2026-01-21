@@ -1,7 +1,6 @@
 import "@vollowx/see";
 import "./components/demo.ts";
 import "./components/toolbar.ts";
-import "./components/theme-switcher.ts";
 
 // Generate table of contents
 (() => {
