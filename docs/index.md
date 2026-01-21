@@ -2,28 +2,30 @@
 title: SEE
 ---
 
-# SEE
+# Standard Extensible Elements
 
-**Standard Extensible Elements**
+Presenting: `@vollowx/see@0.6.0`.
 
-Presenting contents from `@vollowx/see@0.6.0`
+SEE is a modern, lightweight Web Components library. It provides a set of highly
+customizable UI components that follow the Material Design 3 guidelines out of the
+box, while being designed for easy extension and restyling.
 
 ## Base
 
 ### Components
 
-- [Button](/base/components/button/)
-- [Checkbox](/base/components/checkbox/)
-- [Field](/base/components/field/)
-- [Input](/base/components/input/)
-- [Item](/base/components/item/)
-- [List Item](/base/components/list-item/)
-- [Menu](/base/components/menu/)
-- [Menu Item](/base/components/menu-item/)
-- [Option](/base/components/option/)
-- [Select](/base/components/select/)
-- [Switch](/base/components/switch/)
-- [Tooltip](/base/components/tooltip/)
+- [`Button`](/base/components/button/)
+- [`Checkbox`](/base/components/checkbox/)
+- [`Field`](/base/components/field/)
+- [`Input`](/base/components/input/)
+- [`Item`](/base/components/item/)
+- [`ListItem`](/base/components/list-item/)
+- [`Menu`](/base/components/menu/)
+- [`MenuItem`](/base/components/menu-item/)
+- [`Option`](/base/components/option/)
+- [`Select`](/base/components/select/)
+- [`Switch`](/base/components/switch/)
+- [`Tooltip`](/base/components/tooltip/)
 
 ### Mixins
 
