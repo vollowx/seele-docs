@@ -204,7 +204,8 @@ main {
   overflow-y: auto;
   flex-grow: 1;
   max-width: min(100%, 980px);
-  padding-inline: 32px;
+  --padding-inline: 32px;
+  padding-inline: var(--padding-inline);
   padding-top: 32px;
   padding-bottom: 96px;
 }
@@ -212,7 +213,7 @@ main {
 @media (max-width: 600px) {
   main {
     padding-top: 16px;
-    padding-inline: 16px;
+    --padding-inline: 16px;
   }
 }
 
@@ -235,9 +236,9 @@ pre {
 
 pre,
 code {
-  background-color: var(--md-sys-color-surface-variant);
+  background-color: var(--md-sys-color-surface-container);
   border-radius: 4px;
-  color: var(--md-sys-color-on-surface-variant);
+  color: var(--md-sys-color-on-surface);
   font: var(--md-sys-typography-body-large);
   font-family: monospace;
   margin-inline: 2px;
@@ -245,55 +246,15 @@ code {
   padding-inline: 2px;
 }
 
-a,
-a code {
-  color: var(--md-sys-color-primary);
-}
-
-a:has(md-button),
-a:has(md-fab),
-a:has(md-icon-button) {
-  -webkit-tap-highlight-color: transparent;
-  text-decoration: none;
-}
-
-label:has(md-checkbox) {
-  align-items: center;
-  display: inline-flex;
-  font: var(--md-sys-typography-label-large);
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-label:has(md-checkbox:disabled) {
-  pointer-events: none;
-}
-label:has(md-switch),
-label:has(md-filled-select),
-label:has(md-outlined-select),
-label:has(md-filled-text-field),
-label:has(md-outlined-text-field) {
-  display: inline-flex;
-  font: var(--md-sys-typography-label-large);
-  gap: 8px;
-  justify-content: space-between;
-  place-items: center;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-label:has(md-switch:disabled) {
-  pointer-events: none;
-}
-
 .table-wrapper {
+  width: 100%;
   overflow-x: auto;
-  margin: 16px 0;
+  margin: var(--padding-inline);
+  padding: var(--padding-inline) 0;
 }
 
 table {
   max-width: max-content;
-}
-
-table {
   border-spacing: 0;
 }
 
@@ -318,7 +279,6 @@ th {
   background-color: var(--md-sys-color-surface-container);
   text-shadow: 0 1px 1px var(--md-sys-color-surface-container-lowest);
   color: var(--md-sys-color-on-surface);
-  font-size: 1.25em;
 }
 
 tr th:first-of-type {
@@ -335,4 +295,34 @@ tr:last-of-type td:first-of-type {
 
 tr:last-of-type td:last-of-type {
   border-end-end-radius: 24px;
+}
+
+a,
+a code {
+  color: var(--md-sys-color-primary);
+}
+
+a:has(md-button),
+a:has(md-fab),
+a:has(md-icon-button) {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+label:has(md-checkbox),
+label:has(md-switch),
+label:has(md-filled-select),
+label:has(md-outlined-select),
+label:has(md-filled-text-field),
+label:has(md-outlined-text-field) {
+  display: inline-flex;
+  font: var(--md-sys-typography-label-large);
+  gap: 8px;
+  justify-content: space-between;
+  place-items: center;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+label:has(:disabled) {
+  pointer-events: none;
 }
