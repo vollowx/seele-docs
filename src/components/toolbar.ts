@@ -121,31 +121,30 @@ export class SwToolbar extends LitElement {
 
   override render() {
     return html`
+      <md-menu
+        id="theme-menu"
+        for="action-toggle-theme"
+        align="top-end"
+        alignStrategy="fixed"
+        @select=${this._handleThemeSelect}
+      >
+        <md-menu-item data-theme="light" ?selected=${this.themeMode === "light"}>
+          Light
+        </md-menu-item>
+        <md-menu-item data-theme="dark" ?selected=${this.themeMode === "dark"}>
+          Dark
+        </md-menu-item>
+        <md-menu-item data-theme="auto" ?selected=${this.themeMode === "auto"}>
+          Device Default
+        </md-menu-item>
+      </md-menu>
       <md-toolbar type="floating">
         <md-icon-button
           id="action-toggle-theme"
-          variant="tonal"
           @click=${this._toggleThemeMenu}
         >
           <md-icon aria-label="Change theme">palette</md-icon>
         </md-icon-button>
-        <md-menu
-          id="theme-menu"
-          for="action-toggle-theme"
-          align="top-end"
-          alignStrategy="fixed"
-          @select=${this._handleThemeSelect}
-        >
-          <md-menu-item data-theme="light" ?selected=${this.themeMode === "light"}>
-            Light
-          </md-menu-item>
-          <md-menu-item data-theme="dark" ?selected=${this.themeMode === "dark"}>
-            Dark
-          </md-menu-item>
-          <md-menu-item data-theme="auto" ?selected=${this.themeMode === "auto"}>
-            Device Default
-          </md-menu-item>
-        </md-menu>
         <md-tooltip for="action-toggle-theme">
           Change theme
         </md-tooltip>
