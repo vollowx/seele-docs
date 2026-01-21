@@ -333,7 +333,6 @@ td {
 }
 
 td code {
-  white-space: nowrap;
   overflow-wrap: break-word;
   word-break: break-all;
 }

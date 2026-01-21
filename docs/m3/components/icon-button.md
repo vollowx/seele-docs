@@ -4,14 +4,12 @@ title: Icon Button - SEE
 
 # Icon button
 
+- Follows: [Icon Buttons - Material Design 3](https://m3.material.io/components/icon-buttons/overview)
+- Inherits: [`Button`](/base/components/button/)
+
 <ul id="toc"></ul>
 
 Icon buttons help people take minor actions with one tap.
-
-## Icon Button
-
-- Follows: [Icon Buttons - Material Design 3](https://m3.material.io/components/icon-buttons/overview)
-- Inherits: [`Button`](/base/components/button/)
 
 ## Interactive Demo
 
