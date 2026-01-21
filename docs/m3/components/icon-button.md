@@ -83,7 +83,7 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 
 Icon buttons can be used to select between two states.
 
-#### Interactive Demo
+### Interactive Demo
 
 <sw-demo hascontrols>
   <md-icon-button-toggle id="icon-button-toggle-interactive">
