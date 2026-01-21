@@ -79,7 +79,7 @@ for (const mdFile of markdownFiles) {
   let content = md.render(parsed.content);
   
   // Wrap tables in a scrollable container
-  content = content.replace(/<table>/g, '<div class="table-wrapper"><table>');
+  content = content.replace(/<table([^>]*)>/g, '<div class="table-wrapper"><table$1>');
   content = content.replace(/<\/table>/g, '</table></div>');
   
   const html = template
