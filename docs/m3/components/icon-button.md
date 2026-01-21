@@ -4,6 +4,9 @@ title: Icon Button - SEE
 
 # Icon button
 
+- Follows: [Icon Buttons - Material Design 3](https://m3.material.io/components/icon-buttons/overview)
+- Inherits: [`Button`](/base/components/button/)
+
 <ul id="toc"></ul>
 
 Icon buttons help people take minor actions with one tap.
@@ -75,6 +78,8 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 </sw-demo>
 
 ### Toggle Icon Button
+
+- Inherits: [`Switch`](/base/components/switch/)
 
 Icon buttons can be used to select between two states.
 
