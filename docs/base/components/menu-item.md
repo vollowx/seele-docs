@@ -2,9 +2,9 @@
 title: Menu Item - SEE
 ---
 
-# Menu Item
+# MenuItem
 
-- Inherits: [`List Item`](/base/components/list-item/)
+- Inherits: [`ListItem`](/base/components/list-item/)
 
 Menu item component for use within menus.
 
