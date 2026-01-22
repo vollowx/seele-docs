@@ -84,7 +84,7 @@ Note: `color` is not part of the official Material Design 3. Color of tonal butt
 ```html
 <md-button>Filled</md-button>
 <md-button variant="tonal">Tonal</md-button>
-<md-button class="buttons" variant="elevated">
+<md-button variant="elevated">
   <md-icon slot="icon">search</md-icon>
   Elevated
 </md-button>
