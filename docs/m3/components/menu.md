@@ -11,6 +11,7 @@ Menus display a list of choices on a temporary surface. They appear when users i
 - Follows: [Menus - Material Design 3](https://m3.material.io/components/menus/overview)
 - Inherits: [`Menu`](../../base/components/menu.md)
 
+<!-- @docs-uncomment
 ## Interactive Demo
 
 <sw-demo hascontrols>
@@ -61,43 +62,45 @@ Menus display a list of choices on a temporary surface. They appear when users i
     </md-outlined-select>
   </label>
 </sw-demo>
+@docs-uncomment-end -->
 
 ### Usage
 
-<sw-demo>
-  <span style="position: relative; display: inline-block">
-    <md-button id="some-menu-btn">Menu with Anchor Set</md-button>
-    <md-menu id="some-menu" for="some-menu-btn">
-      <md-menu-item id="item-new-text-file">New Text File</md-menu-item>
-      <md-menu-item id="item-new-file">New File...</md-menu-item>
-      <md-menu-item id="item-new-window">New Window</md-menu-item>
-      <md-divider></md-divider>
-      <md-menu-item id="item-open-file">Open File...</md-menu-item>
-      <md-menu-item id="item-open-folder">Open Folder...</md-menu-item>
-      <md-divider></md-divider>
-      <md-menu-item id="item-save">Save</md-menu-item>
-      <md-menu-item id="item-save-as">Save As...</md-menu-item>
-    </md-menu>
-  </span>
+<!-- @docs-demo-code-block -->
+```html
+<span style="position: relative; display: inline-block">
+  <md-button id="some-menu-btn">Menu with Anchor Set</md-button>
+  <md-menu id="some-menu" for="some-menu-btn">
+    <md-menu-item id="item-new-text-file">New Text File</md-menu-item>
+    <md-menu-item id="item-new-file">New File...</md-menu-item>
+    <md-menu-item id="item-new-window">New Window</md-menu-item>
+    <md-divider></md-divider>
+    <md-menu-item id="item-open-file">Open File...</md-menu-item>
+    <md-menu-item id="item-open-folder">Open Folder...</md-menu-item>
+    <md-divider></md-divider>
+    <md-menu-item id="item-save">Save</md-menu-item>
+    <md-menu-item id="item-save-as">Save As...</md-menu-item>
+  </md-menu>
+</span>
 
-  <label style="display: block">event:
-    <input type="text" readonly id="some-menu-fires" />
-  </label>
+<label style="display: block">event:
+  <input type="text" readonly id="some-menu-fires" />
+</label>
 
-  <script>
-    const menuButton = document.getElementById('some-menu-btn');
-    const menuOutput = document.getElementById('some-menu-fires');
-    const menu = document.getElementById('some-menu');
+<script>
+  const menuButton = document.getElementById('some-menu-btn');
+  const menuOutput = document.getElementById('some-menu-fires');
+  const menu = document.getElementById('some-menu');
 
-    menuButton.addEventListener('click', () => {
-      menu.open = !menu.open;
-    });
+  menuButton.addEventListener('click', () => {
+    menu.open = !menu.open;
+  });
 
-    menu.addEventListener('select', (e) => {
-      menuOutput.value = `select: { index: ${e.detail.index}, item: #${e.detail.item.id}\n}`;
-    });
-  </script>
-</sw-demo>
+  menu.addEventListener('select', (e) => {
+    menuOutput.value = `select: { index: ${e.detail.index}, item: #${e.detail.item.id}\n}`;
+  });
+</script>
+```
 
 ## Properties
 

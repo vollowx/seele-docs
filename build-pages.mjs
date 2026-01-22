@@ -6,10 +6,25 @@ import MarkdownIt from 'markdown-it';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const md = new MarkdownIt({ html: true });
 
-// Handler: Transform relative .md links to HTML paths
-function transformMdLinks(content, sourceMdFile) {
+/**
+ * Standard handler context passed to all handlers
+ * @typedef {Object} HandlerContext
+ * @property {string} content - The content to process (markdown or HTML)
+ * @property {string} sourceMdFile - Relative path to source markdown file
+ * @property {Object} frontmatter - Parsed frontmatter from markdown
+ */
+
+/**
+ * Pre-handler: Process markdown content before rendering to HTML
+ * @param {HandlerContext} context
+ * @returns {HandlerContext} Modified context
+ */
+
+// Pre-handler: Transform relative .md links to HTML paths
+function transformMdLinks(context) {
+  const { content, sourceMdFile } = context;
   // Match markdown links: [text](path)
-  return content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+  const transformedContent = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
     // Skip external links (http, https, mailto, etc.)
     if (url.match(/^(https?:|mailto:|#)/)) {
       return match;
@@ -47,22 +62,33 @@ function transformMdLinks(content, sourceMdFile) {
     
     return match;
   });
+  
+  return { ...context, content: transformedContent };
 }
 
-// Handler: Wrap tables in a scrollable container
-function wrapTables(content) {
-  return content
-    .replace(/<table([^>]*)>/g, '<div class="table-wrapper"><table$1>')
-    .replace(/<\/table>/g, '</table></div>');
+// Pre-handler: Process @docs-uncomment pattern
+function processUncommentBlocks(context) {
+  const { content } = context;
+  // Match the pattern: <!-- @docs-uncomment ... @docs-uncomment-end -->
+  // This pattern allows hiding content in markdown that should be revealed in the build
+  const pattern = /<!--\s*@docs-uncomment\s*\n([\s\S]*?)\n\s*@docs-uncomment-end\s*-->/g;
+  
+  const transformedContent = content.replace(pattern, (match, uncommentedContent) => {
+    // Simply return the content without the comment markers
+    return uncommentedContent;
+  });
+  
+  return { ...context, content: transformedContent };
 }
 
-// Handler: Process @docs-demo-code-block pattern
-function processDemoCodeBlocks(content) {
+// Pre-handler: Process @docs-demo-code-block pattern
+function processDemoCodeBlocks(context) {
+  const { content } = context;
   // Match the pattern: <!-- @docs-demo-code-block --> followed by a code block
   // The code block can be in markdown format (```lang\n...\n```)
   const pattern = /<!-- @docs-demo-code-block -->\s*\n(```[\s\S]*?```)/g;
   
-  return content.replace(pattern, (match, codeBlock) => {
+  const transformedContent = content.replace(pattern, (match, codeBlock) => {
     // Extract the code content from the markdown code block
     // Match ```html\n<content>\n``` or similar, with optional trailing newline
     const codeMatch = codeBlock.match(/```(\w*)\n([\s\S]*?)\n?```/);
@@ -80,6 +106,164 @@ function processDemoCodeBlocks(content) {
     
     return demoBlock;
   });
+  
+  return { ...context, content: transformedContent };
+}
+
+/**
+ * Post-handler: Process HTML content after rendering from markdown
+ * @param {HandlerContext} context
+ * @returns {HandlerContext} Modified context
+ */
+
+// Helper function to escape HTML special characters
+function escapeHtml(text) {
+  const htmlEscapes = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+  return text.replace(/[&<>"']/g, char => htmlEscapes[char]);
+}
+
+// Post-handler: Wrap tables in a scrollable container
+function wrapTables(context) {
+  const { content } = context;
+  const transformedContent = content
+    .replace(/<table([^>]*)>/g, '<div class="table-wrapper"><table$1>')
+    .replace(/<\/table>/g, '</table></div>');
+  
+  return { ...context, content: transformedContent };
+}
+
+// Post-handler: Generate table of contents
+function generateToc(context) {
+  const { content, frontmatter } = context;
+  
+  // Check if TOC is disabled in frontmatter (default is true)
+  const tocEnabled = frontmatter.toc !== 'false' && frontmatter.toc !== false;
+  
+  if (!tocEnabled) {
+    return context;
+  }
+  
+  // Helper function to generate safe ID from text
+  function generateId(text, level, higherIds) {
+    const selfId = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-')     // Replace spaces with hyphens
+      .replace(/-+/g, '-')      // Replace multiple hyphens with single
+      .replace(/^-|-$/g, '');   // Remove leading/trailing hyphens
+    
+    higherIds[level - 1] = selfId;
+    return higherIds.slice(0, level).filter(id => id).join('-');
+  }
+  
+  // Extract headings (h2-h6) and generate TOC
+  const headings = [];
+  const headingRegex = /<h([2-6])([^>]*)>(.*?)<\/h\1>/g;
+  let match;
+  
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = parseInt(match[1]);
+    const attributes = match[2];
+    const fullHtml = match[3];
+    // Strip HTML tags from heading text for TOC display
+    // This is safe because:
+    // 1. Content comes from markdown-it which already sanitizes input
+    // 2. Text is HTML-escaped before being inserted into TOC (see escapeHtml usage)
+    const text = fullHtml.replace(/<[^>]+>/g, '');
+    const offset = match.index;
+    headings.push({ level, text, fullHtml, attributes, offset });
+  }
+  
+  if (headings.length === 0) {
+    return context;
+  }
+  
+  // Build TOC HTML and add IDs to headings
+  let tocHtml = '<nav id="toc" aria-label="Table of contents"><ol>';
+  let currentLevel = 2;
+  const levelStack = [2];
+  let modifiedContent = content;
+  const higherIds = [];
+  
+  // First pass: Generate IDs for all headings (in forward order to build hierarchy)
+  const headingIds = [];
+  headings.forEach((heading) => {
+    const { level, text } = heading;
+    const formattedId = generateId(text, level, higherIds);
+    headingIds.push(formattedId);
+  });
+  
+  // Second pass: Replace headings with IDs (in reverse order to avoid offset issues)
+  for (let i = headings.length - 1; i >= 0; i--) {
+    const heading = headings[i];
+    const { level, fullHtml } = heading;
+    const formattedId = headingIds[i];
+    
+    // Replace the heading in the content to add the ID
+    const originalHeading = `<h${level}${heading.attributes}>${fullHtml}</h${level}>`;
+    const newHeading = `<h${level} id="${formattedId}"${heading.attributes}>${fullHtml}</h${level}>`;
+    
+    // Replace from the offset to ensure we replace the right occurrence
+    const before = modifiedContent.substring(0, heading.offset);
+    const after = modifiedContent.substring(heading.offset + originalHeading.length);
+    modifiedContent = before + newHeading + after;
+  }
+  
+  // Build TOC HTML (process headings in forward order for proper nesting)
+  headings.forEach((heading, index) => {
+    const { level, text } = heading;
+    const formattedId = headingIds[index];
+    
+    // Adjust for deeper levels
+    if (level > currentLevel) {
+      // Open nested lists
+      for (let i = currentLevel; i < level; i++) {
+        tocHtml += '<ol>';
+        levelStack.push(level);
+      }
+    } else if (level < currentLevel) {
+      // Close nested lists
+      while (levelStack[levelStack.length - 1] > level) {
+        tocHtml += '</ol></li>';
+        levelStack.pop();
+      }
+    } else if (index > 0) {
+      // Close previous item at same level
+      tocHtml += '</li>';
+    }
+    
+    tocHtml += `<li><a href="#${formattedId}">${escapeHtml(text)}</a>`;
+    currentLevel = level;
+  });
+  
+  // Close remaining open lists
+  while (levelStack.length > 1) {
+    tocHtml += '</li></ol>';
+    levelStack.pop();
+  }
+  
+  tocHtml += '</li></ol></nav>';
+  
+  // Inject TOC at the beginning of content (after first h1 if exists)
+  let contentWithToc = modifiedContent;
+  const h1Match = modifiedContent.match(/<h1[^>]*>.*?<\/h1>/);
+  
+  if (h1Match) {
+    // Insert TOC after h1
+    const h1End = h1Match.index + h1Match[0].length;
+    contentWithToc = modifiedContent.slice(0, h1End) + '\n' + tocHtml + '\n' + modifiedContent.slice(h1End);
+  } else {
+    // Insert TOC at the beginning
+    contentWithToc = tocHtml + '\n' + modifiedContent;
+  }
+  
+  return { ...context, content: contentWithToc };
 }
 
 // Parse frontmatter from markdown
@@ -124,6 +308,18 @@ function findMarkdownFiles(dir, baseDir = dir) {
   return files;
 }
 
+// Define handler pipelines
+const preHandlers = [
+  processUncommentBlocks,
+  transformMdLinks,
+  processDemoCodeBlocks,
+];
+
+const postHandlers = [
+  wrapTables,
+  generateToc,
+];
+
 // Read template
 const template = fs.readFileSync(path.join(__dirname, 'src', 'template.html'), 'utf-8');
 
@@ -151,21 +347,29 @@ for (const mdFile of markdownFiles) {
     outputPath = path.join(outputDir, 'index.html');
   }
   
-  // Transform .md links to HTML paths before rendering
-  let transformedContent = transformMdLinks(parsed.content, mdFile);
+  // Create initial context
+  let context = {
+    content: parsed.content,
+    sourceMdFile: mdFile,
+    frontmatter: parsed.frontmatter,
+  };
   
-  // Process @docs-demo-code-block pattern
-  transformedContent = processDemoCodeBlocks(transformedContent);
+  // Run pre-handlers on markdown content
+  for (const handler of preHandlers) {
+    context = handler(context);
+  }
   
-  // Generate HTML
-  let content = md.render(transformedContent);
+  // Render markdown to HTML
+  context.content = md.render(context.content);
   
-  // Wrap tables in a scrollable container
-  content = wrapTables(content);
+  // Run post-handlers on HTML content
+  for (const handler of postHandlers) {
+    context = handler(context);
+  }
   
   const html = template
-    .replace('{{TITLE}}', parsed.frontmatter.title || path.basename(mdFile, '.md'))
-    .replace('{{CONTENT}}', content);
+    .replace('{{TITLE}}', context.frontmatter.title || path.basename(mdFile, '.md'))
+    .replace('{{CONTENT}}', context.content);
   
   fs.writeFileSync(outputPath, html);
 }

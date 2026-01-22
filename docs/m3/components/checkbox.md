@@ -11,6 +11,7 @@ Checkboxes allow users to select one or more items from a set. Checkboxes can tu
 - Follows: [Checkboxes - Material Design 3](https://m3.material.io/components/checkbox/overview)
 - Inherits: [`Checkbox`](../../base/components/checkbox.md)
 
+<!-- @docs-uncomment
 ## Interactive Demo
 
 <sw-demo hascontrols>
@@ -36,92 +37,97 @@ Checkboxes allow users to select one or more items from a set. Checkboxes can tu
     <md-switch id="checkbox-properties-error"></md-switch>
   </label>
 </sw-demo>
+@docs-uncomment-end -->
 
 ### Usage
 
 Checkboxes may be standalone, pre-checked, or indeterminate.
 
-<sw-demo>
-  <md-checkbox></md-checkbox>
-  <md-checkbox checked></md-checkbox>
-  <md-checkbox indeterminate></md-checkbox>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<md-checkbox></md-checkbox>
+<md-checkbox checked></md-checkbox>
+<md-checkbox indeterminate></md-checkbox>
+```
 
-<sw-demo>
-  <div>
-    <label>
-      <md-checkbox id="parent-checkbox"></md-checkbox>
-      Parent Checkbox
-    </label>
-    <ul style="margin: 0; list-style: none">
-      <li>
-        <label>
-          <md-checkbox class="child-checkbox" data-parent="parent-checkbox"></md-checkbox>
-          Child Checkbox 1
-        </label>
-      </li>
-      <li>
-        <label>
-          <md-checkbox class="child-checkbox" data-parent="parent-checkbox"></md-checkbox>
-          Child Checkbox 2
-        </label>
-      </li>
-      <li>
-        <label>
-          <md-checkbox class="child-checkbox" data-parent="parent-checkbox"></md-checkbox>
-          Child Checkbox 3
-        </label>
-      </li>
-    </ul>
-  </div>
+<!-- @docs-demo-code-block -->
+```html
+<div>
+  <label>
+    <md-checkbox id="parent-checkbox"></md-checkbox>
+    Parent Checkbox
+  </label>
+  <ul style="margin: 0; list-style: none">
+    <li>
+      <label>
+        <md-checkbox class="child-checkbox" data-parent="parent-checkbox"></md-checkbox>
+        Child Checkbox 1
+      </label>
+    </li>
+    <li>
+      <label>
+        <md-checkbox class="child-checkbox" data-parent="parent-checkbox"></md-checkbox>
+        Child Checkbox 2
+      </label>
+    </li>
+    <li>
+      <label>
+        <md-checkbox class="child-checkbox" data-parent="parent-checkbox"></md-checkbox>
+        Child Checkbox 3
+      </label>
+    </li>
+  </ul>
+</div>
 
-  <script>
-    const parentCheckbox = document.getElementById('parent-checkbox');
-    const childCheckboxes = document.querySelectorAll('.child-checkbox');
-    parentCheckbox.addEventListener('change', () => {
-      const isChecked = parentCheckbox.checked;
-      childCheckboxes.forEach((child) => {
-        child.checked = isChecked;
-      });
-    });
+<script>
+  const parentCheckbox = document.getElementById('parent-checkbox');
+  const childCheckboxes = document.querySelectorAll('.child-checkbox');
+  parentCheckbox.addEventListener('change', () => {
+    const isChecked = parentCheckbox.checked;
     childCheckboxes.forEach((child) => {
-      child.addEventListener('change', () => {
-        const allChecked = Array.from(childCheckboxes).every((cb) => cb.checked);
-        const someChecked = Array.from(childCheckboxes).some((cb) => cb.checked);
-
-        parentCheckbox.checked = allChecked;
-        parentCheckbox.indeterminate = !allChecked && someChecked;
-      });
+      child.checked = isChecked;
     });
-  </script>
-</sw-demo>
+  });
+  childCheckboxes.forEach((child) => {
+    child.addEventListener('change', () => {
+      const allChecked = Array.from(childCheckboxes).every((cb) => cb.checked);
+      const someChecked = Array.from(childCheckboxes).some((cb) => cb.checked);
+
+      parentCheckbox.checked = allChecked;
+      parentCheckbox.indeterminate = !allChecked && someChecked;
+    });
+  });
+</script>
+```
 
 #### Label
 
 Associate a label with a checkbox using the `<label>` element.
 
-<sw-demo>
-  <label>
-    <md-checkbox></md-checkbox>
-    Checkbox one
-  </label>
+<!-- @docs-demo-code-block -->
+```html
+<label>
+  <md-checkbox></md-checkbox>
+  Checkbox one
+</label>
 
-  <md-checkbox id="checkbox-two"></md-checkbox>
-  <label for="checkbox-two">Checkbox two</label>
-</sw-demo>
+<md-checkbox id="checkbox-two"></md-checkbox>
+<label for="checkbox-two">Checkbox two</label>
+```
 
 ### Accessibility
 
 Add an `aria-label` attribute to checkboxes without labels or checkboxes whose labels need to be more descriptive.
 
-<sw-demo>
-  <md-checkbox aria-label="Select all checkboxes"></md-checkbox>
+<!-- @docs-demo-code-block -->
+```html
+<md-checkbox aria-label="Select all checkboxes"></md-checkbox>
 
-  <label>
-    <md-checkbox aria-label="Agree to terms and conditions"></md-checkbox>
-    Agree
-  </label>
-</sw-demo>
+<label>
+  <md-checkbox aria-label="Agree to terms and conditions"></md-checkbox>
+  Agree
+</label>
+```
 
 Note: checkboxes are not automatically labelled by `<label>` elements and always need an `aria-label`.
 

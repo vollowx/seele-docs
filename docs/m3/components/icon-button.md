@@ -11,6 +11,7 @@ title: Icon Button - M3 - SEE
 - Follows: [Icon Buttons - Material Design 3](https://m3.material.io/components/icon-buttons/overview)
 - Inherits: [`Button`](../../base/components/button.md)
 
+<!-- @docs-uncomment
 ### Interactive Demo
 
 <sw-demo hascontrols>
@@ -53,6 +54,7 @@ title: Icon Button - M3 - SEE
     <md-switch id="icon-button-properties-disabled"></md-switch>
   </label>
 </sw-demo>
+@docs-uncomment-end -->
 
 ### Properties
 
@@ -70,12 +72,13 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 
 ### Types
 
-<sw-demo>
-  <md-icon-button variant="filled"><md-icon>settings</md-icon></md-icon-button>
-  <md-icon-button variant="tonal"><md-icon>settings</md-icon></md-icon-button>
-  <md-icon-button variant="outlined"><md-icon>settings</md-icon></md-icon-button>
-  <md-icon-button variant="text"><md-icon>settings</md-icon></md-icon-button>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<md-icon-button variant="filled"><md-icon>settings</md-icon></md-icon-button>
+<md-icon-button variant="tonal"><md-icon>settings</md-icon></md-icon-button>
+<md-icon-button variant="outlined"><md-icon>settings</md-icon></md-icon-button>
+<md-icon-button variant="text"><md-icon>settings</md-icon></md-icon-button>
+```
 
 ## Toggle Button
 
@@ -83,6 +86,7 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 
 Icon buttons can be used to select between two states.
 
+<!-- @docs-uncomment
 ### Interactive Demo
 
 <sw-demo hascontrols>
@@ -126,6 +130,7 @@ Icon buttons can be used to select between two states.
     <md-switch id="icon-button-toggle-properties-disabled"></md-switch>
   </label>
 </sw-demo>
+@docs-uncomment-end -->
 
 ### Properties
 
@@ -145,21 +150,22 @@ Icon buttons can be used to select between two states.
 
 ### Types
 
-<sw-demo>
-  <md-icon-button-toggle variant="filled">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-  <md-icon-button-toggle variant="tonal">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-  <md-icon-button-toggle variant="outlined">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-  <md-icon-button-toggle variant="text">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<md-icon-button-toggle variant="filled">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+<md-icon-button-toggle variant="tonal">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+<md-icon-button-toggle variant="outlined">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+<md-icon-button-toggle variant="text">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+```
