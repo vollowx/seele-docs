@@ -6,7 +6,7 @@ import MarkdownIt from 'markdown-it';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const md = new MarkdownIt({ html: true });
 
-// Transform relative .md links to HTML paths
+// Handler: Transform relative .md links to HTML paths
 function transformMdLinks(content, sourceMdFile) {
   // Match markdown links: [text](path)
   return content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
@@ -47,6 +47,13 @@ function transformMdLinks(content, sourceMdFile) {
     
     return match;
   });
+}
+
+// Handler: Wrap tables in a scrollable container
+function wrapTables(content) {
+  return content
+    .replace(/<table([^>]*)>/g, '<div class="table-wrapper"><table$1>')
+    .replace(/<\/table>/g, '</table></div>');
 }
 
 // Parse frontmatter from markdown
@@ -125,8 +132,7 @@ for (const mdFile of markdownFiles) {
   let content = md.render(transformedContent);
   
   // Wrap tables in a scrollable container
-  content = content.replace(/<table([^>]*)>/g, '<div class="table-wrapper"><table$1>');
-  content = content.replace(/<\/table>/g, '</table></div>');
+  content = wrapTables(content);
   
   const html = template
     .replace('{{TITLE}}', parsed.frontmatter.title || path.basename(mdFile, '.md'))
