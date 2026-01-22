@@ -47,10 +47,13 @@ export function generateToc(context) {
     const attributes = match[2];
     const fullHtml = match[3];
     // Strip HTML tags from heading text for TOC display
-    // This is safe because:
-    // 1. Content comes from markdown-it which already sanitizes input
-    // 2. Text is HTML-escaped before being inserted into TOC (see escapeHtml usage)
-    const text = fullHtml.replace(/<[^>]+>/g, '');
+    // Content is already sanitized by markdown-it, and will be HTML-escaped before insertion into TOC
+    // First remove complete HTML tags, then remove any stray brackets
+    let text = fullHtml;
+    // Remove complete HTML tags (opening and closing)
+    text = text.replace(/<[^>]*>/g, '');
+    // Remove any remaining angle brackets to prevent any possible injection
+    text = text.replace(/[<>]/g, '');
     const offset = match.index;
     headings.push({ level, text, fullHtml, attributes, offset });
   }
