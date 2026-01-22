@@ -2,30 +2,6 @@ import "@vollowx/see";
 import "./components/demo.ts";
 import "./components/toolbar.ts";
 
-// Add IDs to headings for TOC links (if not already set by build process)
-(() => {
-  const headings = document
-    .querySelector("main")
-    .querySelectorAll("h2, h3, h4, h5, h6"); // Exclude h1 from TOC
-
-  let higherIds = [];
-
-  headings.forEach((heading) => {
-    // Skip if heading already has an ID (set by build process)
-    if (heading.id) return;
-
-    let level = Number(heading.localName.replace("h", ""));
-    let title = heading.textContent;
-
-    let selfId = (heading.textContent || "").toLowerCase().replace(/ /g, "-");
-    higherIds[level - 1] = selfId;
-
-    let formattedId = [...higherIds.slice(0, level - 1), selfId].join("-");
-
-    heading.setAttribute("id", formattedId);
-  });
-})();
-
 // Auto-detect and bind all interactive demos
 (() => {
   const demos = document.querySelectorAll("sw-demo[hascontrols]");
@@ -72,13 +48,10 @@ import "./components/toolbar.ts";
       control.addEventListener(eventType, (e) => {
         const target = e.target as any;
         const event = e as any;
-        
-        // Handle different control types
+
         if (tagName === "md-switch") {
-          // For switches, use event.detail
           (interactive as any)[propertyName] = event.detail;
         } else if (tagName === "md-outlined-select" || tagName === "md-filled-select") {
-          // For selects, use target.value
           (interactive as any)[propertyName] = target.value;
         } else if (tagName === "md-outlined-text-field" || tagName === "md-filled-text-field") {
           // For text fields, handle special cases
