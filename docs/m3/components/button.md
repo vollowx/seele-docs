@@ -183,20 +183,21 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 
 ### Usage
 
-<sw-demo>
-  <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-    <md-icon-button variant="tonal" width="narrow" aria-label="Pause">
-      <md-icon>pause</md-icon>
-    </md-icon-button>
-    <md-button-toggle size="medium" checked>
-      <span>Stop</span>
-      <span slot="checked">Start</span>
-    </md-button-toggle>
-    <md-icon-button variant="outlined" width="narrow" aria-label="Restart">
-      <md-icon>replay</md-icon>
-    </md-icon-button>
-  </div>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+  <md-icon-button variant="tonal" width="narrow" aria-label="Pause">
+    <md-icon>pause</md-icon>
+  </md-icon-button>
+  <md-button-toggle size="medium" checked>
+    <span>Stop</span>
+    <span slot="checked">Start</span>
+  </md-button-toggle>
+  <md-icon-button variant="outlined" width="narrow" aria-label="Restart">
+    <md-icon>replay</md-icon>
+  </md-icon-button>
+</div>
+```
 
 ### Properties
 

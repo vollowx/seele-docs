@@ -70,12 +70,13 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 
 ### Types
 
-<sw-demo>
-  <md-icon-button variant="filled"><md-icon>settings</md-icon></md-icon-button>
-  <md-icon-button variant="tonal"><md-icon>settings</md-icon></md-icon-button>
-  <md-icon-button variant="outlined"><md-icon>settings</md-icon></md-icon-button>
-  <md-icon-button variant="text"><md-icon>settings</md-icon></md-icon-button>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<md-icon-button variant="filled"><md-icon>settings</md-icon></md-icon-button>
+<md-icon-button variant="tonal"><md-icon>settings</md-icon></md-icon-button>
+<md-icon-button variant="outlined"><md-icon>settings</md-icon></md-icon-button>
+<md-icon-button variant="text"><md-icon>settings</md-icon></md-icon-button>
+```
 
 ## Toggle Button
 
@@ -145,21 +146,22 @@ Icon buttons can be used to select between two states.
 
 ### Types
 
-<sw-demo>
-  <md-icon-button-toggle variant="filled">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-  <md-icon-button-toggle variant="tonal">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-  <md-icon-button-toggle variant="outlined">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-  <md-icon-button-toggle variant="text">
-    <md-icon>favorite</md-icon>
-    <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
-  </md-icon-button-toggle>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<md-icon-button-toggle variant="filled">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+<md-icon-button-toggle variant="tonal">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+<md-icon-button-toggle variant="outlined">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+<md-icon-button-toggle variant="text">
+  <md-icon>favorite</md-icon>
+  <md-icon slot="checked" style="font-variation-settings: 'FILL' 1">favorite</md-icon>
+</md-icon-button-toggle>
+```

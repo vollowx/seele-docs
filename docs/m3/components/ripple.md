@@ -80,36 +80,39 @@ A state layer is a semi-transparent covering on an element that indicates its st
 Ripples display on press pointer interactions. They may be attached to a control in one of three ways.
 
 1. Attached to the parent element
-   <sw-demo>
-     <button style="position: relative">
-       <md-ripple></md-ripple>
-       Button
-     </button>
-   </sw-demo>
+   <!-- @docs-demo-code-block -->
+   ```html
+   <button style="position: relative">
+     <md-ripple></md-ripple>
+     Button
+   </button>
+   ```
 
 2. Attached to a referenced element
-   <sw-demo>
-     <div style="position: relative">
-       <md-ripple for="ripple-control-input" enterbehavior="none" spacebehavior="none"></md-ripple>
-       <input id="ripple-control-input" />
-     </div>
-   </sw-demo>
+   <!-- @docs-demo-code-block -->
+   ```html
+   <div style="position: relative">
+     <md-ripple for="ripple-control-input" enterbehavior="none" spacebehavior="none"></md-ripple>
+     <input id="ripple-control-input" />
+   </div>
+   ```
 
 3. Attached imperatively
-   <sw-demo>
-     <div style="position: relative">
-       <md-ripple id="ripple"></md-ripple>
-       <br />
-       <button id="ripple-control">Button</button>
-       <br />
-       <br />
-     </div>
-     <script>
-       const ripple = document.querySelector('#ripple');
-       const control = document.querySelector('#ripple-control');
-       onload = () => ripple.attach(control);
-     </script>
-   </sw-demo>
+   <!-- @docs-demo-code-block -->
+   ```html
+   <div style="position: relative">
+     <md-ripple id="ripple"></md-ripple>
+     <br />
+     <button id="ripple-control">Button</button>
+     <br />
+     <br />
+   </div>
+   <script>
+     const ripple = document.querySelector('#ripple');
+     const control = document.querySelector('#ripple-control');
+     onload = () => ripple.attach(control);
+   </script>
+   ```
 
 Note: ripples must be placed within a `position: relative` container.
 

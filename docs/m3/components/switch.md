@@ -41,49 +41,53 @@ Switches are the preferred way to adjust settings. They're used to control binar
 
 Switches may be standalone or pre-checked.
 
-<sw-demo>
-  <md-switch aria-label="unchecked switch"></md-switch>
-  <md-switch aria-label="pre-checked switch" checked></md-switch>
-</sw-demo>
+<!-- @docs-demo-code-block -->
+```html
+<md-switch aria-label="unchecked switch"></md-switch>
+<md-switch aria-label="pre-checked switch" checked></md-switch>
+```
 
 #### Icons
 
 Icons can be used to visually emphasize the switch's selected state. Switches can choose to display both icons or only selected icons.
 
-<sw-demo>
-  <md-switch icons></md-switch>
-  <md-switch icons checked></md-switch>
+<!-- @docs-demo-code-block -->
+```html
+<md-switch icons></md-switch>
+<md-switch icons checked></md-switch>
 
-  <md-switch icons checkedicononly></md-switch>
-  <md-switch icons checkedicononly checked></md-switch>
-</sw-demo>
+<md-switch icons checkedicononly></md-switch>
+<md-switch icons checkedicononly checked></md-switch>
+```
 
 #### Label
 
 Associate a label with a checkbox using the `<label>` element.
 
-<sw-demo>
-  <label>
-    Wi-Fi
-    <md-switch checked></md-switch>
-  </label>
+<!-- @docs-demo-code-block -->
+```html
+<label>
+  Wi-Fi
+  <md-switch checked></md-switch>
+</label>
 
-  <label for="switch-bluetooth">Bluetooth</label>
-  <md-switch id="switch-bluetooth"></md-switch>
-</sw-demo>
+<label for="switch-bluetooth">Bluetooth</label>
+<md-switch id="switch-bluetooth"></md-switch>
+```
 
 ### Accessibility
 
 Add an `aria-label` attribute to switches without labels or switches whose labels need to be more descriptive.
 
-<sw-demo>
-  <md-switch aria-label="Lights"></md-switch>
+<!-- @docs-demo-code-block -->
+```html
+<md-switch aria-label="Lights"></md-switch>
 
-  <label>
-    All
-    <md-switch aria-label="All notifications"></md-switch>
-  </label>
-</sw-demo>
+<label>
+  All
+  <md-switch aria-label="All notifications"></md-switch>
+</label>
+```
 
 Note: switches are not automatically labelled by `<label>` elements and always need an `aria-label`.
 
