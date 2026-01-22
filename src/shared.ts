@@ -2,19 +2,18 @@ import "@vollowx/see";
 import "./components/demo.ts";
 import "./components/toolbar.ts";
 
-// Generate table of contents
+// Add IDs to headings for TOC links (if not already set by build process)
 (() => {
   const headings = document
     .querySelector("main")
     .querySelectorAll("h2, h3, h4, h5, h6"); // Exclude h1 from TOC
-  const container = document.getElementById("toc");
 
-  if (!container) return;
-
-  let currentContainers = [container];
   let higherIds = [];
 
   headings.forEach((heading) => {
+    // Skip if heading already has an ID (set by build process)
+    if (heading.id) return;
+
     let level = Number(heading.localName.replace("h", ""));
     let title = heading.textContent;
 
@@ -24,33 +23,6 @@ import "./components/toolbar.ts";
     let formattedId = [...higherIds.slice(0, level - 1), selfId].join("-");
 
     heading.setAttribute("id", formattedId);
-
-    let link = document.createElement("a");
-    link.setAttribute("href", "#" + formattedId);
-    link.textContent = title;
-
-    let item = document.createElement("li");
-    item.appendChild(link);
-
-    // Adjust level for h2-based TOC (h2 is now level 1 in the TOC)
-    let tocLevel = level - 1;
-    
-    if (tocLevel === 1) {
-      container.appendChild(item);
-      currentContainers[tocLevel] = item;
-    } else {
-      // Check if we need to create a new list at this level
-      let parentItem = currentContainers[tocLevel - 1];
-      let existingList = parentItem.querySelector(":scope > ol");
-
-      if (!existingList) {
-        existingList = document.createElement("ol");
-        parentItem.appendChild(existingList);
-      }
-
-      existingList.appendChild(item);
-      currentContainers[tocLevel] = item;
-    }
   });
 })();
 
