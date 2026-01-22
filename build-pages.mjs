@@ -66,6 +66,21 @@ function transformMdLinks(context) {
   return { ...context, content: transformedContent };
 }
 
+// Pre-handler: Process @docs-uncomment pattern
+function processUncommentBlocks(context) {
+  const { content } = context;
+  // Match the pattern: <!-- @docs-uncomment ... @end-docs-uncomment -->
+  // This pattern allows hiding content in markdown that should be revealed in the build
+  const pattern = /<!--\s*@docs-uncomment\s*\n([\s\S]*?)\n\s*@end-docs-uncomment\s*-->/g;
+  
+  const transformedContent = content.replace(pattern, (match, uncommentedContent) => {
+    // Simply return the content without the comment markers
+    return uncommentedContent;
+  });
+  
+  return { ...context, content: transformedContent };
+}
+
 // Pre-handler: Process @docs-demo-code-block pattern
 function processDemoCodeBlocks(context) {
   const { content } = context;
@@ -289,6 +304,7 @@ function findMarkdownFiles(dir, baseDir = dir) {
 
 // Define handler pipelines
 const preHandlers = [
+  processUncommentBlocks,
   transformMdLinks,
   processDemoCodeBlocks,
 ];

@@ -11,6 +11,7 @@ Switches are the preferred way to adjust settings. They're used to control binar
 - Follows: [Switches - Material Design 3](https://m3.material.io/components/switch/overview)
 - Inherits: [`Switch`](../../base/components/switch.md)
 
+<!-- @docs-uncomment
 ## Interactive Demo
 
 <sw-demo hascontrols>
@@ -36,6 +37,7 @@ Switches are the preferred way to adjust settings. They're used to control binar
     <md-switch id="switch-properties-checkedIconOnly"></md-switch>
   </label>
 </sw-demo>
+@end-docs-uncomment -->
 
 ### Usage
 

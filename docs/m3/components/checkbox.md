@@ -11,6 +11,7 @@ Checkboxes allow users to select one or more items from a set. Checkboxes can tu
 - Follows: [Checkboxes - Material Design 3](https://m3.material.io/components/checkbox/overview)
 - Inherits: [`Checkbox`](../../base/components/checkbox.md)
 
+<!-- @docs-uncomment
 ## Interactive Demo
 
 <sw-demo hascontrols>
@@ -36,6 +37,7 @@ Checkboxes allow users to select one or more items from a set. Checkboxes can tu
     <md-switch id="checkbox-properties-error"></md-switch>
   </label>
 </sw-demo>
+@end-docs-uncomment -->
 
 ### Usage
 

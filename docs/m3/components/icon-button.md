@@ -11,6 +11,7 @@ title: Icon Button - M3 - SEE
 - Follows: [Icon Buttons - Material Design 3](https://m3.material.io/components/icon-buttons/overview)
 - Inherits: [`Button`](../../base/components/button.md)
 
+<!-- @docs-uncomment
 ### Interactive Demo
 
 <sw-demo hascontrols>
@@ -53,6 +54,7 @@ title: Icon Button - M3 - SEE
     <md-switch id="icon-button-properties-disabled"></md-switch>
   </label>
 </sw-demo>
+@end-docs-uncomment -->
 
 ### Properties
 
@@ -84,6 +86,7 @@ Inherits all standard HTMLElement methods. Use `click()` to programmatically tri
 
 Icon buttons can be used to select between two states.
 
+<!-- @docs-uncomment
 ### Interactive Demo
 
 <sw-demo hascontrols>
@@ -127,6 +130,7 @@ Icon buttons can be used to select between two states.
     <md-switch id="icon-button-toggle-properties-disabled"></md-switch>
   </label>
 </sw-demo>
+@end-docs-uncomment -->
 
 ### Properties
 

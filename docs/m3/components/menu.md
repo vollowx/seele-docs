@@ -11,6 +11,7 @@ Menus display a list of choices on a temporary surface. They appear when users i
 - Follows: [Menus - Material Design 3](https://m3.material.io/components/menus/overview)
 - Inherits: [`Menu`](../../base/components/menu.md)
 
+<!-- @docs-uncomment
 ## Interactive Demo
 
 <sw-demo hascontrols>
@@ -61,6 +62,7 @@ Menus display a list of choices on a temporary surface. They appear when users i
     </md-outlined-select>
   </label>
 </sw-demo>
+@end-docs-uncomment -->
 
 ### Usage
 

@@ -13,6 +13,7 @@ A state layer is a semi-transparent covering on an element that indicates its st
 - Mixes: [`InternalsAttached`](../../base/mixins/internals-attached.md)
 - Mixes: [`Attachable`](../../base/mixins/attachable.md)
 
+<!-- @docs-uncomment
 ## Interactive Demo
 
 <sw-demo>
@@ -74,6 +75,7 @@ A state layer is a semi-transparent covering on an element that indicates its st
     </div>
   </div>
 </sw-demo>
+@end-docs-uncomment -->
 
 ### Usage
 
