@@ -122,6 +122,19 @@ function generateToc(context) {
     return context;
   }
   
+  // Helper function to generate safe ID from text
+  function generateId(text, level, higherIds) {
+    const selfId = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-')     // Replace spaces with hyphens
+      .replace(/-+/g, '-')      // Replace multiple hyphens with single
+      .replace(/^-|-$/g, '');   // Remove leading/trailing hyphens
+    
+    higherIds[level - 1] = selfId;
+    return higherIds.slice(0, level).filter(id => id).join('-');
+  }
+  
   // Extract headings (h2-h6) and generate TOC
   const headings = [];
   const headingRegex = /<h([2-6])([^>]*)>(.*?)<\/h\1>/g;
@@ -130,8 +143,10 @@ function generateToc(context) {
   while ((match = headingRegex.exec(content)) !== null) {
     const level = parseInt(match[1]);
     const attributes = match[2];
-    const text = match[3].replace(/<[^>]+>/g, ''); // Strip HTML tags from heading text
-    headings.push({ level, text, attributes });
+    const fullHtml = match[3];
+    const text = fullHtml.replace(/<[^>]+>/g, ''); // Strip HTML tags from heading text
+    const offset = match.index;
+    headings.push({ level, text, fullHtml, attributes, offset });
   }
   
   if (headings.length === 0) {
@@ -143,37 +158,37 @@ function generateToc(context) {
   let currentLevel = 2;
   const levelStack = [2];
   let modifiedContent = content;
+  const higherIds = [];
   
+  // Process headings in reverse order to avoid offset issues when replacing
+  for (let i = headings.length - 1; i >= 0; i--) {
+    const heading = headings[i];
+    const { level, fullHtml } = heading;
+    
+    // Generate the ID for this heading
+    const formattedId = generateId(heading.text, level, [...higherIds]);
+    
+    // Replace the heading in the content to add the ID
+    const originalHeading = `<h${level}${heading.attributes}>${fullHtml}</h${level}>`;
+    const newHeading = `<h${level} id="${formattedId}"${heading.attributes}>${fullHtml}</h${level}>`;
+    
+    // Replace from the offset to ensure we replace the right occurrence
+    const before = modifiedContent.substring(0, heading.offset);
+    const after = modifiedContent.substring(heading.offset + originalHeading.length);
+    modifiedContent = before + newHeading + after;
+  }
+  
+  // Build TOC HTML (process headings in forward order for proper nesting)
   headings.forEach((heading, index) => {
     const { level, text } = heading;
-    
-    // Generate heading ID
-    const higherIds = [];
-    headings.slice(0, index + 1).forEach((h) => {
-      const selfId = h.text.toLowerCase().replace(/ /g, '-');
-      higherIds[h.level - 1] = selfId;
-    });
-    
-    const selfId = text.toLowerCase().replace(/ /g, '-');
-    higherIds[level - 1] = selfId;
-    const formattedId = higherIds.slice(0, level).filter(id => id).join('-');
-    
-    // Add ID to heading in content
-    const headingPattern = new RegExp(`<h${level}([^>]*)>${text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}<\/h${level}>`, 'g');
-    modifiedContent = modifiedContent.replace(headingPattern, (match) => {
-      // Only add ID if not already present
-      if (match.includes('id=')) {
-        return match;
-      }
-      return `<h${level} id="${formattedId}">${text}</h${level}>`;
-    });
+    const formattedId = generateId(text, level, higherIds);
     
     // Adjust for deeper levels
     if (level > currentLevel) {
       // Open nested lists
       for (let i = currentLevel; i < level; i++) {
         tocHtml += '<ol>';
-        levelStack.push(i + 1);
+        levelStack.push(level);
       }
     } else if (level < currentLevel) {
       // Close nested lists
