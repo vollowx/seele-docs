@@ -21,7 +21,7 @@ Toolbars display frequently used actions relevant to the current page or context
   <md-icon-button aria-label="Forward">
     <md-icon>arrow_forward</md-icon>
   </md-icon-button>
-  <md-icon-button size="small" variant="filled" shape="square" aria-label="New tab">
+  <md-icon-button variant="filled" shape="square" aria-label="New tab">
     <md-icon>add</md-icon>
   </md-icon-button>
   <md-icon-button aria-label="Tabs">
@@ -54,7 +54,7 @@ Toolbars display frequently used actions relevant to the current page or context
 </md-toolbar>
 ```
 
-### Vertical (Floating Only)
+#### Vertical
 
 <!-- @docs-demo-code-block -->
 ```html
@@ -74,7 +74,7 @@ Toolbars display frequently used actions relevant to the current page or context
 </md-toolbar>
 ```
 
-### With FAB
+#### With FAB
 
 <!-- @docs-demo-code-block -->
 ```html
