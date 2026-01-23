@@ -111,5 +111,5 @@ Toolbars display frequently used actions relevant to the current page or context
 |Name|Type|Default|Description|
 |---|---|---|---|
 |`type`|`'docked' \| 'floating'`|`'docked'`|The visual style type of the toolbar.|
-|`color`|`'standard' \| 'expressive'`|`'standard'`|The color variant of the toolbar.|
+|`color`|`'standard' \| 'vibrant'`|`'standard'`|The color variant of the toolbar.|
 |`orientation`|`'horizontal' \| 'vertical'`|`'horizontal'`|The orientation of the toolbar (only for floating type).|
