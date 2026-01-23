@@ -233,7 +233,7 @@ pre,
   background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
   font: var(--md-sys-typography-body-large);
-  font-family: monospace;
+  font-family: 'DM Mono', monospace;
 }
 
 .table-wrapper {
