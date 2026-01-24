@@ -133,7 +133,7 @@ export class SwToolbar extends LitElement {
       <md-menu
         id="theme-menu"
         for="action-toggle-theme"
-        offset="12"
+        offset="16"
         align="top"
         alignStrategy="fixed"
         @select=${this._handleThemeSelect}
@@ -157,7 +157,7 @@ export class SwToolbar extends LitElement {
         >
           <md-icon>code_blocks</md-icon>
         </md-icon-button>
-        <md-tooltip for="action-open-repo">View source code</md-tooltip>
+        <md-tooltip for="action-open-repo" offset="16">View source code</md-tooltip>
 
         <md-icon-button-toggle
           id="action-toggle-direction"
@@ -172,7 +172,7 @@ export class SwToolbar extends LitElement {
             format_textdirection_l_to_r
           </md-icon>
         </md-icon-button-toggle>
-        <md-tooltip for="action-toggle-direction">
+        <md-tooltip for="action-toggle-direction" offset="16">
           ${this._getTooltipText("rtl", this.rtl)}
         </md-tooltip>
 
@@ -182,7 +182,7 @@ export class SwToolbar extends LitElement {
         >
           <md-icon aria-label="Change theme">palette</md-icon>
         </md-icon-button>
-        <md-tooltip for="action-toggle-theme">
+        <md-tooltip for="action-toggle-theme" offset="16">
           Change theme
         </md-tooltip>
 
@@ -194,7 +194,7 @@ export class SwToolbar extends LitElement {
         >
           <md-icon>arrow_upward</md-icon>
         </md-fab>
-        <md-tooltip for="scroll-to-top">Scroll to top</md-tooltip>
+        <md-tooltip for="scroll-to-top" offset="12">Scroll to top</md-tooltip>
       </md-toolbar>
     `;
   }
