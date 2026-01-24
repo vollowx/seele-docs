@@ -11,7 +11,6 @@ await esbuild.build({
   format: 'esm',
   platform: 'node',
   outfile: './_middle/ssr/ssr.js',
-  // Mark seele as external - components render client-side only
   external: ['lit', 'lit/*', '@lit/*', '@vollowx/seele', '@floating-ui/dom', 'tslib'],
   target: 'node18',
   sourcemap: false,
