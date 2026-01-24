@@ -185,8 +185,31 @@ When modifying dependencies during development:
 3. Restart the dev server
 4. Hard refresh the browser
 
+## Test Results
+
+### Testing with v0.7.0 (Before Fix)
+
+Configuration:
+- `sw-toolbar`: Already has `position: fixed`
+- `md-menu`: Already has `alignStrategy="fixed"`
+
+**Result**: Issue still occurs
+- Scroll position before opening menu: 600px
+- Scroll position after opening menu: **0px** (scrolled to top)
+- **Conclusion**: Setting `position: fixed` on toolbar and `alignStrategy="fixed"` on menu does **NOT** solve the issue.
+
+### Testing with v0.7.1 (With preventScroll Fix)
+
+Configuration:
+- Same as above, plus `{ preventScroll: true }` in menu.js
+
+**Result**: Issue is fixed ✅
+- Scroll position before opening menu: 600px
+- Scroll position after opening menu: **600px** (no scroll change)
+- **Conclusion**: The `preventScroll` fix in v0.7.1 successfully resolves the scroll-to-top issue.
+
 ## Conclusion
 
-The scroll-to-top issue when opening menus is caused by the browser's default `focus()` behavior. The fix is simple and surgical: add `{ preventScroll: true }` to two `focus()` calls in the Menu component. This maintains all functionality and accessibility while preventing the unwanted scrolling behavior.
+The scroll-to-top issue when opening menus is caused by the browser's default `focus()` behavior. Setting `position: fixed` alone does **not** fix the issue. The correct solution is to add `{ preventScroll: true }` to the `focus()` calls in the Menu component. This maintains all functionality and accessibility while preventing the unwanted scrolling behavior.
 
-**Recommendation**: Apply this fix to the @vollowx/seele repository and release as version 0.7.1.
+**Fix applied in**: @vollowx/seele v0.7.1 ✅
