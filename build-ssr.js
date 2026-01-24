@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Build SSR components
 await esbuild.build({
-  entryPoints: ['./ssr.js'],
+  entryPoints: ['./ssr.ts'],
   bundle: true,
   format: 'esm',
   platform: 'node',
