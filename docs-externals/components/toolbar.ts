@@ -194,7 +194,7 @@ export class SwToolbar extends LitElement {
         >
           <md-icon>arrow_upward</md-icon>
         </md-fab>
-        <md-tooltip for="scroll-to-top" offset="12">Scroll to top</md-tooltip>
+        <md-tooltip for="scroll-to-top" offset="8">Scroll to top</md-tooltip>
       </md-toolbar>
     `;
   }
