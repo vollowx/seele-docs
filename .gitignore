@@ -4,6 +4,8 @@ node_modules
 # output
 out
 dist
+dist-ssr
+docs-externals/build
 *.tgz
 
 # code coverage
@@ -38,3 +40,4 @@ index.html
 /base/
 /m3/
 /externals/
+/_lit-labs/
