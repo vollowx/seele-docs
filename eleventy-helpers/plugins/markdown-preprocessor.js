@@ -1,7 +1,11 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Get the project root (two levels up from eleventy-helpers/plugins/)
+const projectRoot = path.resolve(__dirname, '..', '..');
+const docsRoot = path.join(projectRoot, 'docs');
 
 /**
  * Plugin: Markdown preprocessor for custom transformations
@@ -35,7 +39,7 @@ export function markdownPreprocessor(eleventyConfig) {
       
       // Pre-processing: Transform .md links to HTML paths
       // Get source file from env if available
-      const sourceMdFile = env?.page?.inputPath ? path.relative(path.join(__dirname, '..', '..', 'docs'), env.page.inputPath) : '';
+      const sourceMdFile = env?.page?.inputPath ? path.relative(docsRoot, env.page.inputPath) : '';
       
       content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
         // Skip external links (http, https, mailto, etc.)
