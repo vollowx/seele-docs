@@ -2,8 +2,11 @@
  * SSR entry point for Lit components
  * 
  * This file imports only custom Lit components that should be server-side rendered.
- * Note: Even with seele v0.8.4, select SSR still shows issues (values in comments).
- * Keeping seele components client-side only until SSR is fully stable.
+ * 
+ * Note: Seele components render client-side only due to Lit SSR limitations.
+ * The md-outlined-select element doesn't receive defer-hydration attribute from
+ * Lit SSR, causing hydration mismatches. This is a Lit SSR plugin issue, not
+ * related to seele v0.8.4 or the build configuration.
  */
 
 // Import custom Lit components for SSR
