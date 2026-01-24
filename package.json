@@ -19,6 +19,7 @@
     "@web/dev-server": "^0.4.6",
     "@webcomponents/template-shadowroot": "^0.2.1",
     "esbuild": "^0.27.2",
+    "html-minifier": "^4.0.0",
     "tsx": "^4.21.0"
   },
   "dependencies": {

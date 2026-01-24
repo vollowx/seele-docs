@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import litPlugin from '@lit-labs/eleventy-plugin-lit';
 import { wrapTables } from './eleventy-helpers/transforms/wrap-tables.js';
 import { generateToc } from './eleventy-helpers/transforms/generate-toc.js';
+import { minifyHtml } from './eleventy-helpers/transforms/minify-html.js';
 import { markdownPreprocessor } from './eleventy-helpers/plugins/markdown-preprocessor.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +30,7 @@ export default function(eleventyConfig) {
   // Apply transforms
   wrapTables(eleventyConfig);
   generateToc(eleventyConfig);
+  minifyHtml(eleventyConfig);
   
   return {
     dir: {
