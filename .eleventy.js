@@ -9,27 +9,18 @@ import { markdownPreprocessor } from './eleventy-helpers/plugins/markdown-prepro
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default function(eleventyConfig) {
-  // Pass through docs-web directory for CSS/JS/components
+  // Pass through built docs-web directory for JS/components
   eleventyConfig.addPassthroughCopy({
-    'docs-web': 'docs-web'
+    '_middle/docs-web': 'docs-web'
   });
   
-  // Pass through node_modules for client-side hydration support
+  // Pass through CSS and source TS files from docs-web
   eleventyConfig.addPassthroughCopy({
-    'node_modules/@lit-labs/ssr-client': '_lit-labs/ssr-client',
-    'node_modules/@vollowx/seele/src': 'node_modules/@vollowx/seele/src',
-    'node_modules/lit': 'node_modules/lit',
-    'node_modules/lit-html': 'node_modules/lit-html',
-    'node_modules/lit-element': 'node_modules/lit-element',
-    'node_modules/@lit/reactive-element': 'node_modules/@lit/reactive-element',
-    'node_modules/@floating-ui/dom/dist': 'node_modules/@floating-ui/dom/dist',
-    'node_modules/@floating-ui/core/dist': 'node_modules/@floating-ui/core/dist',
-    'node_modules/@floating-ui/utils/dist': 'node_modules/@floating-ui/utils/dist',
-    'node_modules/tslib': 'node_modules/tslib'
+    'docs-web/shared.css': 'docs-web/shared.css'
   });
   
-  // Add Lit SSR plugin for server-side rendering and hydration
-  // Components are rendered on the server and then hydrated on the client
+  // Add Lit SSR plugin for server-side rendering
+  // Components are rendered on the server; client-side JS will upgrade them
   eleventyConfig.addPlugin(litPlugin, {
     mode: 'worker',
     componentModules: ['./_middle/ssr/ssr.js']

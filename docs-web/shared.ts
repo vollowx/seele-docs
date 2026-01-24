@@ -1,6 +1,9 @@
-import "@vollowx/seele";
+import * as seele from "@vollowx/seele";
 import "./components/demo.ts";
 import "./components/toolbar.ts";
+
+// Ensure seele is loaded (prevents tree-shaking)
+void seele;
 
 // Auto-detect and bind all interactive demos
 (() => {

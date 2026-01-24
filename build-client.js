@@ -24,7 +24,8 @@ const config = {
   sourcemap: DEV,
   minify: !DEV,
   splitting: true,
-  external: ['@vollowx/seele'],
+  // Don't mark anything as external - bundle everything
+  // This way we don't need import maps for lit, tslib, etc.
 };
 
 // Build client-side bundles
