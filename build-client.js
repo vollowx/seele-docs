@@ -7,10 +7,10 @@ import esbuild from 'esbuild';
 import { glob } from 'glob';
 
 const DEV = process.env.NODE_ENV === 'DEV';
-const outdir = DEV ? 'docs-externals/build' : 'docs-externals/build';
+const outdir = DEV ? '_middle/docs-web/build' : '_middle/docs-web/build';
 
 // Entry points for client-side bundles
-const entryPoints = await glob('./docs-externals/**/*.ts', {
+const entryPoints = await glob('./docs-web/**/*.ts', {
   ignore: ['**/node_modules/**']
 });
 

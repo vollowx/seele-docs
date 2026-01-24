@@ -7,8 +7,8 @@
     "build:client": "node build-client.js",
     "build": "npm run prebuild && npm run build:client",
     "dev": "npx @11ty/eleventy && npm run serve",
-    "serve": "wds --watch --root-dir . --open",
-    "preview": "wds --root-dir ."
+    "serve": "wds --watch --root-dir _site --open",
+    "preview": "wds --root-dir _site"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",

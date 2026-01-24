@@ -9,12 +9,12 @@
 import '@vollowx/seele';
 
 // Import custom Lit components for SSR
-import './docs-externals/components/demo.ts';
-import './docs-externals/components/toolbar.ts';
+import './docs-web/components/demo.ts';
+import './docs-web/components/toolbar.ts';
 
 // Export all seele components for SSR
 export * from '@vollowx/seele';
 
 // Export custom components for SSR
-export * from './docs-externals/components/demo.ts';
-export * from './docs-externals/components/toolbar.ts';
+export * from './docs-web/components/demo.ts';
+export * from './docs-web/components/toolbar.ts';

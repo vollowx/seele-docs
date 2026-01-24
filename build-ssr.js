@@ -10,7 +10,7 @@ await esbuild.build({
   bundle: true,
   format: 'esm',
   platform: 'node',
-  outfile: './dist-ssr/ssr.js',
+  outfile: './_middle/ssr/ssr.js',
   external: ['lit', 'lit/*', '@lit/*', '@vollowx/seele', '@floating-ui/dom', 'tslib'],
   target: 'node18',
   sourcemap: false,
