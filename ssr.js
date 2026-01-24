@@ -2,7 +2,8 @@
  * SSR entry point for Lit components
  * 
  * This file imports only custom Lit components that should be server-side rendered.
- * Seele components are loaded client-side only to avoid SSR hydration issues with form elements.
+ * Note: Even with seele v0.8.4, select SSR still shows issues (values in comments).
+ * Keeping seele components client-side only until SSR is fully stable.
  */
 
 // Import custom Lit components for SSR
