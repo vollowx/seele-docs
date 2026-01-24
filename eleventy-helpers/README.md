@@ -1,0 +1,54 @@
+# Eleventy Helpers
+
+This directory contains modular Eleventy configuration helpers, organized by type following the pattern used in material-components/material-web.
+
+## Structure
+
+- **transforms/** - HTML transformation plugins that process the final output
+- **plugins/** - Eleventy plugins that extend functionality
+- **filters/** - Custom Nunjucks filters (reserved for future use)
+
+## Transforms
+
+### wrap-tables.js
+Wraps all `<table>` elements in a scrollable container div with class `table-wrapper` for responsive table display.
+
+### generate-toc.js
+Automatically generates a table of contents from h2-h6 headings:
+- Extracts headings and creates hierarchical navigation
+- Adds IDs to headings for anchor links
+- Can be disabled via frontmatter: `toc: false`
+
+## Plugins
+
+### markdown-preprocessor.js
+Pre-processes markdown content before rendering:
+- Uncomments blocks marked with `@docs-uncomment` comments
+- Processes demo code blocks with `@docs-demo-code-block` marker
+- Transforms `.md` links to HTML paths with trailing slashes
+
+## Usage
+
+These helpers are imported and used in the main `.eleventy.js` configuration file:
+
+```javascript
+import { wrapTables } from './eleventy-helpers/transforms/wrap-tables.js';
+import { generateToc } from './eleventy-helpers/transforms/generate-toc.js';
+import { markdownPreprocessor } from './eleventy-helpers/plugins/markdown-preprocessor.js';
+
+export default function(eleventyConfig) {
+  markdownPreprocessor(eleventyConfig);
+  wrapTables(eleventyConfig);
+  generateToc(eleventyConfig);
+  // ...
+}
+```
+
+## Lit SSR Support
+
+The project includes `@lit-labs/eleventy-plugin-lit` for server-side rendering of Lit components. Currently, SSR is disabled by default since components are TypeScript and require compilation. The components are loaded client-side via `shared.ts` and hydrate naturally.
+
+To enable SSR in the future:
+1. Set up TypeScript compilation to output JavaScript
+2. Update `ssr.js` to point to compiled files
+3. Enable SSR: `ENABLE_SSR=true npm run prebuild`
