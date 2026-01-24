@@ -34,6 +34,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    createHtmlPlugin({ minify: true }),
+    // Disable HTML minification as it can't parse Declarative Shadow DOM
+    createHtmlPlugin({ minify: false }),
   ],
 });
