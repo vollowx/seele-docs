@@ -4,6 +4,16 @@ import { customElement, property, state } from "lit/decorators.js";
 @customElement("sw-toolbar")
 export class SwToolbar extends LitElement {
   static override styles = css`
+    :host {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+    }
+    md-menu {
+      position: fixed;
+    }
     md-toolbar {
       position: fixed;
       bottom: 16px;
