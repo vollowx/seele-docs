@@ -4,12 +4,21 @@ import { customElement, property, state } from "lit/decorators.js";
 @customElement("sw-toolbar")
 export class SwToolbar extends LitElement {
   static override styles = css`
-    md-toolbar {
+    :host {
       position: fixed;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
       z-index: 100;
+      pointer-events: none;
+    }
+    md-menu,
+    md-toolbar {
+      pointer-events: auto;
     }
     md-icon {
       display: inline-block;
@@ -77,7 +86,7 @@ export class SwToolbar extends LitElement {
 
   private _applyTheme() {
     if (this.themeMode === "auto") {
-      const prefersDark = this._prefersDarkQuery?.matches ?? 
+      const prefersDark = this._prefersDarkQuery?.matches ??
         window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.dataset["mdTheme"] = prefersDark ? "dark" : "light";
     } else {
@@ -124,7 +133,8 @@ export class SwToolbar extends LitElement {
       <md-menu
         id="theme-menu"
         for="action-toggle-theme"
-        align="top-end"
+        offset="12"
+        align="top"
         alignStrategy="fixed"
         @select=${this._handleThemeSelect}
       >
