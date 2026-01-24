@@ -11,6 +11,11 @@ export default function(eleventyConfig) {
   // Pass through docs-externals directory for CSS/JS/components
   eleventyConfig.addPassthroughCopy('docs-externals');
   
+  // Pass through node_modules for client-side hydration support
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/@lit-labs/ssr-client': '_lit-labs/ssr-client'
+  });
+  
   // Add Lit SSR plugin for server-side rendering and hydration
   // Components are rendered on the server and then hydrated on the client
   eleventyConfig.addPlugin(litPlugin, {

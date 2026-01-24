@@ -46,28 +46,40 @@ export default function(eleventyConfig) {
 
 ## Lit SSR & Hydration
 
-The project uses `@lit-labs/eleventy-plugin-lit` for server-side rendering of Lit components with client-side hydration.
+The project uses `@lit-labs/eleventy-plugin-lit` for server-side rendering of custom Lit components (`sw-demo`, `sw-toolbar`) with client-side hydration.
 
 ### How It Works
 
 1. **Build Step**: `build-ssr.js` compiles TypeScript components to JavaScript using esbuild
-2. **SSR**: Eleventy renders components on the server with Declarative Shadow DOM
-3. **Hydration**: Client-side JavaScript hydrates the pre-rendered components
+2. **SSR**: Eleventy renders custom components on the server with Declarative Shadow DOM (DSD)
+3. **Hydration**: `@lit-labs/ssr-client` enables client-side hydration of pre-rendered components
+4. **DSD Polyfill**: Inline polyfill for Firefox and browsers without native DSD support
 
 ### SSR Process
 
 ```
 TypeScript Components → esbuild → dist-ssr/ssr.js → Lit SSR Plugin → HTML with DSD
                                                                            ↓
+                                                    Hydration Support Script
+                                                                           ↓
                                                                     Client Hydration
 ```
 
+### Important Notes
+
+**Custom Components Only**: Only `sw-demo` and `sw-toolbar` are server-side rendered. The `@vollowx/seele` components (md-button, md-switch, etc.) cannot be SSR'd because they use browser APIs (document, window) in their constructors. These are loaded client-side only.
+
+**Hydration Order**: The hydration support script (`lit-element-hydrate-support.js`) MUST be loaded before any Lit components to prevent double-rendering.
+
+**DSD Polyfill**: The template includes an inline polyfill for Declarative Shadow DOM to support Firefox and other browsers that don't natively support it.
+
 ### Benefits
 
-- **Faster Initial Load**: Components render immediately without JavaScript
+- **Faster Initial Load**: Custom components render immediately without JavaScript
 - **SEO-Friendly**: Search engines see fully rendered content
-- **Progressive Enhancement**: Works even if JavaScript fails to load
+- **Progressive Enhancement**: Pre-rendered components work even if JavaScript fails
 - **Improved Performance**: No layout shift, instant interactivity
+- **Firefox Support**: DSD polyfill ensures compatibility across all browsers
 
 ### Build Commands
 
