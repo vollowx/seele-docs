@@ -56,7 +56,8 @@ export default function(eleventyConfig) {
             if (baseName === 'index' || resolvedPath === '.' || resolvedPath === '') {
               htmlPath = '/';
             } else {
-              htmlPath = '/' + resolvedPath + '/';
+              // Remove 'docs/' prefix if present and add trailing slash
+              htmlPath = '/' + resolvedPath.replace(/^docs\//, '') + '/';
             }
           } else {
             htmlPath = htmlPath + '/';
@@ -133,7 +134,17 @@ export default function(eleventyConfig) {
       const fullHtml = match[3];
       
       // Strip HTML tags from heading text for TOC display
-      let text = fullHtml.replace(/<[^>]*>/g, '').replace(/[<>]/g, '');
+      // Remove all HTML tags completely, then remove any remaining angle brackets
+      let text = fullHtml;
+      // Remove complete HTML tags in multiple passes to handle nested/malformed tags
+      let previousText;
+      do {
+        previousText = text;
+        text = text.replace(/<[^>]*>/g, '');
+      } while (text !== previousText);
+      // Remove any remaining angle brackets to prevent injection
+      text = text.replace(/[<>]/g, '');
+      
       const offset = match.index;
       headings.push({ level, text, fullHtml, attributes, offset });
     }
