@@ -46,8 +46,11 @@ export class SwToolbar extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this._initializeDir();
-    this._loadThemePreference();
     this._setupThemeListener();
+  }
+
+  override firstUpdated() {
+    this._loadThemePreference();
     this._applyTheme();
   }
 
