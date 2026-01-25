@@ -1,8 +1,3 @@
-/**
- * Build client-side JavaScript and CSS with esbuild
- * Based on material-web catalog approach
- */
-
 import esbuild from 'esbuild';
 import { transform } from 'lightningcss';
 import fs from 'fs';
@@ -14,7 +9,7 @@ const DEV = process.env.NODE_ENV === 'DEV';
 const outdir = path.join(__dirname, '_middle/docs-web/build');
 
 const entryPoints = [
-  path.join(__dirname, 'shared.ts'),
+  path.join(__dirname, 'client.ts'),
   path.join(__dirname, 'components/demo.ts'),
   path.join(__dirname, 'components/toolbar.ts'),
 ];
@@ -55,12 +50,12 @@ await esbuild
   .catch(() => process.exit(1));
 
 // Minify CSS
-const cssInput = fs.readFileSync(path.join(__dirname, 'shared.css'));
+const cssInput = fs.readFileSync(path.join(__dirname, 'client.css'));
 const { code } = transform({
-  filename: 'shared.css',
+  filename: 'client.css',
   code: cssInput,
   minify: true,
 });
-fs.writeFileSync(path.join(outdir, 'shared.css'), code);
+fs.writeFileSync(path.join(outdir, 'client.css'), code);
 
 console.log('Client assets built successfully');

@@ -6,11 +6,11 @@
     <title>{{ title or page.fileSlug }}</title>
     <meta name="description" content="{{ desc or 'Documentation of SEELE the web components library.' }}" />
 
-    <style>{% inlineCss "_middle/docs-web/build/shared.css" %}</style>
+    <style>{% inlineCss "_middle/docs-web/build/client.css" %}</style>
     <!-- MUST be loaded before any lit components to enable hydration -->
     <script type="module" src="/docs-web/build/lit-hydrate-support.js"></script>
     <!-- Load components and interactive logic -->
-    <script type="module" src="/docs-web/build/shared.js"></script>
+    <script type="module" src="/docs-web/build/client.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
