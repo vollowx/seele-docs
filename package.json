@@ -3,8 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "node docs-web/build-ssr.js && node docs-web/build-client.js && npx @11ty/eleventy --config=docs-web/eleventy.config.js",
-    "build": "npm run prebuild",
+    "build": "node docs-web/build-ssr.js && node docs-web/build-client.js && npx @11ty/eleventy --config=docs-web/eleventy.config.js",
     "dev": "npx @11ty/eleventy --config=docs-web/eleventy.config.js && npm run serve",
     "serve": "wds --watch --root-dir docs-web/_site --open",
     "preview": "wds --root-dir docs-web/_site"
