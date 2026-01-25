@@ -7,6 +7,7 @@ import { minifyHtml } from './eleventy-helpers/transforms/minify-html.js';
 import { markdownPreprocessor } from './eleventy-helpers/plugins/markdown-preprocessor.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(__dirname, '..');
 
 export default function(eleventyConfig) {
   // Pass through built docs-web directory for JS/components and minified CSS
@@ -31,9 +32,9 @@ export default function(eleventyConfig) {
   
   return {
     dir: {
-      input: 'docs',
+      input: path.join(projectRoot, 'docs'),
       output: '_site',
-      includes: '../_includes'
+      includes: '../docs-web/_includes'
     },
     templateFormats: ['md'],
     markdownTemplateEngine: 'njk',

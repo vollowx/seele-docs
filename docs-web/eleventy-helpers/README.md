@@ -29,7 +29,7 @@ Pre-processes markdown content before rendering:
 
 ## Usage
 
-These helpers are imported and used in the main `.eleventy.js` configuration file:
+These helpers are imported and used in the main `eleventy.config.js` configuration file:
 
 ```javascript
 import { wrapTables } from './eleventy-helpers/transforms/wrap-tables.js';

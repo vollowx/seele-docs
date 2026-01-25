@@ -5,10 +5,9 @@ node_modules
 out
 dist
 dist-ssr
-docs-externals/build
 docs-web/build
-_middle
-_site
+docs-web/_middle
+docs-web/_site
 *.tgz
 
 # code coverage
