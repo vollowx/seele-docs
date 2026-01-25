@@ -5,6 +5,9 @@
 
 import esbuild from 'esbuild';
 import { glob } from 'glob';
+import { transform } from 'lightningcss';
+import fs from 'fs';
+import path from 'path';
 
 const DEV = process.env.NODE_ENV === 'DEV';
 const outdir = DEV ? '_middle/docs-web/build' : '_middle/docs-web/build';
@@ -46,5 +49,24 @@ await esbuild.build({
   ...config,
   entryPoints,
 }).catch(() => process.exit(1));
+
+// Minify and copy CSS
+const cssInput = fs.readFileSync('./docs-web/shared.css');
+const { code } = transform({
+  filename: 'shared.css',
+  code: cssInput,
+  minify: true,
+  targets: {
+    chrome: 90,
+  }
+});
+
+// Ensure output directory exists
+if (!fs.existsSync(outdir)) {
+  fs.mkdirSync(outdir, { recursive: true });
+}
+
+// Write minified CSS
+fs.writeFileSync(path.join(outdir, 'shared.css'), code);
 
 console.log('Client build completed successfully');

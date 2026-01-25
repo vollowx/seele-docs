@@ -9,14 +9,9 @@ import { markdownPreprocessor } from './eleventy-helpers/plugins/markdown-prepro
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default function(eleventyConfig) {
-  // Pass through built docs-web directory for JS/components
+  // Pass through built docs-web directory for JS/components and minified CSS
   eleventyConfig.addPassthroughCopy({
     '_middle/docs-web': 'docs-web'
-  });
-  
-  // Pass through CSS and source TS files from docs-web
-  eleventyConfig.addPassthroughCopy({
-    'docs-web/shared.css': 'docs-web/shared.css'
   });
   
   // Add Lit SSR plugin for server-side rendering
