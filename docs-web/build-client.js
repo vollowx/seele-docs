@@ -8,13 +8,15 @@ import { glob } from 'glob';
 import { transform } from 'lightningcss';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEV = process.env.NODE_ENV === 'DEV';
-const outdir = DEV ? '_middle/docs-web/build' : '_middle/docs-web/build';
+const outdir = path.join(__dirname, '_middle/docs-web/build');
 
 // Entry points for client-side bundles
-const entryPoints = await glob('./docs-web/**/*.ts', {
-  ignore: ['**/node_modules/**', '**/lit-hydrate-support.ts']
+const entryPoints = await glob(path.join(__dirname, '**/*.ts'), {
+  ignore: ['**/node_modules/**', '**/lit-hydrate-support.ts', '**/build-*.js', '**/ssr.ts', '**/eleventy-helpers/**']
 });
 
 // Shared esbuild config for main bundles
@@ -33,7 +35,7 @@ const config = {
 
 // Build the hydration support separately (must be loaded first, no splitting)
 await esbuild.build({
-  entryPoints: ['./docs-web/lit-hydrate-support.ts'],
+  entryPoints: [path.join(__dirname, 'lit-hydrate-support.ts')],
   bundle: true,
   outdir,
   format: 'esm',
@@ -51,7 +53,7 @@ await esbuild.build({
 }).catch(() => process.exit(1));
 
 // Minify CSS (no prefixing)
-const cssInput = fs.readFileSync('./docs-web/shared.css');
+const cssInput = fs.readFileSync(path.join(__dirname, 'shared.css'));
 const { code } = transform({
   filename: 'shared.css',
   code: cssInput,
