@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// Get the project root (three levels up from eleventy-helpers/plugins/ to reach seele-docs/)
+// Get the project root (eleventy-helpers/plugins/ -> eleventy-helpers/ -> docs-web/ -> seele-docs/)
 const projectRoot = path.resolve(__dirname, '..', '..', '..');
 const docsRoot = path.join(projectRoot, 'docs');
 
