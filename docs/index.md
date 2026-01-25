@@ -39,13 +39,13 @@ box, while being designed for easy extension and restyling.
 ### Components
 
 - [Button](m3/components/button.md)
-- [Icon Button](m3/components/icon-button.md)
-- [FAB](m3/components/fab.md)
-- [Toolbar](m3/components/toolbar.md)
-- [Menu](m3/components/menu.md)
 - [Checkbox](m3/components/checkbox.md)
+- [FAB](m3/components/fab.md)
+- [Icon Button](m3/components/icon-button.md)
+- [Menu](m3/components/menu.md)
 - [Ripple](m3/components/ripple.md)
+- [Select](m3/components/select.md)
 - [Switch](m3/components/switch.md)
 - [Text Field](m3/components/text-field.md)
+- [Toolbar](m3/components/toolbar.md)
 - [Tooltip](m3/components/tooltip.md)
-- [Select](m3/components/select.md)
