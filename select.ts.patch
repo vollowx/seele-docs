@@ -165,45 +165,17 @@ export class Select extends Base {
       }, 0);
     }
 
-    super.firstUpdated(changed);
-  }
-
-  protected override willUpdate(changed: PropertyValues<Select>) {
-    // During SSR, we need to populate displayText from the selected option in the light DOM
-    // since queryAssignedElements doesn't work during SSR
-    if (isServer && !this.displayText) {
-      // Read the value attribute directly during SSR since the setter has an isServer guard
-      const valueAttr = this.getAttribute('value');
-      
-      // Try to find the matching option element in the light DOM
-      // During SSR, we can access children via different means
-      let displayTextFromOption: string | undefined;
-      
-      // Attempt to find the matching option element using querySelectorAll
-      try {
-        if (typeof this.querySelectorAll === 'function' && valueAttr && this._possibleItemTags.length > 0) {
-          const selector = this._possibleItemTags.join(',');
-          const options = this.querySelectorAll(selector);
-          if (options && options.length > 0) {
-            // Find option with matching value
-            for (let i = 0; i < options.length; i++) {
-              const option = options[i];
-              if (option.getAttribute('value') === valueAttr) {
-                displayTextFromOption = option.textContent?.trim();
-                break;
-              }
-            }
-          }
-        }
-      } catch (e) {
-        // querySelectorAll might not be available during SSR, fall through to fallback
+    // After SSR hydration, we need to ensure displayText is updated from the selected option
+    // This is necessary because during hydration, the displayText may not be set yet
+    if (!isServer) {
+      const oldDisplayText = this.displayText;
+      if (this.updateValueAndDisplayText()) {
+        // Force a re-render if displayText changed
+        this.requestUpdate('displayText', oldDisplayText);
       }
-      
-      // Set displayText: prefer option textContent, fallback to value
-      this.displayText = displayTextFromOption || valueAttr || '';
     }
 
-    super.willUpdate(changed);
+    super.firstUpdated(changed);
   }
 
   protected override update(changed: PropertyValues<Select>) {
@@ -400,9 +372,13 @@ export class Select extends Base {
   }
 
   protected handleSlotChange() {
-    // When slots change, check for initially selected items if value is not set
-    if (!this.value) {
-      this.updateValueAndDisplayText();
+    // When slots change, update display text to match the selected option
+    // This is especially important after SSR hydration when the value attribute
+    // is set but displayText needs to be populated from the option's textContent
+    const oldDisplayText = this.displayText;
+    if (this.updateValueAndDisplayText()) {
+      // If the display text changed, request an update to re-render
+      this.requestUpdate('displayText', oldDisplayText);
     }
   }
 
