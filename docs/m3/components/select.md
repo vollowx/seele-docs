@@ -31,7 +31,6 @@ Selects allow users to choose one or more items from a list of values.
 | Name             | Type                                                                | Default          | Description                                                                 |
 | ---------------- | ------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------- |
 | `value`          | String                                                              | `''`             | The value of the selected option (inherited from `Select`).                 |
-| `placeholder`    | String                                                              | `''`             | The placeholder text when no option is selected (inherited from `Select`).  |
 | `label`          | String                                                              | `''`             | The label text for the select field.                                        |
 | `supportingText` | String                                                              | `''`             | Helper text displayed below the select field.                               |
 | `error`          | Boolean                                                             | `false`          | Whether the select is in an error state.                                    |
