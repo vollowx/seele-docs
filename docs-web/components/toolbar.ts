@@ -26,21 +26,6 @@ export class SwToolbar extends LitElement {
     md-toolbar {
       pointer-events: auto;
     }
-    #scroll-to-top {
-      transition: 
-        transform var(--md-sys-motion-std-effects-default-duration) var(--md-sys-motion-std-effects-default),
-        margin-inline-start var(--md-sys-motion-std-effects-default-duration) var(--md-sys-motion-std-effects-default),
-        opacity var(--md-sys-motion-std-effects-default-duration) var(--md-sys-motion-std-effects-default);
-    }
-    #scroll-to-top.hidden {
-      transform: scale(0);
-      margin-inline-start: -56px;
-      opacity: 0;
-      pointer-events: none;
-    }
-    #scroll-to-top.hidden.transition-complete {
-      display: none;
-    }
   `;
 
   @property({ type: String }) githubUrl = "https://github.com/vollowx/seele";
@@ -48,22 +33,18 @@ export class SwToolbar extends LitElement {
 
   @state() private themeMode: "light" | "dark" | "auto" = "auto";
   @state() private language: LanguageCode = "en";
-  @state() private showScrollToTop = false;
   @state() private tooltipTexts = {
     rtl: ["Set direction to right-to-left", "Set direction to left-to-right"],
   };
 
   @query("#theme-menu") private _themeMenu!: M3Menu;
   @query("#language-menu") private _languageMenu!: M3Menu;
-  @query("#scroll-to-top") private _scrollToTopButton?: HTMLElement;
 
   private _prefersDarkQuery?: MediaQueryList;
-  private _scrollListener?: () => void;
 
   override connectedCallback() {
     super.connectedCallback();
     this._setupThemeListener();
-    this._setupScrollListener();
   }
 
   override firstUpdated() {
@@ -71,38 +52,12 @@ export class SwToolbar extends LitElement {
     this._loadDirectionPreference();
     this._loadLanguagePreference();
     this._applyTheme();
-    
-    // Handle transition end to set display:none for accessibility
-    if (this._scrollToTopButton) {
-      this._scrollToTopButton.addEventListener("transitionend", this._handleScrollButtonTransitionEnd);
-    }
-  }
-
-  override updated(changedProperties: Map<string, any>) {
-    super.updated(changedProperties);
-    
-    // Handle scroll-to-top button visibility changes
-    if (changedProperties.has('showScrollToTop') && this._scrollToTopButton) {
-      if (!this.showScrollToTop) {
-        // When hiding, the transition will play and then we add display:none
-        // The transitionend handler will add the 'transition-complete' class
-      } else {
-        // When showing, immediately remove display:none so fade-in can play
-        this._scrollToTopButton.classList.remove("transition-complete");
-      }
-    }
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
     if (this._prefersDarkQuery) {
       this._prefersDarkQuery.removeEventListener("change", this._handleSystemThemeChange);
-    }
-    if (this._scrollListener) {
-      window.removeEventListener("scroll", this._scrollListener);
-    }
-    if (this._scrollToTopButton) {
-      this._scrollToTopButton.removeEventListener("transitionend", this._handleScrollButtonTransitionEnd);
     }
   }
 
@@ -153,29 +108,9 @@ export class SwToolbar extends LitElement {
     this._prefersDarkQuery.addEventListener("change", this._handleSystemThemeChange);
   }
 
-  private _setupScrollListener() {
-    this._scrollListener = () => {
-      const shouldShow = window.scrollY > 100;
-      if (this.showScrollToTop !== shouldShow) {
-        this.showScrollToTop = shouldShow;
-      }
-    };
-    window.addEventListener("scroll", this._scrollListener, { passive: true });
-    // Initialize scroll state immediately
-    this._scrollListener();
-  }
-
   private _handleSystemThemeChange = () => {
     if (this.themeMode === "auto") {
       this._applyTheme();
-    }
-  };
-
-  private _handleScrollButtonTransitionEnd = (e: TransitionEvent) => {
-    // Only handle opacity transition to avoid multiple triggers
-    if (e.propertyName === "opacity" && this._scrollToTopButton && !this.showScrollToTop) {
-      // Add class to set display:none after fade-out transition
-      this._scrollToTopButton.classList.add("transition-complete");
     }
   };
 
@@ -251,10 +186,6 @@ export class SwToolbar extends LitElement {
     this._saveDirectionPreference();
   }
 
-  private _handleScrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
   private _handleGithubClick() {
     window.open(this.githubUrl, "_blank");
   }
@@ -300,15 +231,6 @@ export class SwToolbar extends LitElement {
       </md-menu>
 
       <md-toolbar type="floating" color="vibrant">
-        <md-icon-button
-          id="action-open-repo"
-          aria-label="GitHub repository"
-          @click=${this._handleGithubClick}
-        >
-          <iconify-icon icon="mdi:github"></iconify-icon>
-        </md-icon-button>
-        <md-tooltip for="action-open-repo" offset="16">View source code</md-tooltip>
-
         <md-icon-button-toggle
           id="action-toggle-direction"
           variant="tonal"
@@ -345,13 +267,12 @@ export class SwToolbar extends LitElement {
         <md-fab
           slot="fab"
           color="tertiary"
-          id="scroll-to-top"
-          class=${this.showScrollToTop ? "" : "hidden"}
-          @click=${this._handleScrollToTop}
+          aria-label="GitHub repository"
+          @click=${this._handleGithubClick}
         >
-          <iconify-icon icon="material-symbols:arrow-upward"></iconify-icon>
+          <iconify-icon icon="mdi:github"></iconify-icon>
         </md-fab>
-        <md-tooltip for="scroll-to-top" offset="8">Scroll to top</md-tooltip>
+        <md-tooltip for="action-open-repo" offset="8">View source code</md-tooltip>
       </md-toolbar>
     `;
   }
