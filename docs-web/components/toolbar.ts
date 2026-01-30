@@ -49,8 +49,8 @@ export class SwToolbar extends LitElement {
     rtl: ["Set direction to right-to-left", "Set direction to left-to-right"],
   };
 
-  @query("#theme-menu") private _themeMenu?: HTMLElement & { open: boolean };
-  @query("#language-menu") private _languageMenu?: HTMLElement & { open: boolean };
+  @query("#theme-menu") private _themeMenu!: HTMLElement & { open: boolean };
+  @query("#language-menu") private _languageMenu!: HTMLElement & { open: boolean };
 
   private _prefersDarkQuery?: MediaQueryList;
   private _scrollListener?: () => void;
@@ -158,15 +158,11 @@ export class SwToolbar extends LitElement {
   }
 
   private _toggleThemeMenu() {
-    if (this._themeMenu) {
-      this._themeMenu.open = !this._themeMenu.open;
-    }
+    this._themeMenu.open = !this._themeMenu.open;
   }
 
   private _toggleLanguageMenu() {
-    if (this._languageMenu) {
-      this._languageMenu.open = !this._languageMenu.open;
-    }
+    this._languageMenu.open = !this._languageMenu.open;
   }
 
   private _handleThemeSelect(e: CustomEvent) {
