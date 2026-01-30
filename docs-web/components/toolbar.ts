@@ -267,6 +267,7 @@ export class SwToolbar extends LitElement {
         <md-fab
           slot="fab"
           color="tertiary"
+          id="action-open-repo"
           aria-label="GitHub repository"
           @click=${this._handleGithubClick}
         >
