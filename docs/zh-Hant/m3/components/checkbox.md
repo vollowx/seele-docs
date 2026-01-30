@@ -127,7 +127,7 @@ title: Checkbox - M3 - SEELE
 
 ### 無障礙
 
-爲沒有標籤的複選框或需要更具描述性的標籤的複選框添加 `aria-label` 屬性。
+為沒有標籤的複選框或需要更具描述性的標籤的複選框添加 `aria-label` 屬性。
 
 <!-- @docs-demo-code-block -->
 

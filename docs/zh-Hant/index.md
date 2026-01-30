@@ -7,7 +7,7 @@ toc: false
 
 本文檔呈現來自 `@vollowx/seele@0.8.12` 的內容。
 
-SEELE 是一個現代、輕量級的 Web Components 庫。它提供了一套高度可定製的 UI 組件，開箱即用地遵循 Material Design 3 指南，同時設計爲易於擴展和重新設計樣式。
+SEELE 是一個現代、輕量級的 Web Components 庫。它提供了一套高度可定製的 UI 組件，開箱即用地遵循 Material Design 3 指南，同時設計為易於擴展和重新設計樣式。
 
 ## 基礎組件
 

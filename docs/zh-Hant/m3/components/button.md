@@ -74,7 +74,7 @@ title: Button - M3 - SEELE
 </sw-demo>
 @docs-uncomment-end -->
 
-注意：`color` 不是官方 Material Design 3 的一部分。填充色調按鈕的顏色始終爲次要容器。輪廓按鈕的顏色始終爲輪廓變體。
+注意：`color` 不是官方 Material Design 3 的一部分。填充色調按鈕的顏色始終為次要容器。輪廓按鈕的顏色始終為輪廓變體。
 
 ### 配置
 

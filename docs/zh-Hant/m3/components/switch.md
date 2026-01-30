@@ -80,7 +80,7 @@ title: Switch - M3 - SEELE
 
 ### 無障礙
 
-爲沒有標籤的開關或需要更具描述性的標籤的開關添加 `aria-label` 屬性。
+為沒有標籤的開關或需要更具描述性的標籤的開關添加 `aria-label` 屬性。
 
 <!-- @docs-demo-code-block -->
 

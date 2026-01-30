@@ -51,7 +51,7 @@ FAB 應該包含一個圖標，例如字體 `iconify-icon`、`svg` 或 `img`。
 
 ### 降低高度
 
-可以使用 `lowered` 屬性將 FAB 設置爲較低的高度。
+可以使用 `lowered` 屬性將 FAB 設置為較低的高度。
 
 <!-- @docs-demo-code-block -->
 
@@ -63,7 +63,7 @@ FAB 應該包含一個圖標，例如字體 `iconify-icon`、`svg` 或 `img`。
 
 ### 顏色
 
-可以使用 `color` 屬性更改 FAB 的顏色。可以設置爲 "surface"（默認）、"primary"、"secondary" 或 "tertiary"。
+可以使用 `color` 屬性更改 FAB 的顏色。可以設置為 "surface"（默認）、"primary"、"secondary" 或 "tertiary"。
 
 <!-- @docs-demo-code-block -->
 

@@ -15,9 +15,9 @@ title: Input - Base - SEELE
 | -------------- | ------- | -------- | ------------------------------------------------------ |
 | `type`         | String  | `'text'` | 輸入類型（text、email、password 等）。                 |
 | `value`        | String  | `''`     | 輸入框的當前值。                                       |
-| `placeholder`  | String  | `''`     | 輸入框爲空時顯示的佔位符文本。                         |
-| `required`     | Boolean | `false`  | 輸入框是否爲表單提交所必需。                           |
-| `readOnly`     | Boolean | `false`  | 輸入框是否爲只讀。                                     |
+| `placeholder`  | String  | `''`     | 輸入框為空時顯示的佔位符文本。                         |
+| `required`     | Boolean | `false`  | 輸入框是否為表單提交所必需。                           |
+| `readOnly`     | Boolean | `false`  | 輸入框是否為只讀。                                     |
 | `multiple`     | Boolean | `false`  | 輸入框是否接受多個值（例如，email）。                  |
 | `min`          | String  | `''`     | 數字或日期輸入的最小值。                               |
 | `max`          | String  | `''`     | 數字或日期輸入的最大值。                               |

@@ -10,4 +10,4 @@ title: FormAssociated - Base - SEELE
 
 |名稱|類型|描述|
 |---|---|---|
-|`disabled`|Boolean|元素是否被禁用。爲真時，元素無法交互，並且從表單提交中排除。|
+|`disabled`|Boolean|元素是否被禁用。為真時，元素無法交互，並且從表單提交中排除。|
