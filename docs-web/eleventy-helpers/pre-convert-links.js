@@ -45,21 +45,20 @@ export function convertLinks(content, env, docsRoot) {
         );
 
         const baseName = path.posix.basename(resolvedPath);
-        // Only treat as root if it's actually the root index
+        // Handle root index and empty paths
         if (
           (baseName === 'index' && path.posix.dirname(resolvedPath) === '.') ||
           resolvedPath === '.' ||
-          resolvedPath === '' ||
-          resolvedPath === 'index'
+          resolvedPath === ''
         ) {
           htmlPath = '/';
         } else if (baseName === 'index') {
           // For index files in subdirectories, link to the directory
           const dir = path.posix.dirname(resolvedPath);
-          htmlPath = '/' + dir.replace(/^docs\//, '') + '/';
+          htmlPath = '/' + dir + '/';
         } else {
           // For non-index files, add trailing slash
-          htmlPath = '/' + resolvedPath.replace(/^docs\//, '') + '/';
+          htmlPath = '/' + resolvedPath + '/';
         }
       } else {
         htmlPath = htmlPath + '/';
