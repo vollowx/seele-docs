@@ -1,7 +1,6 @@
 ---
 title: SEELE
 toc: false
-lang: en
 ---
 
 # Standard Extensible Elements

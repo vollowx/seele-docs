@@ -2,12 +2,12 @@ import { LitElement, html, css } from "lit";
 import { customElement, property, state, query } from "lit/decorators.js";
 import { M3Menu } from "@vollowx/seele";
 
-type LanguageCode = "en" | "zh-Hans";
+type LanguageCode = "en" | "zh-Hans" | "zh-Hant";
 
 @customElement("sw-toolbar")
 export class SwToolbar extends LitElement {
   // Supported languages - code and path prefix are always the same
-  private static readonly LANGUAGES: LanguageCode[] = ["en", "zh-Hans"];
+  private static readonly LANGUAGES: LanguageCode[] = ["en", "zh-Hans", "zh-Hant"];
 
   static override styles = css`
     :host {
@@ -75,6 +75,18 @@ export class SwToolbar extends LitElement {
     // Handle transition end to set display:none for accessibility
     if (this._scrollToTopButton) {
       this._scrollToTopButton.addEventListener("transitionend", this._handleScrollButtonTransitionEnd);
+    }
+  }
+
+  override updated(changedProperties: Map<string, any>) {
+    super.updated(changedProperties);
+    
+    // Handle scroll-to-top button visibility changes
+    if (changedProperties.has('showScrollToTop') && this._scrollToTopButton) {
+      if (this.showScrollToTop) {
+        // Remove display:none immediately before fade-in animation starts
+        this._scrollToTopButton.classList.remove("transition-complete");
+      }
     }
   }
 
@@ -158,14 +170,9 @@ export class SwToolbar extends LitElement {
 
   private _handleScrollButtonTransitionEnd = (e: TransitionEvent) => {
     // Only handle opacity transition to avoid multiple triggers
-    if (e.propertyName === "opacity" && this._scrollToTopButton) {
-      if (!this.showScrollToTop) {
-        // Add class to set display:none after fade-out transition
-        this._scrollToTopButton.classList.add("transition-complete");
-      } else {
-        // Remove class when showing again
-        this._scrollToTopButton.classList.remove("transition-complete");
-      }
+    if (e.propertyName === "opacity" && this._scrollToTopButton && !this.showScrollToTop) {
+      // Add class to set display:none after fade-out transition
+      this._scrollToTopButton.classList.add("transition-complete");
     }
   };
 
@@ -283,6 +290,9 @@ export class SwToolbar extends LitElement {
         </md-menu-item>
         <md-menu-item data-language="zh-Hans" ?selected=${this.language === "zh-Hans"}>
           简体中文
+        </md-menu-item>
+        <md-menu-item data-language="zh-Hant" ?selected=${this.language === "zh-Hant"}>
+          繁體中文
         </md-menu-item>
       </md-menu>
 

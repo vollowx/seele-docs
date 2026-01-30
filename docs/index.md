@@ -9,6 +9,7 @@ toc: false
 
 - [English](en/)
 - [简体中文 (Simplified Chinese)](zh-Hans/)
+- [繁體中文 (Traditional Chinese)](zh-Hant/)
 
 <!-- @docs-uncomment
 <script>
@@ -18,7 +19,9 @@ toc: false
   const langCode = browserLang.toLowerCase();
   
   // Map browser language codes to our supported languages
-  if (langCode.startsWith('zh')) {
+  if (langCode.startsWith('zh-hant') || langCode.startsWith('zh-tw') || langCode.startsWith('zh-hk') || langCode.startsWith('zh-mo')) {
+    window.location.href = '/zh-Hant/';
+  } else if (langCode.startsWith('zh')) {
     window.location.href = '/zh-Hans/';
   } else {
     // Default to English for all other languages
