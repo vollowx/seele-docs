@@ -38,6 +38,9 @@ export class SwToolbar extends LitElement {
       opacity: 0;
       pointer-events: none;
     }
+    #scroll-to-top.hidden.transition-complete {
+      display: none;
+    }
   `;
 
   @property({ type: String }) githubUrl = "https://github.com/vollowx/seele";
@@ -52,6 +55,7 @@ export class SwToolbar extends LitElement {
 
   @query("#theme-menu") private _themeMenu!: M3Menu;
   @query("#language-menu") private _languageMenu!: M3Menu;
+  @query("#scroll-to-top") private _scrollToTopButton?: HTMLElement;
 
   private _prefersDarkQuery?: MediaQueryList;
   private _scrollListener?: () => void;
@@ -67,6 +71,11 @@ export class SwToolbar extends LitElement {
     this._loadDirectionPreference();
     this._loadLanguagePreference();
     this._applyTheme();
+    
+    // Handle transition end to set display:none for accessibility
+    if (this._scrollToTopButton) {
+      this._scrollToTopButton.addEventListener("transitionend", this._handleScrollButtonTransitionEnd);
+    }
   }
 
   override disconnectedCallback() {
@@ -76,6 +85,9 @@ export class SwToolbar extends LitElement {
     }
     if (this._scrollListener) {
       window.removeEventListener("scroll", this._scrollListener);
+    }
+    if (this._scrollToTopButton) {
+      this._scrollToTopButton.removeEventListener("transitionend", this._handleScrollButtonTransitionEnd);
     }
   }
 
@@ -141,6 +153,19 @@ export class SwToolbar extends LitElement {
   private _handleSystemThemeChange = () => {
     if (this.themeMode === "auto") {
       this._applyTheme();
+    }
+  };
+
+  private _handleScrollButtonTransitionEnd = (e: TransitionEvent) => {
+    // Only handle opacity transition to avoid multiple triggers
+    if (e.propertyName === "opacity" && this._scrollToTopButton) {
+      if (!this.showScrollToTop) {
+        // Add class to set display:none after fade-out transition
+        this._scrollToTopButton.classList.add("transition-complete");
+      } else {
+        // Remove class when showing again
+        this._scrollToTopButton.classList.remove("transition-complete");
+      }
     }
   };
 
