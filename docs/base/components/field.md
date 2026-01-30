@@ -12,4 +12,4 @@ This is a base class with no specific properties. It serves as a foundation for 
 
 ## Methods
 
-Inherits all standard HTMLElement methods.
+N/A

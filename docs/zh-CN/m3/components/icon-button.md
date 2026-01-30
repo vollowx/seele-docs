@@ -66,7 +66,7 @@ title: Icon Button - M3 - SEELE
 
 ### 方法
 
-继承所有标准的 HTMLElement 方法。使用 `click()` 以编程方式触发按钮。
+使用 `click()` 以编程方式触发按钮。
 
 ### 类型
 

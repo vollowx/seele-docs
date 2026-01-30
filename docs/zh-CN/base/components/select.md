@@ -29,4 +29,4 @@ title: Select - Base - SEELE
 
 ## 方法
 
-继承所有标准 HTMLElement 方法。
+N/A

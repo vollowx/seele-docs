@@ -19,4 +19,4 @@ Base tooltip component for displaying contextual information.
 
 ## Methods
 
-Inherits all standard HTMLElement methods.
+N/A

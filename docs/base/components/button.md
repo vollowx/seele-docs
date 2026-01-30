@@ -15,4 +15,4 @@ title: Button - Base - SEELE
 
 ## Methods
 
-Inherits all standard HTMLElement methods.
+N/A

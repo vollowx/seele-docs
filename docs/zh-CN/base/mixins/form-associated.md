@@ -4,7 +4,7 @@ title: FormAssociated - Base - SEELE
 
 # FormAssociated（表单关联）
 
-- 接受：继承 `LitElement` 的类
+- 接受：继承 [`LitElement`](https://lit.dev/docs/api/LitElement/) 的类
 
 ## 属性
 

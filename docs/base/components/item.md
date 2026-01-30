@@ -12,4 +12,4 @@ This is a base UI item class with no specific properties. It serves as a foundat
 
 ## Methods
 
-Inherits all standard HTMLElement methods.
+N/A

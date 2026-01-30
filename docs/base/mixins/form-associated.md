@@ -4,7 +4,7 @@ title: FormAssociated - Base - SEELE
 
 # FormAssociated
 
-- Accepts: classes inheriting `LitElement`
+- Accepts: classes inheriting [`LitElement`](https://lit.dev/docs/api/LitElement/)
 
 ## Properties
 

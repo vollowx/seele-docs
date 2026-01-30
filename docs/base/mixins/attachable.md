@@ -4,7 +4,7 @@ title: Attachable - Base - SEELE
 
 # Attachable
 
-- Accepts: classes inheriting `LitElement`
+- Accepts: classes inheriting [`LitElement`](https://lit.dev/docs/api/LitElement/)
 
 The Attachable mixin enables elements to attach to and control other elements via the `for` attribute or parent relationship.
 

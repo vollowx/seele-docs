@@ -31,4 +31,4 @@ title: Input - Base - SEELE
 
 ## 方法
 
-继承所有标准 HTMLElement 和 input 方法。
+N/A

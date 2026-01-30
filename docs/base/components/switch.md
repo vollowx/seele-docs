@@ -23,4 +23,4 @@ Note: Also inherits `disabled` property from [`FormAssociated`](../mixins/form-a
 
 ## Methods
 
-Inherits all standard HTMLElement methods.
+N/A

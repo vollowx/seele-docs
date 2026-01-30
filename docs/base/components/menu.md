@@ -30,4 +30,4 @@ Base menu component for dropdown and popup menus.
 
 ## Methods
 
-Inherits all standard HTMLElement methods.
+N/A
