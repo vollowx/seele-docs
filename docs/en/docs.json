@@ -1,4 +1,5 @@
 {
   "layout": "default.njk",
-  "toc": true
+  "toc": true,
+  "lang": "en"
 }

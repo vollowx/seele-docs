@@ -1,8 +1,14 @@
 import { LitElement, html, css } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { customElement, property, state, query } from "lit/decorators.js";
+import { M3Menu } from "@vollowx/seele";
+
+type LanguageCode = "en" | "zh-Hans" | "zh-Hant";
 
 @customElement("sw-toolbar")
 export class SwToolbar extends LitElement {
+  // Supported languages - code and path prefix are always the same
+  private static readonly LANGUAGES: LanguageCode[] = ["en", "zh-Hans", "zh-Hant"];
+
   static override styles = css`
     :host {
       position: fixed;
@@ -26,9 +32,40 @@ export class SwToolbar extends LitElement {
   @property({ type: Boolean }) rtl = false;
 
   @state() private themeMode: "light" | "dark" | "auto" = "auto";
-  @state() private tooltipTexts = {
-    rtl: ["Set direction to right-to-left", "Set direction to left-to-right"],
+  @state() private language: LanguageCode = "en";
+
+  private readonly _tooltipTexts = {
+    en: {
+      rtl: ["Set direction to right-to-left", "Set direction to left-to-right"],
+      language: "Change language",
+      theme: "Change theme",
+      github: "View source code",
+      themeLight: "Light",
+      themeDark: "Dark",
+      themeAuto: "Device Default",
+    },
+    "zh-Hans": {
+      rtl: ["设置文本方向为从右到左", "设置文本方向为从左到右"],
+      language: "更改语言",
+      theme: "更改主题",
+      github: "查看源代码",
+      themeLight: "浅色",
+      themeDark: "深色",
+      themeAuto: "跟随系统",
+    },
+    "zh-Hant": {
+      rtl: ["設定文字方向為從右到左", "設定文字方向為從左到右"],
+      language: "更改語言",
+      theme: "更改主題",
+      github: "檢視原始碼",
+      themeLight: "淺色",
+      themeDark: "深色",
+      themeAuto: "跟隨系統",
+    },
   };
+
+  @query("#theme-menu") private _themeMenu!: M3Menu;
+  @query("#language-menu") private _languageMenu!: M3Menu;
 
   private _prefersDarkQuery?: MediaQueryList;
 
@@ -40,6 +77,7 @@ export class SwToolbar extends LitElement {
   override firstUpdated() {
     this._loadThemePreference();
     this._loadDirectionPreference();
+    this._loadLanguagePreference();
     this._applyTheme();
   }
 
@@ -73,6 +111,21 @@ export class SwToolbar extends LitElement {
     }
   }
 
+  private _loadLanguagePreference() {
+    // Detect language from URL path by iterating through supported languages
+    const path = window.location.pathname;
+    
+    for (const lang of SwToolbar.LANGUAGES) {
+      if (path.startsWith(`/${lang}/`) || path === `/${lang}`) {
+        this.language = lang;
+        return;
+      }
+    }
+    
+    // Fallback to default language (first in the list)
+    this.language = SwToolbar.LANGUAGES[0];
+  }
+
   private _saveDirectionPreference() {
     localStorage.setItem("sw-direction-preference", this.rtl ? "rtl" : "ltr");
   }
@@ -98,15 +151,20 @@ export class SwToolbar extends LitElement {
     }
   }
 
-  private _getTooltipText(type: "rtl", checked: boolean): string {
-    return this.tooltipTexts[type][checked ? 1 : 0];
+  private _getTooltipText(type: "rtl" | "language" | "theme" | "github" | "themeLight" | "themeDark" | "themeAuto", checked?: boolean): string {
+    const texts = this._tooltipTexts[this.language];
+    if (type === "rtl" && checked !== undefined) {
+      return texts.rtl[checked ? 1 : 0];
+    }
+    return texts[type];
   }
 
   private _toggleThemeMenu() {
-    const menu = this.shadowRoot?.querySelector("#theme-menu") as any;
-    if (menu) {
-      menu.open = !menu.open;
-    }
+    this._themeMenu.open = !this._themeMenu.open;
+  }
+
+  private _toggleLanguageMenu() {
+    this._languageMenu.open = !this._languageMenu.open;
   }
 
   private _handleThemeSelect(e: CustomEvent) {
@@ -119,14 +177,44 @@ export class SwToolbar extends LitElement {
     }
   }
 
+  private _handleLanguageSelect(e: CustomEvent) {
+    const selectedItem = e.detail.item as HTMLElement;
+    const langValue = selectedItem.dataset.language as LanguageCode;
+    if (langValue && langValue !== this.language) {
+      this._switchLanguage(langValue);
+    }
+  }
+
+  private _switchLanguage(lang: LanguageCode) {
+    const currentPath = window.location.pathname;
+    
+    // Extract the path after the language prefix by iterating through languages
+    let pathWithoutLang = currentPath;
+    for (const langCode of SwToolbar.LANGUAGES) {
+      const prefix = `/${langCode}`;
+      if (currentPath.startsWith(prefix + "/")) {
+        pathWithoutLang = currentPath.substring(prefix.length);
+        break;
+      } else if (currentPath === prefix) {
+        pathWithoutLang = "/";
+        break;
+      }
+    }
+    
+    // Build new path with target language (code and prefix are the same)
+    const newPath = pathWithoutLang === "/"
+      ? `/${lang}/`
+      : `/${lang}${pathWithoutLang}`;
+    
+    // Update state before redirecting for consistency
+    this.language = lang;
+    window.location.href = newPath;
+  }
+
   private _handleDir(e: CustomEvent) {
     this.rtl = e.detail;
     document.documentElement.dir = this.rtl ? "rtl" : "ltr";
     this._saveDirectionPreference();
-  }
-
-  private _handleScrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   private _handleGithubClick() {
@@ -144,26 +232,36 @@ export class SwToolbar extends LitElement {
         @select=${this._handleThemeSelect}
       >
         <md-menu-item data-theme="light" ?selected=${this.themeMode === "light"}>
-          Light
+          ${this._getTooltipText("themeLight")}
         </md-menu-item>
         <md-menu-item data-theme="dark" ?selected=${this.themeMode === "dark"}>
-          Dark
+          ${this._getTooltipText("themeDark")}
         </md-menu-item>
         <md-menu-item data-theme="auto" ?selected=${this.themeMode === "auto"}>
-          Device Default
+          ${this._getTooltipText("themeAuto")}
+        </md-menu-item>
+      </md-menu>
+
+      <md-menu
+        id="language-menu"
+        for="action-toggle-language"
+        offset="16"
+        align="top"
+        alignStrategy="fixed"
+        @select=${this._handleLanguageSelect}
+      >
+        <md-menu-item data-language="en" ?selected=${this.language === "en"}>
+          English
+        </md-menu-item>
+        <md-menu-item data-language="zh-Hans" ?selected=${this.language === "zh-Hans"}>
+          简体中文
+        </md-menu-item>
+        <md-menu-item data-language="zh-Hant" ?selected=${this.language === "zh-Hant"}>
+          繁體中文
         </md-menu-item>
       </md-menu>
 
       <md-toolbar type="floating" color="vibrant">
-        <md-icon-button
-          id="action-open-repo"
-          aria-label="GitHub repository"
-          @click=${this._handleGithubClick}
-        >
-          <iconify-icon icon="mdi:github"></iconify-icon>
-        </md-icon-button>
-        <md-tooltip for="action-open-repo" offset="16">View source code</md-tooltip>
-
         <md-icon-button-toggle
           id="action-toggle-direction"
           variant="tonal"
@@ -178,24 +276,35 @@ export class SwToolbar extends LitElement {
         </md-tooltip>
 
         <md-icon-button
+          id="action-toggle-language"
+          @click=${this._toggleLanguageMenu}
+        >
+          <iconify-icon icon="material-symbols:translate"></iconify-icon>
+        </md-icon-button>
+        <md-tooltip for="action-toggle-language" offset="16">
+          ${this._getTooltipText("language")}
+        </md-tooltip>
+
+        <md-icon-button
           id="action-toggle-theme"
           @click=${this._toggleThemeMenu}
         >
           <iconify-icon icon="material-symbols:palette"></iconify-icon>
         </md-icon-button>
         <md-tooltip for="action-toggle-theme" offset="16">
-          Change theme
+          ${this._getTooltipText("theme")}
         </md-tooltip>
 
         <md-fab
           slot="fab"
           color="tertiary"
-          id="scroll-to-top"
-          @click=${this._handleScrollToTop}
+          id="action-open-repo"
+          aria-label="GitHub repository"
+          @click=${this._handleGithubClick}
         >
-          <iconify-icon icon="material-symbols:arrow-upward"></iconify-icon>
+          <iconify-icon icon="mdi:github"></iconify-icon>
         </md-fab>
-        <md-tooltip for="scroll-to-top" offset="8">Scroll to top</md-tooltip>
+        <md-tooltip for="action-open-repo" offset="8">${this._getTooltipText("github")}</md-tooltip>
       </md-toolbar>
     `;
   }
