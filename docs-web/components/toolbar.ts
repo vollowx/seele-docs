@@ -51,7 +51,12 @@ export class SwToolbar extends LitElement {
     super.connectedCallback();
     this._setupThemeListener();
     this._setupScrollListener();
-    this._loadPreferences();
+  }
+
+  override firstUpdated() {
+    this._loadThemePreference();
+    this._loadDirectionPreference();
+    this._loadLanguagePreference();
     this._applyTheme();
   }
 
@@ -63,12 +68,6 @@ export class SwToolbar extends LitElement {
     if (this._scrollListener) {
       window.removeEventListener("scroll", this._scrollListener);
     }
-  }
-
-  private _loadPreferences() {
-    this._loadThemePreference();
-    this._loadDirectionPreference();
-    this._loadLanguagePreference();
   }
 
   private _loadThemePreference() {
