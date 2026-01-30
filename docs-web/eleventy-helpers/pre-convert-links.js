@@ -31,14 +31,20 @@ export function convertLinks(content, env, docsRoot) {
         );
 
         const baseName = path.posix.basename(resolvedPath);
+        // Only treat as root if it's actually the root index
         if (
-          baseName === 'index' ||
+          (baseName === 'index' && path.posix.dirname(resolvedPath) === '.') ||
           resolvedPath === '.' ||
-          resolvedPath === ''
+          resolvedPath === '' ||
+          resolvedPath === 'index'
         ) {
           htmlPath = '/';
+        } else if (baseName === 'index') {
+          // For index files in subdirectories, link to the directory
+          const dir = path.posix.dirname(resolvedPath);
+          htmlPath = '/' + dir.replace(/^docs\//, '') + '/';
         } else {
-          // Remove 'docs/' prefix if present and add trailing slash
+          // For non-index files, add trailing slash
           htmlPath = '/' + resolvedPath.replace(/^docs\//, '') + '/';
         }
       } else {
