@@ -4,7 +4,7 @@ title: InternalsAttached - Base - SEELE
 
 # InternalsAttached（内部附加）
 
-- 接受：继承 `LitElement` 的类
+- 接受：继承 [`LitElement`](https://lit.dev/docs/api/LitElement/) 的类
 
 InternalsAttached 混合类通过 `internals` 符号提供对 Element Internals API 的访问。
 

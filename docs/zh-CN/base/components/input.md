@@ -28,7 +28,3 @@ title: Input - Base - SEELE
 | `autocomplete` | String  | `''`     | 浏览器的自动完成提示。                                 |
 
 注意：还从 [`FormAssociated`](../mixins/form-associated.md) 混合类继承 `disabled` 属性。
-
-## 方法
-
-继承所有标准 HTMLElement 和 input 方法。

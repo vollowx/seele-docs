@@ -4,7 +4,7 @@ title: Attachable - Base - SEELE
 
 # Attachable（可附加）
 
-- 接受：继承 `LitElement` 的类
+- 接受：继承 [`LitElement`](https://lit.dev/docs/api/LitElement/) 的类
 
 Attachable 混合类使元素能够通过 `for` 属性或父级关系附加到其他元素并控制它们。
 

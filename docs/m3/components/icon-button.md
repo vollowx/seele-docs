@@ -66,7 +66,7 @@ Note: Inherits `type` from [`Button`](../../base/components/button.md) and `disa
 
 ### Methods
 
-Inherits all standard HTMLElement methods. Use `click()` to programmatically trigger the button.
+Use `click()` to programmatically trigger the button.
 
 ### Types
 

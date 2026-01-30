@@ -13,10 +13,6 @@ title: Checkbox - Base - SEELE
 | --------- | ------- | ------- | ---------------------- |
 | `checked` | Boolean | `false` | 复选框是否被选中。     |
 
-## 方法
-
-继承所有标准 HTMLElement 方法。
-
 ## 事件
 
 | 名称     | 描述                     |

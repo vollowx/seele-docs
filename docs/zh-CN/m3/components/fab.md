@@ -115,4 +115,4 @@ FAB 应该包含一个图标，例如字体 `iconify-icon`、`svg` 或 `img`。
 
 ## 方法
 
-继承所有标准的 HTMLElement 方法。使用 `click()` 以编程方式触发 FAB。
+使用 `click()` 以编程方式触发 FAB。
