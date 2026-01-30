@@ -83,8 +83,11 @@ export class SwToolbar extends LitElement {
     
     // Handle scroll-to-top button visibility changes
     if (changedProperties.has('showScrollToTop') && this._scrollToTopButton) {
-      if (this.showScrollToTop) {
-        // Remove display:none immediately before fade-in animation starts
+      if (!this.showScrollToTop) {
+        // When hiding, the transition will play and then we add display:none
+        // The transitionend handler will add the 'transition-complete' class
+      } else {
+        // When showing, immediately remove display:none so fade-in can play
         this._scrollToTopButton.classList.remove("transition-complete");
       }
     }
