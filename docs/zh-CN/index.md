@@ -3,9 +3,9 @@ title: SEELE
 toc: false
 ---
 
-# 标准可扩展元素
+# Standard Extensible Elements
 
-呈现：`@vollowx/seele@0.8.12`。
+本文档呈现来自 `@vollowx/seele@0.8.12` 的内容。
 
 SEELE 是一个现代、轻量级的 Web Components 库。它提供了一套高度可定制的 UI 组件，开箱即用地遵循 Material Design 3 指南，同时设计为易于扩展和重新设计样式。
 
