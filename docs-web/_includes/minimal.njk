@@ -42,7 +42,7 @@
       <h2>Available Languages</h2>
       <ul>
         {% for langCode, langData in languages %}
-        <li><a href="{{ siteUrl }}/{{ langCode }}/">{{ langData.nativeName }} ({{ langData.name }})</a></li>
+        <li><a href="{{ basePath }}/{{ langCode }}/">{{ langData.nativeName }} ({{ langData.name }})</a></li>
         {% endfor %}
       </ul>
     </noscript>
