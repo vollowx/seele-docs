@@ -4,8 +4,8 @@ title: ListItem - Base - SEELE
 
 # ListItem
 
-- 混合：[`InternalsAttached`](../mixins/internals-attached.md)
-- 混合：[`FormAssociated`](../mixins/form-associated.md)
+- 混合了：[`InternalsAttached`](../mixins/internals-attached.md)
+- 混合了：[`FormAssociated`](../mixins/form-associated.md)
 
 用于菜单和选择框中的交互式列表项的基础组件。
 
