@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEV = process.env.NODE_ENV === 'DEV';
-const outdir = path.join(__dirname, '_middle/docs-web/build');
+const outdir = path.join(__dirname, '_middle/built');
 
 const entryPoints = [
   path.join(__dirname, 'client.ts'),

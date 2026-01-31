@@ -14,7 +14,7 @@
 {% endfor %}
     <link rel="alternate" hreflang="x-default" href="{{ siteUrl }}/en{{ page.url | stripLang }}" />
 
-    <style>{% inlineCss "_middle/docs-web/build/client.css" %}</style>
+    <style>{% inlineCss "_middle/built/client.css" %}</style>
     <script>
       try {
         const stored = localStorage.getItem("sw-theme-preference");
@@ -35,9 +35,9 @@
       }
     </script>
     <!-- MUST be loaded before any lit components to enable hydration -->
-    <script type="module" src="/docs-web/build/lit-hydrate-support.js"></script>
+    <script type="module" src="/built/lit-hydrate-support.js"></script>
     <!-- Load components and interactive logic -->
-    <script type="module" src="/docs-web/build/client.js"></script>
+    <script type="module" src="/built/client.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

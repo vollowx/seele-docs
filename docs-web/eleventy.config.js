@@ -11,9 +11,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 
 export default function (eleventyConfig) {
-  // Pass through built assets like CSS and client JS
+  eleventyConfig.addPassthroughCopy('vercel.json');
   eleventyConfig.addPassthroughCopy({
-    '_middle/docs-web': 'docs-web',
+    '_middle/built': 'built',
   });
 
   // SSR web components
