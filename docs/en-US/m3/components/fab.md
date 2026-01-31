@@ -14,13 +14,13 @@ Floating action buttons (FABs) help people take primary actions.
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-fab color="primary" aria-label="Accessibility">
+<md-fab aria-label="Accessibility">
   <iconify-icon icon="material-symbols:accessible-forward"></iconify-icon>
 </md-fab>
-<md-fab size="small" color="tertiary" aria-label="Edit">
+<md-fab size="medium" color="secondary" aria-label="Edit">
   <iconify-icon icon="material-symbols:edit"></iconify-icon>
 </md-fab>
-<md-fab size="large" aria-label="Color palette">
+<md-fab size="large" color="tertiary" aria-label="Color palette">
   <iconify-icon icon="material-symbols:palette"></iconify-icon>
 </md-fab>
 ```
@@ -49,21 +49,11 @@ FABs should have an icon, such as a font `iconify-icon`, an `svg`, or an `img`.
 </md-fab>
 ```
 
-### Lowered
-
-FABs can be set to a lower elevation with the `lowered` attribute.
-
-<!-- @docs-demo-code-block -->
-
-```html
-<md-fab lowered aria-label="Edit">
-  <iconify-icon icon="material-symbols:edit"></iconify-icon>
-</md-fab>
-```
-
 ### Colors
 
-FAB colors may be changed with the `color` attribute. It can be set to "surface" (default), "primary", "secondary", or "tertiary".
+FAB colors may be changed with the `color` attribute. It can be set to
+"surface", "primary" (default), "secondary", "tertiary", "primary-container",
+"secondary-container" or "tertiary-container".
 
 <!-- @docs-demo-code-block -->
 
@@ -77,22 +67,34 @@ FAB colors may be changed with the `color` attribute. It can be set to "surface"
 <md-fab color="tertiary" aria-label="Edit">
   <iconify-icon icon="material-symbols:edit"></iconify-icon>
 </md-fab>
+
+<br />
+
+<md-fab color="primary-container" aria-label="Edit">
+  <iconify-icon icon="material-symbols:edit"></iconify-icon>
+</md-fab>
+<md-fab color="secondary-container" aria-label="Edit">
+  <iconify-icon icon="material-symbols:edit"></iconify-icon>
+</md-fab>
+<md-fab color="tertiary-container" aria-label="Edit">
+  <iconify-icon icon="material-symbols:edit"></iconify-icon>
+</md-fab>
 ```
 
 ### Sizes
 
-FABs may be small, medium (default), or large by setting the `size` attribute.
+FABs may be default, medium, or large by setting the `size` attribute.
 
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-fab size="small" aria-label="Edit">
-  <iconify-icon icon="material-symbols:edit"></iconify-icon>
-</md-fab>
 <md-fab aria-label="Edit">
   <iconify-icon icon="material-symbols:edit"></iconify-icon>
 </md-fab>
-<md-fab size="large" aria-label="Edit">
+<md-fab aria-label="Edit" size="medium">
+  <iconify-icon icon="material-symbols:edit"></iconify-icon>
+</md-fab>
+<md-fab aria-label="Edit" size="large">
   <iconify-icon icon="material-symbols:edit"></iconify-icon>
 </md-fab>
 ```
@@ -105,8 +107,7 @@ Extended FABs use their `label` for accessibility. Add an `aria-label` for addit
 
 ## Properties
 
-| Name      | Type                                                  | Default     | Description                            |
-| --------- | ----------------------------------------------------- | ----------- | -------------------------------------- |
-| `size`    | `'small' \| 'medium' \| 'large'`                      | `'medium'`  | The size of the FAB.                   |
-| `color`   | `'surface' \| 'primary' \| 'secondary' \| 'tertiary'` | `'surface'` | The color variant of the FAB.          |
-| `lowered` | Boolean                                               | `false`     | Whether the FAB has lowered elevation. |
+| Name    | Type                                                                                                                          | Default     | Description           |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------- | --------------------- |
+| `size`  | `'default' \| 'medium' \| 'large'`                                                                                            | `'default'` | The size of the FAB.  |
+| `color` | `'surface' \| 'primary' \| 'secondary' \| 'tertiary' \| 'primary-container' \| 'secondary-container' \| 'tertiary-container'` | `'surface'` | The color of the FAB. |

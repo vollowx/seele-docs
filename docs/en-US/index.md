@@ -5,7 +5,7 @@ toc: false
 
 # Standard Extensible Elements
 
-Presenting: `@vollowx/seele@0.8.12`.
+Presenting: `@vollowx/seele@0.9.2`.
 
 SEELE is a modern, lightweight Web Components library. It provides a set of highly
 customizable UI components that follow the Material Design 3 guidelines out of the
@@ -13,20 +13,20 @@ box, while being designed for easy extension and restyling.
 
 ## Base
 
-### Components
+### Classes
 
-- [`Button`](base/components/button.md)
-- [`Checkbox`](base/components/checkbox.md)
-- [`Field`](base/components/field.md)
-- [`Input`](base/components/input.md)
-- [`Item`](base/components/item.md)
-- [`ListItem`](base/components/list-item.md)
-- [`Menu`](base/components/menu.md)
-- [`MenuItem`](base/components/menu-item.md)
-- [`Option`](base/components/option.md)
-- [`Select`](base/components/select.md)
-- [`Switch`](base/components/switch.md)
-- [`Tooltip`](base/components/tooltip.md)
+- [`Button`](base/classes/button.md)
+- [`Checkbox`](base/classes/checkbox.md)
+- [`Field`](base/classes/field.md)
+- [`Input`](base/classes/input.md)
+- [`Item`](base/classes/item.md)
+- [`ListItem`](base/classes/list-item.md)
+- [`Menu`](base/classes/menu.md)
+- [`MenuItem`](base/classes/menu-item.md)
+- [`Option`](base/classes/option.md)
+- [`Select`](base/classes/select.md)
+- [`Switch`](base/classes/switch.md)
+- [`Tooltip`](base/classes/tooltip.md)
 
 ### Mixins
 
