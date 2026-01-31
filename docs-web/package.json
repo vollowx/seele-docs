@@ -3,11 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node build-ssr.js && node build-client.js && npx @11ty/eleventy",
+    "build": "bun run build:ssr-entrypoint && bun run build:client && bun run build:eleventy",
+    "build:ssr-entrypoint": "node build-ssr.js",
+    "build:client": "node build-client.js",
+    "build:eleventy": "eleventy",
     "preview": "wds --root-dir _site --open"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@lit-labs/eleventy-plugin-lit": "^1.0.6",
     "@lit-labs/ssr": "^4.0.0",
     "@lit-labs/ssr-client": "^1.1.8",

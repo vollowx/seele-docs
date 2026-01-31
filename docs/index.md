@@ -1,32 +1,14 @@
 ---
-title: SEELE - Choose Language
+title: Landing - SEELE
 toc: false
+layout: minimal.njk
 ---
 
-# SEELE Documentation
+# Standard Extensible Elements
 
-## Available Languages
+You shall choose to view the docs in the following languages.
 
-- [English](en/)
-- [简体中文 (Simplified Chinese)](zh-Hans/)
-- [繁體中文 (Traditional Chinese)](zh-Hant/)
+- [English](en-US/)
+- [中文（简体） (Simplified Chinese)](zh-CN/)
 
-<!-- @docs-uncomment
-<script>
-(function() {
-  // Auto-redirect based on browser language
-  const browserLang = navigator.language || navigator.userLanguage;
-  const langCode = browserLang.toLowerCase();
-  
-  // Map browser language codes to our supported languages
-  if (langCode.startsWith('zh-hant') || langCode.startsWith('zh-tw') || langCode.startsWith('zh-hk') || langCode.startsWith('zh-mo')) {
-    window.location.href = '/zh-Hant/';
-  } else if (langCode.startsWith('zh')) {
-    window.location.href = '/zh-Hans/';
-  } else {
-    // Default to English for all other languages
-    window.location.href = '/en/';
-  }
-})();
-</script>
-@docs-uncomment-end -->
+<!-- This page will not be shown on the website since Vercel does redirecting -->

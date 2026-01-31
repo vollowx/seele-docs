@@ -9,11 +9,9 @@
     <meta name="author" content="Vollow" />
 
     <link rel="canonical" href="{{ siteUrl }}{{ page.url }}" />
-
-    <!-- hreflang alternate links for multi-language support -->
-    {% for langCode, langData in languages %}
+{% for langCode, langData in languages %}
     <link rel="alternate" hreflang="{{ langCode }}" href="{{ siteUrl }}/{{ langCode }}{{ page.url | stripLang }}" />
-    {% endfor %}
+{% endfor %}
     <link rel="alternate" hreflang="x-default" href="{{ siteUrl }}/en{{ page.url | stripLang }}" />
 
     <style>{% inlineCss "_middle/docs-web/build/client.css" %}</style>
@@ -48,15 +46,12 @@
       rel="stylesheet"
     />
 
-    <!-- Hide body until DSD polyfill runs -->
     <style> body[dsd-pending] { display: none; } </style>
-    <!-- If JS is disabled, show contents without polyfill -->
     <noscript>
       <style> body[dsd-pending] { display: block !important; } </style>
     </noscript>
   </head>
   <body dsd-pending>
-    <!-- Declarative Shadow DOM polyfill -->
     <script>
       (function() {
         if (!HTMLTemplateElement.prototype.hasOwnProperty('shadowRootMode')) {

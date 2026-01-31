@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 
 export default function (eleventyConfig) {
-  // Pass through built docs-web directory for JS/components and minified CSS
+  // Pass through built assets like CSS and client JS
   eleventyConfig.addPassthroughCopy({
     '_middle/docs-web': 'docs-web',
   });
@@ -34,8 +34,7 @@ export default function (eleventyConfig) {
     'zh-Hant': { name: 'Traditional Chinese', nativeName: '繁體中文' }
   });
 
-  eleventyConfig.addGlobalData('siteUrl', 'https://vollowx.github.io/seele-docs');
-  eleventyConfig.addGlobalData('basePath', '/seele-docs');
+  eleventyConfig.addGlobalData('siteUrl', 'https://seele.v9.nz');
 
   // Add stripLang filter to remove language prefix from URLs
   eleventyConfig.addFilter('stripLang', function(url) {

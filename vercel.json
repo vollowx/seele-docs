@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "header", "key": "accept-language", "value": "zh.*" }],
+      "destination": "/zh-CN/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "destination": "/en-US/",
+      "permanent": false
+    }
+  ]
+}
