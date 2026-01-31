@@ -1,5 +1,6 @@
 ---
 title: SEELE - Choose Language
+layout: minimal.njk
 toc: false
 ---
 

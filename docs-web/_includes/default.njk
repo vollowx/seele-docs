@@ -8,6 +8,13 @@
     <meta name="keywords" content="seele, web components, documentation, components, library, ui, design system" />
     <meta name="author" content="Vollow" />
 
+    <!-- hreflang alternate links for multi-language support -->
+    {% set cleanUrl = page.url | replace('/en/', '/') | replace('/zh-Hans/', '/') | replace('/zh-Hant/', '/') %}
+    <link rel="alternate" hreflang="en" href="https://vollowx.github.io/seele-docs/en{{ cleanUrl }}" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://vollowx.github.io/seele-docs/zh-Hans{{ cleanUrl }}" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://vollowx.github.io/seele-docs/zh-Hant{{ cleanUrl }}" />
+    <link rel="alternate" hreflang="x-default" href="https://vollowx.github.io/seele-docs/en{{ cleanUrl }}" />
+
     <style>{% inlineCss "_middle/docs-web/build/client.css" %}</style>
     <script>
       try {

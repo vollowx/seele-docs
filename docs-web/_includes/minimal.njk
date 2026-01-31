@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="{{ lang or 'en' }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
+    <title>{{ title or page.fileSlug }}</title>
+    <meta name="description" content="{{ desc or 'Documentation of SEELE the web components library.' }}" />
+    <meta name="keywords" content="seele, web components, documentation, components, library, ui, design system" />
+    <meta name="author" content="Vollow" />
+
+    <!-- hreflang alternate links for multi-language support -->
+    <link rel="alternate" hreflang="en" href="https://vollowx.github.io/seele-docs/en/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://vollowx.github.io/seele-docs/zh-Hans/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://vollowx.github.io/seele-docs/zh-Hant/" />
+    <link rel="alternate" hreflang="x-default" href="https://vollowx.github.io/seele-docs/en/" />
+
+    <script>
+      (function() {
+        // Auto-redirect based on browser language
+        const browserLang = navigator.language || navigator.userLanguage;
+        const langCode = browserLang.toLowerCase();
+        
+        // Map browser language codes to our supported languages
+        if (langCode.startsWith('zh-hant') || langCode.startsWith('zh-tw') || langCode.startsWith('zh-hk') || langCode.startsWith('zh-mo')) {
+          window.location.href = '/seele-docs/zh-Hant/';
+        } else if (langCode.startsWith('zh')) {
+          window.location.href = '/seele-docs/zh-Hans/';
+        } else {
+          // Default to English for all other languages
+          window.location.href = '/seele-docs/en/';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <h1>SEELE Documentation</h1>
+      <h2>Available Languages</h2>
+      <ul>
+        <li><a href="/seele-docs/en/">English</a></li>
+        <li><a href="/seele-docs/zh-Hans/">简体中文 (Simplified Chinese)</a></li>
+        <li><a href="/seele-docs/zh-Hant/">繁體中文 (Traditional Chinese)</a></li>
+      </ul>
+    </noscript>
+  </body>
+</html>
