@@ -8,11 +8,13 @@
     <meta name="keywords" content="seele, web components, documentation, components, library, ui, design system" />
     <meta name="author" content="Vollow" />
 
+    <link rel="canonical" href="{{ siteUrl }}{{ page.url }}" />
+
     <!-- hreflang alternate links for multi-language support -->
-    <link rel="alternate" hreflang="en" href="https://vollowx.github.io/seele-docs/en/" />
-    <link rel="alternate" hreflang="zh-Hans" href="https://vollowx.github.io/seele-docs/zh-Hans/" />
-    <link rel="alternate" hreflang="zh-Hant" href="https://vollowx.github.io/seele-docs/zh-Hant/" />
-    <link rel="alternate" hreflang="x-default" href="https://vollowx.github.io/seele-docs/en/" />
+    {% for langCode, langData in languages %}
+    <link rel="alternate" hreflang="{{ langCode }}" href="{{ siteUrl }}/{{ langCode }}/" />
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ siteUrl }}/en/" />
 
     <script>
       (function() {

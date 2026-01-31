@@ -27,6 +27,21 @@ export default function (eleventyConfig) {
     return fs.readFileSync(fullPath, 'utf8');
   });
 
+  // Add stripLang filter to remove language prefix from URLs
+  eleventyConfig.addFilter('stripLang', (url) => {
+    // Remove language prefixes from URL
+    return url.replace(/^\/(en|zh-Hans|zh-Hant)\//, '/').replace(/^\/(en|zh-Hans|zh-Hant)$/, '/');
+  });
+
+  // Add global data for languages
+  eleventyConfig.addGlobalData('languages', {
+    'en': { name: 'English', nativeName: 'English' },
+    'zh-Hans': { name: 'Simplified Chinese', nativeName: '简体中文' },
+    'zh-Hant': { name: 'Traditional Chinese', nativeName: '繁體中文' }
+  });
+
+  eleventyConfig.addGlobalData('siteUrl', 'https://vollowx.github.io/seele-docs');
+
   markdownPreprocess(eleventyConfig);
 
   wrapTables(eleventyConfig);
