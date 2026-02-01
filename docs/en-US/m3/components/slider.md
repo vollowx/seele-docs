@@ -47,8 +47,8 @@ Sliders can be used standalone with a default value range of 0-100.
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider aria-label="Volume"></md-slider>
-<md-slider aria-label="Brightness" value="75"></md-slider>
+<md-slider data-aria-label="Volume"></md-slider>
+<md-slider data-aria-label="Brightness" value="75"></md-slider>
 ```
 
 #### Range Slider
@@ -62,7 +62,7 @@ Range sliders allow users to select a range between two values using start and e
   range
   value-start="20"
   value-end="80"
-  aria-label="Price range"
+  data-aria-label="Price range"
 ></md-slider>
 ```
 
@@ -73,14 +73,14 @@ Value labels can be displayed on the handles to show the current value(s).
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider labeled value="50" aria-label="Volume"></md-slider>
+<md-slider labeled value="50" data-aria-label="Volume"></md-slider>
 
 <md-slider
   range
   labeled
   value-start="20"
   value-end="80"
-  aria-label="Temperature range"
+  data-aria-label="Temperature range"
 ></md-slider>
 ```
 
@@ -91,7 +91,7 @@ Tick marks can be displayed along the track to indicate step intervals.
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider ticks step="10" aria-label="Volume"></md-slider>
+<md-slider ticks step="10" data-aria-label="Volume"></md-slider>
 
 <md-slider
   range
@@ -100,7 +100,7 @@ Tick marks can be displayed along the track to indicate step intervals.
   step="25"
   value-start="25"
   value-end="75"
-  aria-label="Range with ticks"
+  data-aria-label="Range with ticks"
 ></md-slider>
 ```
 
@@ -111,14 +111,14 @@ Customize the minimum, maximum, and step values.
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider min="0" max="200" step="5" value="100" aria-label="Custom range"></md-slider>
+<md-slider min="0" max="200" step="5" value="100" data-aria-label="Custom range"></md-slider>
 
 <md-slider
   min="-50"
   max="50"
   step="10"
   value="0"
-  aria-label="Temperature"
+  data-aria-label="Temperature"
 ></md-slider>
 ```
 
@@ -132,7 +132,7 @@ Sliders can be used in forms with the `name` attribute.
 <form>
   <label>
     Volume
-    <md-slider name="volume" value="50" aria-label="Volume"></md-slider>
+    <md-slider name="volume" value="50" data-aria-label="Volume"></md-slider>
   </label>
 
   <label>
@@ -143,7 +143,7 @@ Sliders can be used in forms with the `name` attribute.
       name-end="price-max"
       value-start="20"
       value-end="80"
-      aria-label="Price range"
+      data-aria-label="Price range"
     ></md-slider>
   </label>
 
@@ -153,22 +153,22 @@ Sliders can be used in forms with the `name` attribute.
 
 ### Accessibility
 
-Add an `aria-label` attribute to sliders to provide accessible labels for screen readers.
+Add a `data-aria-label` attribute to sliders to provide accessible labels for screen readers.
 
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider aria-label="Volume level"></md-slider>
+<md-slider data-aria-label="Volume level"></md-slider>
 
 <md-slider
   range
-  aria-label="Price range"
+  data-aria-label="Price range"
   aria-label-start="Minimum price"
   aria-label-end="Maximum price"
 ></md-slider>
 ```
 
-For custom value text that differs from the numeric value, use `aria-valuetext` attributes:
+For custom value text that differs from the numeric value, use `data-aria-valuetext` attribute:
 
 <!-- @docs-demo-code-block -->
 
@@ -177,7 +177,7 @@ For custom value text that differs from the numeric value, use `aria-valuetext` 
   value="3"
   min="1"
   max="5"
-  aria-label="Rating"
+  data-aria-label="Rating"
   data-aria-valuetext="3 stars"
 ></md-slider>
 ```

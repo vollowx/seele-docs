@@ -47,8 +47,8 @@ title: Slider - M3 - SEELE
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider aria-label="音量"></md-slider>
-<md-slider aria-label="亮度" value="75"></md-slider>
+<md-slider data-aria-label="音量"></md-slider>
+<md-slider data-aria-label="亮度" value="75"></md-slider>
 ```
 
 #### 范围滑块
@@ -62,7 +62,7 @@ title: Slider - M3 - SEELE
   range
   value-start="20"
   value-end="80"
-  aria-label="价格范围"
+  data-aria-label="价格范围"
 ></md-slider>
 ```
 
@@ -73,14 +73,14 @@ title: Slider - M3 - SEELE
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider labeled value="50" aria-label="音量"></md-slider>
+<md-slider labeled value="50" data-aria-label="音量"></md-slider>
 
 <md-slider
   range
   labeled
   value-start="20"
   value-end="80"
-  aria-label="温度范围"
+  data-aria-label="温度范围"
 ></md-slider>
 ```
 
@@ -91,7 +91,7 @@ title: Slider - M3 - SEELE
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider ticks step="10" aria-label="音量"></md-slider>
+<md-slider ticks step="10" data-aria-label="音量"></md-slider>
 
 <md-slider
   range
@@ -100,7 +100,7 @@ title: Slider - M3 - SEELE
   step="25"
   value-start="25"
   value-end="75"
-  aria-label="带刻度的范围"
+  data-aria-label="带刻度的范围"
 ></md-slider>
 ```
 
@@ -111,14 +111,14 @@ title: Slider - M3 - SEELE
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider min="0" max="200" step="5" value="100" aria-label="自定义范围"></md-slider>
+<md-slider min="0" max="200" step="5" value="100" data-aria-label="自定义范围"></md-slider>
 
 <md-slider
   min="-50"
   max="50"
   step="10"
   value="0"
-  aria-label="温度"
+  data-aria-label="温度"
 ></md-slider>
 ```
 
@@ -132,7 +132,7 @@ title: Slider - M3 - SEELE
 <form>
   <label>
     音量
-    <md-slider name="volume" value="50" aria-label="音量"></md-slider>
+    <md-slider name="volume" value="50" data-aria-label="音量"></md-slider>
   </label>
 
   <label>
@@ -143,7 +143,7 @@ title: Slider - M3 - SEELE
       name-end="price-max"
       value-start="20"
       value-end="80"
-      aria-label="价格范围"
+      data-aria-label="价格范围"
     ></md-slider>
   </label>
 
@@ -153,22 +153,22 @@ title: Slider - M3 - SEELE
 
 ### 无障碍性
 
-为滑块添加 `aria-label` 属性，为屏幕阅读器提供可访问的标签。
+为滑块添加 `data-aria-label` 属性，为屏幕阅读器提供可访问的标签。
 
 <!-- @docs-demo-code-block -->
 
 ```html
-<md-slider aria-label="音量级别"></md-slider>
+<md-slider data-aria-label="音量级别"></md-slider>
 
 <md-slider
   range
-  aria-label="价格范围"
+  data-aria-label="价格范围"
   aria-label-start="最低价格"
   aria-label-end="最高价格"
 ></md-slider>
 ```
 
-对于与数字值不同的自定义值文本，使用 `aria-valuetext` 属性：
+对于与数字值不同的自定义值文本，使用 `data-aria-valuetext` 属性：
 
 <!-- @docs-demo-code-block -->
 
@@ -177,7 +177,7 @@ title: Slider - M3 - SEELE
   value="3"
   min="1"
   max="5"
-  aria-label="评分"
+  data-aria-label="评分"
   data-aria-valuetext="3 星"
 ></md-slider>
 ```
