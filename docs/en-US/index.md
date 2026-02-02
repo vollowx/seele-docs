@@ -5,8 +5,6 @@ toc: false
 
 # Standard Extensible Elements
 
-Presenting: `@vollowx/seele@0.10.2`.
-
 SEELE is a modern, lightweight Web Components library. It provides a set of highly
 customizable UI components that follow the Material Design 3 guidelines out of the
 box, while being designed for easy extension and restyling.

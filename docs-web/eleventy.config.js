@@ -14,6 +14,22 @@ const projectRoot = path.resolve(__dirname, '..');
 // Get current git commit information at build time
 function getGitCommitInfo() {
   try {
+    // Check if we're in a Vercel environment - use Vercel environment variables
+    if (process.env.VERCEL_GIT_COMMIT_SHA) {
+      const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
+      const commitShortSha = commitSha.substring(0, 7);
+      const githubUrl = 'https://github.com/vollowx/seele-docs';
+      
+      return {
+        sha: commitSha,
+        shortSha: commitShortSha,
+        githubUrl: githubUrl,
+        commitUrl: `${githubUrl}/commit/${commitSha}`,
+        isUnknown: false
+      };
+    }
+    
+    // Otherwise try to get git info from local git repository
     const commitSha = execSync('git rev-parse HEAD', { cwd: projectRoot, encoding: 'utf8' }).trim();
     const commitShortSha = execSync('git rev-parse --short HEAD', { cwd: projectRoot, encoding: 'utf8' }).trim();
     const remoteUrl = execSync('git config --get remote.origin.url', { cwd: projectRoot, encoding: 'utf8' }).trim();
