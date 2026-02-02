@@ -74,16 +74,10 @@
       {{ content | injectToc(toc) | safe }}
     </main>
     
-    <footer style="text-align: center; padding: 20px 16px 80px; color: var(--md-sys-color-on-surface-variant, #6b6b6b); font-size: 0.875rem; font-family: 'DM Mono', monospace;">
-      Built from commit 
-      <a 
-        href="{{ gitCommit.commitUrl }}" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        style="color: var(--md-sys-color-primary, #006494); text-decoration: none;"
-      >
-        <code style="background: var(--md-sys-color-surface-container-high, #e6e6e6); padding: 2px 6px; border-radius: 4px;">{{ gitCommit.shortSha }}</code>
-      </a>
+    <footer class="docs-footer">
+      <span>@vollowx/seele@<a href="{{ seeleVersion.npmUrl }}" target="_blank" rel="noopener noreferrer" class="docs-footer__link"><code class="docs-footer__code">{{ seeleVersion.version }}</code></a></span>
+      <span class="docs-footer__separator">•</span>
+      <span>Built from commit {% if gitCommit.isUnknown %}<code class="docs-footer__code">{{ gitCommit.shortSha }}</code>{% else %}<a href="{{ gitCommit.commitUrl }}" target="_blank" rel="noopener noreferrer" class="docs-footer__link"><code class="docs-footer__code">{{ gitCommit.shortSha }}</code></a>{% endif %}</span>
     </footer>
   </body>
 </html>
