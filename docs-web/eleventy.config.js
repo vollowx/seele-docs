@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 import litPlugin from '@lit-labs/eleventy-plugin-lit';
 import { wrapTables } from './eleventy-helpers/wrap-tables.js';
 import { addTocFilter } from './eleventy-helpers/toc.js';
@@ -9,6 +10,39 @@ import { markdownPreprocess } from './eleventy-helpers/markdown-preprocess.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
+
+// Get current git commit information at build time
+function getGitCommitInfo() {
+  try {
+    const commitSha = execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
+    const commitShortSha = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
+    const remoteUrl = execSync('git config --get remote.origin.url', { encoding: 'utf8' }).trim();
+    
+    // Parse GitHub URL from remote (handles both HTTPS and SSH formats)
+    let githubUrl = 'https://github.com/vollowx/seele-docs';
+    if (remoteUrl) {
+      const match = remoteUrl.match(/github\.com[:/](.+?)(\.git)?$/);
+      if (match) {
+        githubUrl = `https://github.com/${match[1]}`;
+      }
+    }
+    
+    return {
+      sha: commitSha,
+      shortSha: commitShortSha,
+      githubUrl: githubUrl,
+      commitUrl: `${githubUrl}/commit/${commitSha}`
+    };
+  } catch (error) {
+    console.warn('Failed to get git commit info:', error.message);
+    return {
+      sha: 'unknown',
+      shortSha: 'unknown',
+      githubUrl: 'https://github.com/vollowx/seele-docs',
+      commitUrl: '#'
+    };
+  }
+}
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('vercel.json');
@@ -33,6 +67,10 @@ export default function (eleventyConfig) {
     'en-US': { name: 'English', nativeName: 'English' },
     'zh-CN': { name: 'Simplified Chinese', nativeName: '中文（简体）' }
   });
+  
+  // Add git commit info as global data
+  const gitInfo = getGitCommitInfo();
+  eleventyConfig.addGlobalData('gitCommit', gitInfo);
 
   // Add stripLang filter to remove language prefix from URLs
   eleventyConfig.addFilter('stripLang', function(url) {
