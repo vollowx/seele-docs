@@ -8,21 +8,11 @@ const LANGUAGES: LanguageCode[] = ['en-US', 'zh-CN'];
 @customElement('sw-toolbar')
 export class SwToolbar extends LitElement {
   static override styles = css`
-    :host {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 16px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      z-index: 100;
-      pointer-events: none;
-    }
-    md-menu,
     md-toolbar {
-      pointer-events: auto;
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      z-index: 100;
     }
   `;
 
@@ -231,50 +221,6 @@ export class SwToolbar extends LitElement {
 
   override render() {
     return html`
-      <md-menu
-        id="theme-menu"
-        for="action-toggle-theme"
-        offset="16"
-        align="top"
-        alignStrategy="fixed"
-        @select=${this._handleThemeSelect}
-      >
-        <md-menu-item
-          data-theme="light"
-          ?selected=${this.themeMode === 'light'}
-        >
-          ${this._getTooltipText('themeLight')}
-        </md-menu-item>
-        <md-menu-item data-theme="dark" ?selected=${this.themeMode === 'dark'}>
-          ${this._getTooltipText('themeDark')}
-        </md-menu-item>
-        <md-menu-item data-theme="auto" ?selected=${this.themeMode === 'auto'}>
-          ${this._getTooltipText('themeAuto')}
-        </md-menu-item>
-      </md-menu>
-
-      <md-menu
-        id="language-menu"
-        for="action-toggle-language"
-        offset="16"
-        align="top"
-        alignStrategy="fixed"
-        @select=${this._handleLanguageSelect}
-      >
-        <md-menu-item
-          data-language="en-US"
-          ?selected=${this.language === 'en-US'}
-        >
-          English
-        </md-menu-item>
-        <md-menu-item
-          data-language="zh-CN"
-          ?selected=${this.language === 'zh-CN'}
-        >
-          中文（简体）
-        </md-menu-item>
-      </md-menu>
-
       <md-toolbar type="floating" color="vibrant">
         <md-icon-button-toggle
           id="action-toggle-direction"
@@ -326,6 +272,50 @@ export class SwToolbar extends LitElement {
         <md-tooltip for="action-open-repo" offset="8"
           >${this._getTooltipText('github')}</md-tooltip
         >
+
+        <md-menu
+          id="theme-menu"
+          for="action-toggle-theme"
+          offset="16"
+          align="top"
+          alignStrategy="fixed"
+          @select=${this._handleThemeSelect}
+        >
+          <md-menu-item
+            data-theme="light"
+            ?selected=${this.themeMode === 'light'}
+          >
+            ${this._getTooltipText('themeLight')}
+          </md-menu-item>
+          <md-menu-item data-theme="dark" ?selected=${this.themeMode === 'dark'}>
+            ${this._getTooltipText('themeDark')}
+          </md-menu-item>
+          <md-menu-item data-theme="auto" ?selected=${this.themeMode === 'auto'}>
+            ${this._getTooltipText('themeAuto')}
+          </md-menu-item>
+        </md-menu>
+  
+        <md-menu
+          id="language-menu"
+          for="action-toggle-language"
+          offset="16"
+          align="top"
+          alignStrategy="fixed"
+          @select=${this._handleLanguageSelect}
+        >
+          <md-menu-item
+            data-language="en-US"
+            ?selected=${this.language === 'en-US'}
+          >
+            English
+          </md-menu-item>
+          <md-menu-item
+            data-language="zh-CN"
+            ?selected=${this.language === 'zh-CN'}
+          >
+            中文（简体）
+          </md-menu-item>
+        </md-menu>
       </md-toolbar>
     `;
   }
