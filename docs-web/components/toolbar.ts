@@ -311,7 +311,7 @@ export class SwToolbar extends LitElement {
           for="action-toggle-theme"
           offset="16"
           align="top"
-          alignStrategy="fixed"
+          align-strategy="fixed"
           @select=${this._handleThemeSelect}
         >
           <md-menu-item
@@ -339,7 +339,7 @@ export class SwToolbar extends LitElement {
           for="action-toggle-language"
           offset="16"
           align="top"
-          alignStrategy="fixed"
+          align-strategy="fixed"
           @select=${this._handleLanguageSelect}
         >
           <md-menu-item
