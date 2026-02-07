@@ -25,7 +25,7 @@ title: Button - M3 - SEELE
 
   <label slot="controls" for="button-properties-size">
     Size
-    <md-outlined-select name="size" id="button-properties-size" value="small" display-text="small">
+    <md-outlined-select name="size" id="button-properties-size" value="small">
       <md-option value="xsmall">xsmall</md-option>
       <md-option value="small">small</md-option>
       <md-option value="medium">medium</md-option>

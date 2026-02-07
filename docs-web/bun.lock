@@ -5,7 +5,7 @@
     "": {
       "name": "see-website",
       "dependencies": {
-        "@vollowx/seele": "^0.10.4",
+        "@vollowx/seele": "^0.11.0",
         "iconify-icon": "^3.0.2",
       },
       "devDependencies": {
@@ -99,9 +99,9 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.27.2", "", { "os": "win32", "cpu": "x64" }, "sha512-sRdU18mcKf7F+YgheI/zGf5alZatMUTKj/jNS6l744f9u3WFu4v7twcUI9vu4mknF4Y9aDlblIie0IM+5xxaqQ=="],
 
-    "@floating-ui/core": ["@floating-ui/core@1.7.3", "", { "dependencies": { "@floating-ui/utils": "^0.2.10" } }, "sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w=="],
+    "@floating-ui/core": ["@floating-ui/core@1.7.4", "", { "dependencies": { "@floating-ui/utils": "^0.2.10" } }, "sha512-C3HlIdsBxszvm5McXlB8PeOEWfBhcGBTZGkGlWc2U0KFY5IwG5OQEuQ8rq52DZmcHDlPLd+YFBK+cZcytwIFWg=="],
 
-    "@floating-ui/dom": ["@floating-ui/dom@1.7.4", "", { "dependencies": { "@floating-ui/core": "^1.7.3", "@floating-ui/utils": "^0.2.10" } }, "sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA=="],
+    "@floating-ui/dom": ["@floating-ui/dom@1.7.5", "", { "dependencies": { "@floating-ui/core": "^1.7.4", "@floating-ui/utils": "^0.2.10" } }, "sha512-N0bD2kIPInNHUHehXhMke1rBGs1dwqvC9O9KYMyyjK7iXt7GAhnro7UlcuYcGdS/yYOlq0MAVgrow8IbWJwyqg=="],
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.10", "", {}, "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ=="],
 
@@ -221,7 +221,7 @@
 
     "@types/ws": ["@types/ws@7.4.7", "", { "dependencies": { "@types/node": "*" } }, "sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww=="],
 
-    "@vollowx/seele": ["@vollowx/seele@0.10.4", "", { "dependencies": { "@floating-ui/dom": "^1.7.4", "@swc/helpers": "^0.5.18", "lit": "^3.3.2" } }, "sha512-TWi6ATqm5/CzuAWzsuBbGjbgA59Mpnbc5gMKYz4vxceEFk6PQVaWHLZSWI87CUsidEfJ9DwObm6peDAoXVIAdw=="],
+    "@vollowx/seele": ["@vollowx/seele@0.11.0", "", { "dependencies": { "@floating-ui/dom": "^1.7.5", "@swc/helpers": "^0.5.18", "lit": "^3.3.2" } }, "sha512-84/qLnoFUZQ6W/nn2g7/dfjY4QFKX4CxpeFszBowaCsc/m9HpAdF26Wa4u0+V6DssTzwgwORQ+ftjHPFtJfT9w=="],
 
     "@web/config-loader": ["@web/config-loader@0.3.3", "", {}, "sha512-ilzeQzrPpPLWZhzFCV+4doxKDGm7oKVfdKpW9wiUNVgive34NSzCw+WzXTvjE4Jgr5CkyTDIObEmMrqQEjhT0g=="],
 

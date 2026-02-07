@@ -33,10 +33,3 @@ Selects allow users to choose one or more items from a list of values.
 | `label`          | String  | `''`    | The label text for the select field.          |
 | `supportingText` | String  | `''`    | Helper text displayed below the select field. |
 | `error`          | Boolean | `false` | Whether the select is in an error state.      |
-
-## Methods
-
-| Name      | Description                            |
-| --------- | -------------------------------------- |
-| `focus()` | Focuses the select element.            |
-| `blur()`  | Removes focus from the select element. |
