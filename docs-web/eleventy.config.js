@@ -14,13 +14,13 @@ const projectRoot = path.resolve(__dirname, '..');
 // Get current git commit information at build time
 function getGitCommitInfo() {
   const defaultGithubUrl = 'https://github.com/vollowx/seele-docs';
-  
+
   try {
     // Check if we're in a Vercel environment - use Vercel environment variables
     if (process.env.VERCEL_GIT_COMMIT_SHA) {
       const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
       const commitShortSha = commitSha.substring(0, 7);
-      
+
       return {
         sha: commitSha,
         shortSha: commitShortSha,
@@ -29,12 +29,12 @@ function getGitCommitInfo() {
         isUnknown: false
       };
     }
-    
+
     // Otherwise try to get git info from local git repository
     const commitSha = execSync('git rev-parse HEAD', { cwd: projectRoot, encoding: 'utf8' }).trim();
     const commitShortSha = execSync('git rev-parse --short HEAD', { cwd: projectRoot, encoding: 'utf8' }).trim();
     const remoteUrl = execSync('git config --get remote.origin.url', { cwd: projectRoot, encoding: 'utf8' }).trim();
-    
+
     // Parse GitHub URL from remote (handles both HTTPS and SSH formats)
     let githubUrl = defaultGithubUrl;
     if (remoteUrl) {
@@ -43,7 +43,7 @@ function getGitCommitInfo() {
         githubUrl = `https://github.com/${match[1]}`;
       }
     }
-    
+
     return {
       sha: commitSha,
       shortSha: commitShortSha,
@@ -69,10 +69,10 @@ function getSeeleVersion() {
     const packageJsonPath = path.join(__dirname, 'package.json');
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
     const seeleVersion = packageJson.dependencies['@vollowx/seele'];
-    
+
     // Remove ^ or ~ prefix if present
     const cleanVersion = seeleVersion.replace(/^[\^~]/, '');
-    
+
     return {
       version: cleanVersion,
       npmUrl: `https://www.npmjs.com/package/@vollowx/seele/v/${cleanVersion}`
@@ -86,7 +86,7 @@ function getSeeleVersion() {
   }
 }
 
-export default function (eleventyConfig) {
+export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('vercel.json');
   eleventyConfig.addPassthroughCopy({
     '_middle/built': 'built',
@@ -109,14 +109,9 @@ export default function (eleventyConfig) {
     'en-US': { name: 'English', nativeName: 'English' },
     'zh-CN': { name: 'Simplified Chinese', nativeName: '中文（简体）' }
   });
-  
-  // Add git commit info as global data
-  const gitInfo = getGitCommitInfo();
-  eleventyConfig.addGlobalData('gitCommit', gitInfo);
-  
-  // Add seele version info as global data
-  const seeleInfo = getSeeleVersion();
-  eleventyConfig.addGlobalData('seeleVersion', seeleInfo);
+
+  eleventyConfig.addGlobalData('gitCommit', getGitCommitInfo());
+  eleventyConfig.addGlobalData('seeleVersion', getSeeleVersion());
 
   // Add stripLang filter to remove language prefix from URLs
   eleventyConfig.addFilter('stripLang', function(url) {
